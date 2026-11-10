@@ -1,0 +1,153 @@
+{
+  "version": "0.1.0-design",
+  "formats": [
+    {
+      "id": "csl-json",
+      "direction": "input",
+      "media_type": "application/vnd.citationstyles.csl+json",
+      "note": "canonical bibliographic exchange; published schema pin required",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "scholarly-jsonl",
+      "direction": "input",
+      "media_type": "application/x-ndjson",
+      "note": "versioned stream change envelope; proposal only",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "ris",
+      "direction": "input_output",
+      "media_type": "application/x-research-info-systems",
+      "note": "adapter using existing Searchright interchange; loss report",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "bibtex",
+      "direction": "input_output",
+      "media_type": "application/x-bibtex",
+      "note": "adapter; identifiers/field mapping may be lossy",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "nbib",
+      "direction": "input_output",
+      "media_type": "text/plain",
+      "note": "PubMed tagged format adapter",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "pubmed-xml",
+      "direction": "input",
+      "media_type": "application/xml",
+      "note": "secure XML adapter; no external entities",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "endnote-xml",
+      "direction": "input_output",
+      "media_type": "application/xml",
+      "note": "adapter; provenance and per-field loss report",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "arrow-ipc",
+      "direction": "input_output",
+      "media_type": "application/vnd.apache.arrow.stream",
+      "note": "typed streaming tables; version-pinned schema",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "parquet",
+      "direction": "input_output",
+      "media_type": "application/vnd.apache.parquet",
+      "note": "typed columnar storage with logical types and row/field metadata",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "csv",
+      "direction": "output",
+      "media_type": "text/csv",
+      "note": "flattened lossy export, escaped formula injection, explicit null conventions",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "graphml",
+      "direction": "output",
+      "media_type": "application/graphml+xml",
+      "note": "network exchange with stable node id metadata",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "gexf",
+      "direction": "output",
+      "media_type": "application/gexf+xml",
+      "note": "network exchange, temporal semantics adapter",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "vega-lite",
+      "direction": "output",
+      "media_type": "application/vnd.vegalite.v5+json",
+      "note": "declarative chart grammar and data provenance",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "scientific-scene",
+      "direction": "output",
+      "media_type": "application/vnd.citelattice.scene+json",
+      "note": "mark-to-row evidence and uncertainty contracts",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "svg",
+      "direction": "output",
+      "media_type": "image/svg+xml",
+      "note": "static vector figure, no embedded restricted layers or active scripts",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "png",
+      "direction": "output",
+      "media_type": "image/png",
+      "note": "raster figure with accessible data/description sidecar",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "html",
+      "direction": "output",
+      "media_type": "text/html",
+      "note": "offline accessible output; content security policy and data rights",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "xlsx",
+      "direction": "output",
+      "media_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "note": "descriptive workbook; no silent row truncation",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "pdf",
+      "direction": "output",
+      "media_type": "application/pdf",
+      "note": "typeset reproducible report; validation for fonts/accessibility",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "ro-crate",
+      "direction": "output",
+      "media_type": "application/ld+json",
+      "note": "RO-Crate 1.3 asset/provenance metadata",
+      "status": "adapter_planned"
+    },
+    {
+      "id": "prov",
+      "direction": "output",
+      "media_type": "application/ld+json",
+      "note": "W3C PROV entity/activity/agent relationships",
+      "status": "adapter_planned"
+    }
+  ],
+  "claim_boundary": "Identifiers and adapters are plans, not executable format support."
+}

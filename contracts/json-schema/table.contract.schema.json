@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CiteLattice design contract",
+  "description": "Design proposal only. Semantic invariants must also be verified in Rust and scientific tests.",
+  "$id": "urn:citelattice:table:0.1.0-design",
+  "type": "object",
+  "required": [
+    "schema",
+    "data_sha256",
+    "primary_key",
+    "units",
+    "missingness_policy",
+    "lineage",
+    "rights_policy"
+  ],
+  "properties": {
+    "schema": {
+      "$ref": "#/$defs/revision"
+    },
+    "data_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "primary_key": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "units": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "prefixItems": [
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "type": "string",
+            "minLength": 1
+          }
+        ]
+      }
+    },
+    "missingness_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "lineage": {
+      "$ref": "#/$defs/outputLineage"
+    },
+    "rights_policy": {
+      "$ref": "#/$defs/revision"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "revision": {
+      "type": "object",
+      "required": [
+        "id",
+        "version",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "analysisLineage": {
+      "type": "object",
+      "required": [
+        "input",
+        "method",
+        "parameter_digest",
+        "implementation",
+        "seed"
+      ],
+      "properties": {
+        "input": {
+          "$ref": "#/$defs/revision"
+        },
+        "method": {
+          "$ref": "#/$defs/revision"
+        },
+        "parameter_digest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "implementation": {
+          "$ref": "#/$defs/revision"
+        },
+        "seed": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "outputLineage": {
+      "type": "object",
+      "required": [
+        "analysis",
+        "table",
+        "scene",
+        "render"
+      ],
+      "properties": {
+        "analysis": {
+          "$ref": "#/$defs/analysisLineage"
+        },
+        "table": {
+          "$ref": "#/$defs/revision"
+        },
+        "scene": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/revision"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "render": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/revision"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CiteLattice design contract",
+  "description": "Design proposal only. Semantic invariants must also be verified in Rust and scientific tests.",
+  "$id": "urn:citelattice:method:0.1.0-design",
+  "type": "object",
+  "required": [
+    "method",
+    "family",
+    "reference",
+    "required_fields",
+    "population_rule",
+    "conventions",
+    "parameters_schema",
+    "output_schema",
+    "oracle_fixtures"
+  ],
+  "properties": {
+    "method": {
+      "$ref": "#/$defs/revision"
+    },
+    "family": {
+      "enum": [
+        "descriptive",
+        "citation_indicators",
+        "network",
+        "temporal",
+        "semantic",
+        "research_ecosystem",
+        "uncertainty"
+      ]
+    },
+    "reference": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_fields": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "population_rule": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conventions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "parameters_schema": {
+      "$ref": "#/$defs/revision"
+    },
+    "output_schema": {
+      "$ref": "#/$defs/revision"
+    },
+    "oracle_fixtures": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "revision": {
+      "type": "object",
+      "required": [
+        "id",
+        "version",
+        "sha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

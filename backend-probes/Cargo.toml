@@ -1,0 +1,29 @@
+# EXCLUDED from the default workspace: versions and features require isolated compile,
+# licence and performance qualification before promotion.
+[package]
+name = "citelattice-backend-probes"
+version = "0.0.0"
+edition = "2024"
+publish = false
+
+[features]
+default = []
+polars = ["dep:polars"]
+graph = ["dep:petgraph"]
+arrow = ["dep:arrow", "dep:parquet"]
+streaming-sql = ["dep:datafusion"]
+workbooks = ["dep:rust_xlsxwriter"]
+static-plots = ["dep:plotters"]
+local-embeddings = ["dep:fastembed"]
+render = ["dep:resvg"]
+
+[dependencies]
+polars = { version = "0.55.2", optional = true, default-features = false, features = ["lazy", "parquet"] }
+petgraph = { version = "0.8", optional = true }
+arrow = { version = "56", optional = true, default-features = false }
+parquet = { version = "56", optional = true, default-features = false }
+datafusion = { version = "51", optional = true, default-features = false }
+rust_xlsxwriter = { version = "0.93", optional = true }
+plotters = { version = "0.3", optional = true, default-features = false, features = ["svg_backend", "bitmap_backend"] }
+fastembed = { version = "5", optional = true, default-features = false }
+resvg = { version = "0.46", optional = true }

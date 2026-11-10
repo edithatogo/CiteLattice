@@ -1,0 +1,51 @@
+{
+  "scene": {
+    "id": "example:scene",
+    "version": "0.1.0-design",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "grammar": "vega-lite",
+  "tables": [
+    {
+      "id": "example:table",
+      "version": "0.1.0-design",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "marks": [
+    {
+      "id": "point-1",
+      "table": {
+        "id": "example:table",
+        "version": "0.1.0-design",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "row_keys": [
+        "paper-1"
+      ],
+      "membership": null,
+      "transform": {
+        "id": "example:point-layout",
+        "version": "0.1.0-design",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "value": 1,
+      "uncertainty": [
+        "source_coverage"
+      ]
+    }
+  ],
+  "timeline": [],
+  "alignment": null,
+  "level_of_detail": null,
+  "accessible_data": {
+    "id": "example:table",
+    "version": "0.1.0-design",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "disclosure_policy": {
+    "id": "example:public-rights",
+    "version": "0.1.0-design",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

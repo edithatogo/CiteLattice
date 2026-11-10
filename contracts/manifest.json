@@ -1,0 +1,11 @@
+{
+  "schema": "0.1.0-design",
+  "schema_files": [
+    "contracts/interop/scholarly-stream.v1.schema.json"
+  ],
+  "formats": "contracts/formats.json",
+  "methods": "contracts/methods/catalog.json",
+  "source_repo": "edithatogo/searchright",
+  "source_pr": 812,
+  "status": "contract_proposal_not_runtime_implemented"
+}
