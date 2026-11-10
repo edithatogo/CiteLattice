@@ -39,7 +39,7 @@ pub enum RightsClass {
 }
 
 /// Provenance-bearing relationship, not a claim of impact or causality.
-#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct EvidenceRelation {
     /// Exact source object reference.
     pub from: String,
