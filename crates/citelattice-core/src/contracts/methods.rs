@@ -1,6 +1,6 @@
 //! Explicit scientific definitions and eligibility, not generic metric-name strings.
-use serde::{Deserialize, Serialize};
 use super::versioning::Revision;
+use serde::{Deserialize, Serialize};
 
 /// Distinct core scientific analysis families.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

@@ -1,6 +1,6 @@
 //! Evidence-bearing quantitative images: geometry is data, never invented by an LLM.
-use serde::{Deserialize, Serialize};
 use super::versioning::Revision;
+use serde::{Deserialize, Serialize};
 
 /// Epistemic sources must not be merged into a single decorative error band.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

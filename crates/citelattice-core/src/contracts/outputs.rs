@@ -1,6 +1,6 @@
 //! Result-table, figure, workbook and research-object packaging contracts.
-use serde::{Deserialize, Serialize};
 use super::versioning::{OutputLineage, Revision};
+use serde::{Deserialize, Serialize};
 
 /// Physical interchange format with a declared semantic completeness policy.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]

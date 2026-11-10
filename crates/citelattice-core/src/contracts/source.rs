@@ -1,6 +1,6 @@
 //! Input and cross-domain research-object contracts.
-use serde::{Deserialize, Serialize};
 use super::versioning::Revision;
+use serde::{Deserialize, Serialize};
 
 /// A provider-identified research object; publications have separate canonical CSL.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
