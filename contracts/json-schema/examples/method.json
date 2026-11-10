@@ -1,0 +1,29 @@
+{
+  "method": {
+    "id": "example:h-index",
+    "version": "0.1.0-design",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "family": "citation_indicators",
+  "reference": "https://doi.org/10.1073/pnas.0507655102",
+  "required_fields": [
+    "citation_counts",
+    "author_identity"
+  ],
+  "population_rule": "synthetic publication population; citation universe must be explicit",
+  "conventions": [
+    "missing citation count is not zero",
+    "counting policy must be explicit"
+  ],
+  "parameters_schema": {
+    "id": "example:params",
+    "version": "0.1.0-design",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "output_schema": {
+    "id": "example:out",
+    "version": "0.1.0-design",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "oracle_fixtures": []
+}

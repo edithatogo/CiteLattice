@@ -1,0 +1,51 @@
+{
+  "schema": {
+    "id": "example:arrow-schema",
+    "version": "0.1.0-design",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  },
+  "data_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "primary_key": [
+    "entity_id"
+  ],
+  "units": [
+    [
+      "h_index",
+      "count"
+    ]
+  ],
+  "missingness_policy": "null is unavailable, not numeric zero",
+  "lineage": {
+    "analysis": {
+      "input": {
+        "id": "example:corpus",
+        "version": "0.1.0-design",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "method": {
+        "id": "example:h-index",
+        "version": "0.1.0-design",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "parameter_digest": "0000000000000000000000000000000000000000000000000000000000000000",
+      "implementation": {
+        "id": "example:engine",
+        "version": "0.1.0-design",
+        "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "seed": null
+    },
+    "table": {
+      "id": "example:arrow-schema",
+      "version": "0.1.0-design",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "scene": null,
+    "render": null
+  },
+  "rights_policy": {
+    "id": "example:public-rights",
+    "version": "0.1.0-design",
+    "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}
