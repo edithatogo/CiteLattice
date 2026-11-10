@@ -22,7 +22,7 @@ pub enum ExchangeFormat {
     Gexf,
     /// Declarative statistical graphics specification.
     VegaLite,
-    /// Evidence-linked CiteLattice scene JSON.
+    /// Evidence-linked `CiteLattice` scene JSON.
     EvidenceScene,
     /// Scalable vector figure.
     Svg,

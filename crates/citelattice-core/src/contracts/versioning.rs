@@ -1,7 +1,7 @@
 //! Version identities must not conflate source, scientific meaning and rendering.
 use serde::{Deserialize, Serialize};
 
-/// SemVer identity plus exact content fingerprint of a schema, method or tool.
+/// `SemVer` identity plus exact content fingerprint of a schema, method or tool.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Revision {
     /// Namespaced stable identifier.
