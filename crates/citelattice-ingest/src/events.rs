@@ -226,16 +226,16 @@ fn canonical(value: &impl Serialize) -> Result<Vec<u8>, EventError> {
 }
 
 fn valid_rights(value: &Rights) -> bool {
-    matches!(value.metadata.as_str(), "redistributable" | "restricted" | "unknown")
-        && matches!(
-            value.abstracts.as_str(),
-            "redistributable" | "restricted" | "unknown" | "absent"
-        )
-        && matches!(
-            value.full_text.as_str(),
-            "redistributable" | "restricted" | "unknown" | "absent"
-        )
-        && valid_artifact(&value.policy)
+    matches!(
+        value.metadata.as_str(),
+        "redistributable" | "restricted" | "unknown"
+    ) && matches!(
+        value.abstracts.as_str(),
+        "redistributable" | "restricted" | "unknown" | "absent"
+    ) && matches!(
+        value.full_text.as_str(),
+        "redistributable" | "restricted" | "unknown" | "absent"
+    ) && valid_artifact(&value.policy)
 }
 
 fn exact_fields(obj: &Map<String, Value>, expected: &[&str]) -> bool {
@@ -257,19 +257,34 @@ fn parse_object(value: &Value) -> Result<(String, String, String), EventError> {
         if obj.record.is_some() {
             return Err(EventError::InvalidWire);
         }
-        let csl = obj.csl.as_ref().and_then(Value::as_object).ok_or(EventError::InvalidWire)?;
+        let csl = obj
+            .csl
+            .as_ref()
+            .and_then(Value::as_object)
+            .ok_or(EventError::InvalidWire)?;
         let csl_id = csl.get("id").ok_or(EventError::InvalidWire)?;
         if !csl_id.is_string() && !csl_id.is_number() {
             return Err(EventError::InvalidWire);
         }
-        if !csl.get("type").and_then(Value::as_str).is_some_and(identifier) {
+        if !csl
+            .get("type")
+            .and_then(Value::as_str)
+            .is_some_and(identifier)
+        {
             return Err(EventError::InvalidWire);
         }
         Ok((obj.key, obj.kind, hex_digest(&canonical(csl)?)))
     } else if matches!(
         obj.kind.as_str(),
-        "grant" | "patent" | "clinical_trial" | "policy_document"
-            | "dataset" | "software" | "report" | "venue" | "organisation"
+        "grant"
+            | "patent"
+            | "clinical_trial"
+            | "policy_document"
+            | "dataset"
+            | "software"
+            | "report"
+            | "venue"
+            | "organisation"
     ) {
         if obj.csl.is_some() {
             return Err(EventError::InvalidWire);
@@ -320,9 +335,7 @@ impl EventLedger {
         // A restricted or unverified source identifier must not be disclosed
         // from the introspection API. Raw keys remain private to the ledger.
         for object in &mut objects {
-            if object.state != ObjectState::Deleted
-                && object.metadata_rights != "redistributable"
-            {
+            if object.state != ObjectState::Deleted && object.metadata_rights != "redistributable" {
                 object.key = format!("sha256:{}", hex_digest(object.key.as_bytes()));
             }
         }
@@ -393,7 +406,10 @@ impl EventLedger {
         if self.seen_events.len() >= self.limits.max_events {
             return Err(EventError::ResourceLimit);
         }
-        let expected = self.last_sequence.checked_add(1).ok_or(EventError::ResourceLimit)?;
+        let expected = self
+            .last_sequence
+            .checked_add(1)
+            .ok_or(EventError::ResourceLimit)?;
         if sequence != expected {
             return Err(EventError::Sequence);
         }
@@ -434,14 +450,17 @@ impl EventLedger {
             {
                 return Err(EventError::ResourceLimit);
             }
-            Planned::Insert(key.clone(), ObservedObject {
-                key,
-                kind,
-                state: ObjectState::Active,
-                body_digest: Some(body_digest),
-                replacement_digest: None,
-                metadata_rights: event.rights.metadata.clone(),
-            })
+            Planned::Insert(
+                key.clone(),
+                ObservedObject {
+                    key,
+                    kind,
+                    state: ObjectState::Active,
+                    body_digest: Some(body_digest),
+                    replacement_digest: None,
+                    metadata_rights: event.rights.metadata.clone(),
+                },
+            )
         } else if matches!(op, "correct" | "retract" | "delete") {
             if !exact_fields(change, &["op", "target", "reason", "replacement"]) {
                 return Err(EventError::InvalidWire);
@@ -530,7 +549,10 @@ pub fn read_event_stream<R: BufRead>(
     if limits.max_events == 0 || limits.max_line_bytes == 0 || limits.max_objects == 0 {
         return Err(EventError::ResourceLimit);
     }
-    let probe = limits.max_line_bytes.checked_add(1).ok_or(EventError::ResourceLimit)?;
+    let probe = limits
+        .max_line_bytes
+        .checked_add(1)
+        .ok_or(EventError::ResourceLimit)?;
     let probe = u64::try_from(probe).map_err(|_| EventError::ResourceLimit)?;
     let mut ledger = EventLedger::new(limits);
     let mut line = Vec::new();

@@ -37,7 +37,9 @@ fn next_event(previous: &Value, op: &str) -> Value {
 fn producer_fixture_is_admitted_without_raw_csl_retention() {
     let mut ledger = EventLedger::new(EventLimits::default());
     assert_eq!(
-        ledger.apply_json(&serde_json::to_vec(&fixture()).unwrap()).unwrap(),
+        ledger
+            .apply_json(&serde_json::to_vec(&fixture()).unwrap())
+            .unwrap(),
         ApplyStatus::Applied
     );
     let snapshot = ledger.snapshot();
@@ -100,7 +102,9 @@ fn bad_digest_version_counter_and_gap_fail_without_state_change() {
     for (label, payload) in cases {
         let mut ledger = EventLedger::new(EventLimits::default());
         assert!(
-            ledger.apply_json(&serde_json::to_vec(&payload).unwrap()).is_err(),
+            ledger
+                .apply_json(&serde_json::to_vec(&payload).unwrap())
+                .is_err(),
             "{label}"
         );
         assert_eq!(ledger.snapshot().last_sequence, 0, "{label}");
@@ -112,21 +116,31 @@ fn bad_digest_version_counter_and_gap_fail_without_state_change() {
 fn correction_is_a_pointer_not_fabricated_replacement_content() {
     let mut ledger = EventLedger::new(EventLimits::default());
     let first = fixture();
-    ledger.apply_json(&serde_json::to_vec(&first).unwrap()).unwrap();
+    ledger
+        .apply_json(&serde_json::to_vec(&first).unwrap())
+        .unwrap();
     let correction = next_event(&first, "correct");
-    ledger.apply_json(&serde_json::to_vec(&correction).unwrap()).unwrap();
+    ledger
+        .apply_json(&serde_json::to_vec(&correction).unwrap())
+        .unwrap();
     let snapshot = ledger.snapshot();
     assert_eq!(snapshot.last_sequence, 2);
     assert_eq!(snapshot.objects[0].state, ObjectState::CorrectionPending);
     assert!(snapshot.objects[0].replacement_digest.is_some());
-    assert!(!serde_json::to_string(&snapshot).unwrap().contains("Synthetic scholarly stream fixture"));
+    assert!(
+        !serde_json::to_string(&snapshot)
+            .unwrap()
+            .contains("Synthetic scholarly stream fixture")
+    );
 }
 
 #[test]
 fn delete_tombstones_and_prevents_silent_resurrection() {
     let first = fixture();
     let mut ledger = EventLedger::new(EventLimits::default());
-    ledger.apply_json(&serde_json::to_vec(&first).unwrap()).unwrap();
+    ledger
+        .apply_json(&serde_json::to_vec(&first).unwrap())
+        .unwrap();
     ledger
         .apply_json(&serde_json::to_vec(&next_event(&first, "delete")).unwrap())
         .unwrap();
@@ -138,7 +152,11 @@ fn delete_tombstones_and_prevents_silent_resurrection() {
 #[test]
 fn bounded_line_reader_rejects_oversized_frames() {
     let bytes = serde_json::to_vec(&fixture()).unwrap();
-    let limits = EventLimits { max_line_bytes: 64, max_events: 10, max_objects: 10 };
+    let limits = EventLimits {
+        max_line_bytes: 64,
+        max_events: 10,
+        max_objects: 10,
+    };
     assert!(matches!(
         read_event_stream(Cursor::new(bytes), limits),
         Err(EventError::FrameLimit)
@@ -175,10 +193,15 @@ fn unverified_rights_redact_source_identifiers_from_snapshot() {
     let mut input = fixture();
     input["rights"]["metadata"] = json!("restricted");
     let mut ledger = EventLedger::new(EventLimits::default());
-    ledger.apply_json(&serde_json::to_vec(&input).unwrap()).unwrap();
+    ledger
+        .apply_json(&serde_json::to_vec(&input).unwrap())
+        .unwrap();
     let summary = ledger.snapshot();
     assert_eq!(summary.version, "0.1.0");
-    assert_eq!(summary.contract_id, "org.citelattice.scholarly-event-snapshot");
+    assert_eq!(
+        summary.contract_id,
+        "org.citelattice.scholarly-event-snapshot"
+    );
     assert!(summary.objects[0].key.starts_with("sha256:"));
     let exposed = serde_json::to_string(&summary).unwrap();
     assert!(!exposed.contains("fixture:paper-1"));
@@ -189,7 +212,9 @@ fn unverified_rights_redact_source_identifiers_from_snapshot() {
 fn mismatched_prior_revision_fails_without_mutation() {
     let first = fixture();
     let mut ledger = EventLedger::new(EventLimits::default());
-    ledger.apply_json(&serde_json::to_vec(&first).unwrap()).unwrap();
+    ledger
+        .apply_json(&serde_json::to_vec(&first).unwrap())
+        .unwrap();
     let mut second = next_event(&first, "retract");
     second["prior_revision"] = Value::Null;
     assert!(matches!(
@@ -212,7 +237,8 @@ fn illegal_change_fields_and_unknown_kind_fail_closed() {
     let mut unexpected = fixture();
     unexpected["new_undeclared_field"] = json!("not valid");
     assert!(matches!(
-        EventLedger::new(EventLimits::default()).apply_json(&serde_json::to_vec(&unexpected).unwrap()),
+        EventLedger::new(EventLimits::default())
+            .apply_json(&serde_json::to_vec(&unexpected).unwrap()),
         Err(EventError::InvalidWire)
     ));
 }
