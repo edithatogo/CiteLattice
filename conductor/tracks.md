@@ -9,7 +9,7 @@
 | 04 — Local inference and dynamics | Planned | Topic/novelty/semantic change optional embeddings | Model revisions, calibration and transparent baseline comparison |
 | 05 — Dimensions research objects | Planned | Grants, patents, trials, policy, datasets, cross-domain links | Rights, typed relationships, coverage/uncertainty |
 | 06 — Versioning and reproducible outputs | Scaffolded | Separate source/method/table/scene/render versions, complete data exports | Invalidation, schema and bundle round trips |
-| 07 — Beyond-frontier imaging | Scaffolded | Mark-to-row lineage, multiverse comparisons, LOD, uncertainty and accessibility | Geometry, disclosure and conservation tests |
+| 07 — Beyond-frontier imaging | Evidence-linked annual scene source; CI pending | Mark-to-row lineage, multiverse comparisons, LOD, uncertainty and accessibility | Geometry, disclosure and conservation tests |
 | 08 — Reporting and distribution | Partial output adapters; transactional API under review | Reproducible XLSX/PDF/HTML/RO-Crate packages | Format validation and snapshot checks |
 | 09 — Dependency evaluation | Scaffolded | Polars/graph/datafusion/render/backend substitutions only on evidence | Isolated compile, security, benchmark and parity |
 | 10 — Lean agent harness/security | Planned | CodeQL, Gitleaks, deny/audit/vet, fuzz/property/mutation with adaptive CI | Exact revision observed hosted CI |
@@ -36,3 +36,7 @@ No other track's historical status is promoted by these files.
 - Searchright #812 remains proposed; actual producer/consumer streaming is not yet demonstrated.
 
 Prioritise exact-head CI for these PRs, then cross-format output integrity, versioned Searchright events, independent bibliometrix/PyBibX parity and held-out research studies. Keep evidence states independent of code presence.
+
+### Track 07 implementation slice (2026-11-11)
+
+`citelattice-visualize` constructs one deterministic annual evidence scene with exactly one mark and source-year row identity per source table row. It enforces source count conservation, unique sorted years, explicit annual bar budgets, safe JSON integer precision, an accessible exact-count table, Vega-Lite v5 data specification, and static SVG with row annotations and artifact/scene digests. A change of source input digest invalidates the scientific scene while a purely source-layout-neutral table revision can preserve the SVG bytes. **No external scientific map, GPU renderer, PDF, cross-source temporal alignment or human interpretation advantage is claimed.** The code requires native CI and independent geometry/rights audits.

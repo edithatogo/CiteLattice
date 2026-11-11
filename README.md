@@ -44,3 +44,8 @@ evidence-linked imaging and the Innovate/Voiage study. It has an executable plan
 and machine-readable task dependencies, without a second issue hierarchy.
 The current source is not described as beyond-frontier; each such claim requires
 a prespecified, held-out comparative result and scoped independent reproduction.
+
+
+## Experimental evidence-linked imaging
+
+`citelattice-visualize` (PR pending) builds scoped annual mark-to-source scenes, declarative Vega-Lite, offline SVG, accessible exact integer rows and self-check render receipts. No global citation coverage, independent scientific visualisation validation, or GPU capability is claimed. See `conductor/tracks/07-scientific-imaging/`.

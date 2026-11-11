@@ -1,0 +1,25 @@
+{
+  "status": "source_authored_native_ci_pending",
+  "primary_track": "07",
+  "affected_tracks": [
+    "06",
+    "08",
+    "09",
+    "12"
+  ],
+  "source_revision": "8d0fdb2592597c7cf5183b1df65ada3e5db1fef7",
+  "scientific_claim": "none",
+  "beyond_frontier_demonstrated": false,
+  "tests": "crates/citelattice-visualize/tests/annual.rs",
+  "limitations": [
+    "No independent cross-renderer geometry audit",
+    "No true semantic zoom or large-network imaging",
+    "No external scientific user-study results",
+    "No full source-rights proof"
+  ],
+  "required_checks": [
+    "cargo test -p citelattice-visualize",
+    "cargo clippy --workspace --all-targets -- -D warnings",
+    "cargo fmt --all -- --check"
+  ]
+}
