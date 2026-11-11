@@ -90,7 +90,10 @@ fn verify_table(summary: &PublicationSummary, limits: SceneLimits) -> Result<(),
     }
     if summary.schema_version != RESULT_SCHEMA
         || summary.input_sha256.len() != 64
-        || !summary.input_sha256.bytes().all(|c| c.is_ascii_hexdigit() && !c.is_ascii_uppercase())
+        || !summary
+            .input_sha256
+            .bytes()
+            .all(|c| c.is_ascii_hexdigit() && !c.is_ascii_uppercase())
         || summary.undated > summary.record_count
     {
         return Err(SceneError::InconsistentTable);
@@ -133,7 +136,13 @@ fn table_revision(summary: &PublicationSummary) -> Result<Revision, SceneError> 
 }
 
 fn make_svg(summary: &PublicationSummary) -> Result<(String, String), SceneError> {
-    let largest = summary.annual.iter().map(|r| r.count).max().unwrap_or(1).max(1);
+    let largest = summary
+        .annual
+        .iter()
+        .map(|r| r.count)
+        .max()
+        .unwrap_or(1)
+        .max(1);
     let width = 640_usize.max(80 + summary.annual.len() * 37);
     let mut image = format!(
         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 {width} 400\" role=\"img\" aria-label=\"Annual publication counts\"><title>Annual publication production</title><desc>Counts of source-reported works; citation-universe coverage is not inferred</desc>"
@@ -258,7 +267,11 @@ pub fn build_annual_scene(
         ),
         output: revision("annual.svg", "1.0.0", sha256(svg.as_bytes())),
         reproducibility: "deterministic-integer-geometry-v1; self-check only".to_owned(),
-        geometry_check: revision("citelattice:annual-svg-geometry-selfcheck", "1.0.0", geometry_digest),
+        geometry_check: revision(
+            "citelattice:annual-svg-geometry-selfcheck",
+            "1.0.0",
+            geometry_digest,
+        ),
         disclosure_check: revision(
             "citelattice:annual-numeric-only-disclosure-selfcheck",
             "1.0.0",
