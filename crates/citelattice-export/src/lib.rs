@@ -70,6 +70,12 @@ pub enum ExportError {
     /// Manifest encoding failed.
     #[error("manifest encoding failed")]
     Encoding,
+    /// Refuse to overwrite an existing analytical package.
+    #[error("destination already exists")]
+    DestinationExists,
+    /// A staged artifact did not match its recorded digest.
+    #[error("staged output integrity mismatch")]
+    Integrity,
     /// Incompatible input scientific result.
     #[error("unsupported source result schema")]
     Schema,
@@ -216,5 +222,61 @@ pub fn write_extended(
     };
     let json = serde_json::to_vec_pretty(&receipt).map_err(|_| ExportError::Encoding)?;
     fs::write(&manifest_path, json).map_err(|_| ExportError::Io)?;
+    Ok(receipt)
+}
+
+/// Stage a complete analytical package on the destination filesystem, verify
+/// every asset, then publish it by one directory rename.
+///
+/// Existing destinations are refused rather than overwritten. The rename is
+/// atomic on supported same-filesystem deployments; it is not an fsync-based
+/// durability guarantee or an atomic multi-directory transaction. Concurrent
+/// external writers are outside this interface's threat model.
+///
+/// # Errors
+/// Returns a redacted error for denied rights, existing destination, write
+/// failure or mismatched artifact digest. Failed staging is cleaned up by
+/// `TempDir` and the final path is not created by this function on failure.
+pub fn write_extended_transactional(
+    summary: &PublicationSummary,
+    destination: &Path,
+    permission: ExportApproval,
+) -> Result<ExportReceipt, ExportError> {
+    if permission != ExportApproval::Allowed {
+        return Err(ExportError::Denied);
+    }
+    if destination.exists() {
+        return Err(ExportError::DestinationExists);
+    }
+    let parent = destination.parent().ok_or(ExportError::Io)?;
+    if !parent.is_dir() {
+        return Err(ExportError::Io);
+    }
+    let staging = tempfile::Builder::new()
+        .prefix(".citelattice-stage-")
+        .tempdir_in(parent)
+        .map_err(|_| ExportError::Io)?;
+    let mut receipt = write_extended(summary, staging.path(), permission)?;
+    for asset in &receipt.assets {
+        let actual = fs::read(staging.path().join(&asset.path)).map_err(|_| ExportError::Io)?;
+        if digest(&actual) != asset.sha256 {
+            return Err(ExportError::Integrity);
+        }
+    }
+    // Keep the serialized package manifest relocatable; return an absolute or
+    // caller-relative path only in the API receipt, never inside the package.
+    let mut portable = receipt.clone();
+    portable.output_manifest = PathBuf::from("extended-manifest.json");
+    receipt.output_manifest = destination.join("extended-manifest.json");
+    fs::write(
+        staging.path().join("extended-manifest.json"),
+        serde_json::to_vec_pretty(&portable).map_err(|_| ExportError::Encoding)?,
+    )
+    .map_err(|_| ExportError::Io)?;
+    if destination.exists() {
+        return Err(ExportError::DestinationExists);
+    }
+    fs::rename(staging.path(), destination).map_err(|_| ExportError::Io)?;
+    // TempDir cleanup now sees an absent staging path; published assets remain.
     Ok(receipt)
 }
