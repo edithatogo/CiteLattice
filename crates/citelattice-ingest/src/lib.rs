@@ -5,6 +5,7 @@
 //! citation graphs, or name-disambiguated collaboration.
 #![forbid(unsafe_code)]
 use std::collections::{BTreeMap, BTreeSet};
+use std::fmt::Write as _;
 use std::io::{BufRead, Read};
 use std::path::Path;
 
@@ -13,7 +14,7 @@ use sha2::{Digest, Sha256};
 
 /// Searchright's native bibliographic-record schema identifier.
 pub const SOURCE_SCHEMA: &str = "org.searchright.bibliographic-record.v1";
-/// CiteLattice's descriptive-output contract identifier.
+/// `CiteLattice`'s descriptive-output contract identifier.
 pub const RESULT_SCHEMA: &str = "org.citelattice.searchright-summary.v1";
 
 /// Bounded input limits for independent native JSONL exports.
@@ -292,7 +293,7 @@ pub fn summarize_reader<R: BufRead>(
 fn annual_csv(summary: &PublicationSummary) -> String {
     let mut out = String::from("year,publications\n");
     for row in &summary.annual {
-        out.push_str(&format!("{},{}\n", row.year, row.count));
+        let _ = write!(out, "{},{}\n", row.year, row.count);
     }
     out
 }
@@ -312,7 +313,7 @@ fn annual_svg(summary: &PublicationSummary) -> String {
         let x = 30 + index * 37;
         let height = row.count * 280 / largest;
         let y = 330 - height;
-        s.push_str(&format!("<rect x=\"{x}\" y=\"{y}\" width=\"26\" height=\"{height}\" fill=\"#465f82\"/><text x=\"{x}\" y=\"350\" font-size=\"9\">{}</text><text x=\"{x}\" y=\"{}\" font-size=\"9\">{}</text>", row.year, y.saturating_sub(5), row.count));
+        let _ = write!(s, "<rect x=\"{x}\" y=\"{y}\" width=\"26\" height=\"{height}\" fill=\"#465f82\"/><text x=\"{x}\" y=\"350\" font-size=\"9\">{}</text><text x=\"{x}\" y=\"{}\" font-size=\"9\">{}</text>", row.year, y.saturating_sub(5), row.count);
     }
     s.push_str("</svg>");
     s
@@ -323,10 +324,7 @@ fn annual_html(summary: &PublicationSummary) -> String {
         "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; style-src 'unsafe-inline'\"><title>Annual publication production</title></head><body><h1>Annual publication production</h1><table><caption>Works grouped by reported publication year</caption><thead><tr><th>Year</th><th>Publications</th></tr></thead><tbody>",
     );
     for row in &summary.annual {
-        s.push_str(&format!(
-            "<tr><td>{}</td><td>{}</td></tr>",
-            row.year, row.count
-        ));
+        let _ = write!(s, "<tr><td>{}</td><td>{}</td></tr>", row.year, row.count);
     }
     s.push_str("</tbody></table></body></html>");
     s
