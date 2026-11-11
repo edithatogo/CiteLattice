@@ -19,6 +19,9 @@ pub const SOURCE_SCHEMA: &str = "org.searchright.bibliographic-record.v1";
 /// `CiteLattice`'s descriptive-output contract identifier.
 pub const RESULT_SCHEMA: &str = "org.citelattice.searchright-summary.v1";
 
+const MAX_AUTHORS_PER_RECORD: usize = 256;
+const MAX_COAUTHOR_EDGES: usize = 1_000_000;
+
 /// Bounded input limits for independent native JSONL exports.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct SourceLimits {
@@ -54,6 +57,12 @@ pub enum SourceError {
     /// A source record identity was repeated.
     #[error("duplicate record identity at line {0}")]
     Duplicate(usize),
+    /// A record carries too many author strings for bounded graph construction.
+    #[error("author count exceeds bounded graph limit")]
+    TooManyAuthors,
+    /// Pairwise coauthor network exceeds its global memory budget.
+    #[error("coauthor edge limit exceeded")]
+    TooManyEdges,
     /// An exact metric count exceeded its permitted type.
     #[error("count overflow")]
     Overflow,
@@ -184,6 +193,28 @@ fn document_kind(value: &serde_json::Value) -> Option<String> {
         .filter(|kind| nonempty(kind))
 }
 
+fn accumulate_coauthor_edges(
+    edges: &mut BTreeMap<(String, String), u64>,
+    authors: Vec<String>,
+) -> Result<(), SourceError> {
+    let distinct: Vec<String> = authors
+        .into_iter()
+        .collect::<BTreeSet<_>>()
+        .into_iter()
+        .collect();
+    for (i, a) in distinct.iter().enumerate() {
+        for b in distinct.iter().skip(i + 1) {
+            let key = (a.clone(), b.clone());
+            if !edges.contains_key(&key) && edges.len() >= MAX_COAUTHOR_EDGES {
+                return Err(SourceError::TooManyEdges);
+            }
+            let count = edges.entry(key).or_default();
+            *count = count.checked_add(1).ok_or(SourceError::Overflow)?;
+        }
+    }
+    Ok(())
+}
+
 /// Parse a bounded genuine Searchright JSONL file into scoped descriptive statistics.
 ///
 /// # Errors
@@ -245,6 +276,11 @@ pub fn summarize_reader<R: BufRead>(
         {
             return Err(SourceError::InvalidContract(line));
         }
+        // Each source author creates O(n²) candidate coauthorship pairs.
+        // A genuine large consortium requires a separately budgeted graph adapter.
+        if record.authors.len() > MAX_AUTHORS_PER_RECORD {
+            return Err(SourceError::TooManyAuthors);
+        }
         if !seen.insert(record.record_id) {
             return Err(SourceError::Duplicate(line));
         }
@@ -257,17 +293,7 @@ pub fn summarize_reader<R: BufRead>(
         }
         let kind = document_kind(&record.kind).ok_or(SourceError::InvalidContract(line))?;
         *kinds.entry(kind).or_default() += 1;
-        let distinct: Vec<String> = record
-            .authors
-            .into_iter()
-            .collect::<BTreeSet<_>>()
-            .into_iter()
-            .collect();
-        for (i, a) in distinct.iter().enumerate() {
-            for b in distinct.iter().skip(i + 1) {
-                *edges.entry((a.clone(), b.clone())).or_default() += 1;
-            }
-        }
+        accumulate_coauthor_edges(&mut edges, record.authors)?;
     }
     Ok(PublicationSummary {
         schema_version: RESULT_SCHEMA.to_owned(),
@@ -300,7 +326,13 @@ fn annual_csv(summary: &PublicationSummary) -> String {
     out
 }
 
-fn annual_svg(summary: &PublicationSummary) -> String {
+fn annual_svg(summary: &PublicationSummary) -> Result<String, OutputError> {
+    // Do not silently omit years. A very wide chart is unsuitable as a
+    // scientific image, so reject it before writing any output file.
+    const MAX_SVG_BARS: usize = 512;
+    if summary.annual.len() > MAX_SVG_BARS {
+        return Err(OutputError::Write);
+    }
     let largest = summary
         .annual
         .iter()
@@ -308,13 +340,15 @@ fn annual_svg(summary: &PublicationSummary) -> String {
         .max()
         .unwrap_or(1)
         .max(1);
-    let mut s = String::from(
-        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 400\" role=\"img\" aria-label=\"Publications by year\"><title>Publications by year</title>",
+    let width = 640_usize.max(80 + summary.annual.len() * 37);
+    let mut s = format!(
+        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 {width} 400\" role=\"img\" aria-label=\"Publications by year\"><title>Publications by year</title>"
     );
-    for (index, row) in summary.annual.iter().take(16).enumerate() {
+    for (index, row) in summary.annual.iter().enumerate() {
         let x = 30 + index * 37;
-        let height = row.count * 280 / largest;
-        let y = 330 - height;
+        let height = u64::try_from(u128::from(row.count) * 280 / u128::from(largest))
+            .map_err(|_| OutputError::Write)?;
+        let y = 330_u64.saturating_sub(height);
         let _ = write!(
             s,
             "<rect x=\"{x}\" y=\"{y}\" width=\"26\" height=\"{height}\" fill=\"#465f82\"/><text x=\"{x}\" y=\"350\" font-size=\"9\">{}</text><text x=\"{x}\" y=\"{}\" font-size=\"9\">{}</text>",
@@ -324,7 +358,7 @@ fn annual_svg(summary: &PublicationSummary) -> String {
         );
     }
     s.push_str("</svg>");
-    s
+    Ok(s)
 }
 
 fn annual_html(summary: &PublicationSummary) -> String {
@@ -356,16 +390,14 @@ pub fn write_outputs(
     if permission != ExportApproval::Allowed {
         return Err(OutputError::Denied);
     }
-    std::fs::create_dir_all(directory).map_err(|_| OutputError::Write)?;
+    // Validate SVG completeness before touching the destination directory.
+    let svg = annual_svg(summary)?;
     let summary_json = serde_json::to_vec_pretty(summary).map_err(|_| OutputError::Write)?;
+    std::fs::create_dir_all(directory).map_err(|_| OutputError::Write)?;
     let assets = [
         ("summary.json", summary_json, "application/json"),
         ("annual.csv", annual_csv(summary).into_bytes(), "text/csv"),
-        (
-            "annual.svg",
-            annual_svg(summary).into_bytes(),
-            "image/svg+xml",
-        ),
+        ("annual.svg", svg.into_bytes(), "image/svg+xml"),
         (
             "annual.html",
             annual_html(summary).into_bytes(),

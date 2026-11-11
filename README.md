@@ -32,7 +32,7 @@ Do not infer method coverage, zero-copy behaviour, Searchright runtime compatibi
 
 ## Developer status
 
-Core Rust contracts live in `crates/citelattice-core`. Heavy backend dependency probes live in an **excluded** optional workspace `backend-probes`; no untested dependency is forced into the default build. Contract schemas/fixtures are exercised in CI. The `citelattice-analysis` source increment adds h/g/i10/totals, missing-count ranges, reproducible identity keys and bounded independent-request JSONL. See [scope and usage](docs/citation-summary.md). Its Rust build and tests remain unverified in the authoring environment. A corpus-scoped Petgraph network baseline, native Searchright JSONL reader, Parquet/XLSX/Typst-source writers and figures exist in the repository. A proposed scholarly change-event consumer has source authored on a scoped branch; its Rust CI and end-to-end Searchright producer compatibility remain pending. Full automated replay, comprehensive scientometric parity and beyond-frontier claims remain unproven.
+Core Rust contracts live in `crates/citelattice-core`. Heavy backend dependency probes live in an **excluded** optional workspace `backend-probes`; no untested dependency is forced into the default build. Contract schemas/fixtures are exercised in CI. The `citelattice-analysis` source increment adds h/g/i10/totals, missing-count ranges, reproducible identity keys and bounded independent-request JSONL. See [scope and usage](docs/citation-summary.md). Its Rust build and tests remain unverified in the authoring environment. Searchright event replay, graph analytics, actual figures, workbook/report writers and full feature parity remain pending.
 
 The earlier `bibx` design.2 archive contains a more extensive initial API sketch and coverage inventory. Migration is tracked in Conductor: do not discard useful definitions or claim all files have been imported.
 
@@ -44,3 +44,12 @@ evidence-linked imaging and the Innovate/Voiage study. It has an executable plan
 and machine-readable task dependencies, without a second issue hierarchy.
 The current source is not described as beyond-frontier; each such claim requires
 a prespecified, held-out comparative result and scoped independent reproduction.
+
+
+## Experimental evidence-linked imaging
+
+`citelattice-visualize` (PR pending) builds scoped annual mark-to-source scenes, declarative Vega-Lite, offline SVG, accessible exact integer rows and self-check render receipts. No global citation coverage, independent scientific visualisation validation, or GPU capability is claimed. See `conductor/tracks/07-scientific-imaging/`.
+
+## Proposed scholarly change-event consumer
+
+`citelattice-ingest::events` implements a bounded, single-epoch, in-memory consumer for proposed `org.scholarly.stream/1.0.0-design.2` envelopes, with canonical payload digests, revision/sequence validation, privacy-minimised state and correction/deletion semantics. It is **not** a qualified live Searchright producer connection, durable event spool, full CSL validator or established scientific-method comparison. See [Track 01](conductor/tracks/01-scholarly-events/spec.md).

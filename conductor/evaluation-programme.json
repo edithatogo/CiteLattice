@@ -221,7 +221,9 @@
         "verification/outputs/roundtrip-manifest.json",
         "verification/imaging/geometry-oracles.json",
         "crates/citelattice-export/src/lib.rs",
-        "crates/citelattice-export/tests/portable.rs"
+        "crates/citelattice-export/tests/portable.rs",
+        "crates/citelattice-visualize/src/lib.rs",
+        "crates/citelattice-visualize/tests/annual.rs"
       ],
       "acceptance": [
         "Round-trip Arrow/Parquet types, units, nulls, exact integers, metadata and row identities.",
@@ -229,7 +231,8 @@
         "Every quantitative mark resolves to rows or aggregate membership; malformed geometry and hidden restricted payloads are rejected.",
         "Test CSV/XLSX formula injection, SVG/HTML scripts, hover/hidden layers and accessible equivalent tables.",
         "Stage all extended artifacts on same filesystem; validate SHA-256 and manifest path before final rename; refuse existing destinations; deny before any filesystem writes.",
-        "Distinguish same-filesystem atomic visibility from fsync durability, concurrency safety, or remote-object-store atomicity."
+        "Distinguish same-filesystem atomic visibility from fsync durability, concurrency safety, or remote-object-store atomicity.",
+        "Annual evidence-scene render must preserve all source years, exact table counts, mark row keys, Vega-Lite rows and source/scene/render fingerprints without binary64 integer loss."
       ],
       "owners": [
         "06",
@@ -240,7 +243,7 @@
       "state": "source_authored_native_unverified",
       "claimed_beyond_frontier": false,
       "research_question": null,
-      "implementation_note": "Transactional export source authored; exact-revision native tests and portability remain pending."
+      "implementation_note": "Transactional export source authored; exact-revision native tests and portability remain pending. Evidence-linked annual scene source authored; cross-renderer evaluation and native CI pending. Annual scene and transaction sources are authored; independent scientific validation remains pending."
     },
     {
       "id": "R01",

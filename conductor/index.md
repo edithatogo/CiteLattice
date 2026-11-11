@@ -15,6 +15,8 @@ Lean solo workflow: scoped plan + contract + failing test + implementation + rec
 - [Machine-readable task/dependency registry](evaluation-programme.json)
 - [Current citation-summary API](../docs/citation-summary.md)
 
-Source implementation exists in GitHub. The current source-evidence ceiling is determined by the exact observed CI run, not by the historical local continuation patch.
+The local continuation patch contains source-authored kernels, not native build
+evidence or a merged remote change. Consult its evidence record before promotion.
 
-- [Track 01 versioned scholarly stream consumer](tracks/01-scholarly-events/spec.md) — source-authored; CI and producer agreement pending.
+- [Track 07 evidence-linked annual scenes](tracks/07-scientific-imaging/spec.md) — Vega-Lite, SVG and mark-to-row contracts; hosted CI and wider imaging evaluation pending.
+- [Track 01 versioned scholarly stream consumer](tracks/01-scholarly-events/spec.md) — producer and durable replay verification pending.
