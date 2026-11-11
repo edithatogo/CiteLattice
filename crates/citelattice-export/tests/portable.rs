@@ -64,3 +64,78 @@ fn denied_export_is_side_effect_free() -> Result<(), Box<dyn std::error::Error>>
     assert!(!destination.exists());
     Ok(())
 }
+
+#[test]
+fn transactional_export_publishes_verified_assets() -> Result<(), Box<dyn std::error::Error>> {
+    use sha2::{Digest, Sha256};
+    let parent = tempfile::tempdir()?;
+    let destination = parent.path().join("complete");
+    let receipt = citelattice_export::write_extended_transactional(
+        &summary(),
+        &destination,
+        ExportApproval::Allowed,
+    )?;
+    assert_eq!(
+        receipt.output_manifest,
+        destination.join("extended-manifest.json")
+    );
+    assert!(receipt.output_manifest.is_file());
+    for asset in &receipt.assets {
+        let bytes = std::fs::read(destination.join(&asset.path))?;
+        assert_eq!(asset.sha256, hex::encode(Sha256::digest(&bytes)));
+    }
+    let on_disk: citelattice_export::ExportReceipt =
+        serde_json::from_slice(&std::fs::read(&receipt.output_manifest)?)?;
+    assert_eq!(
+        on_disk.output_manifest,
+        std::path::PathBuf::from("extended-manifest.json")
+    );
+    Ok(())
+}
+
+#[test]
+fn transactional_export_denied_and_missing_parent_leave_no_package()
+-> Result<(), Box<dyn std::error::Error>> {
+    let parent = tempfile::tempdir()?;
+    let denied = parent.path().join("denied");
+    assert!(
+        citelattice_export::write_extended_transactional(
+            &summary(),
+            &denied,
+            ExportApproval::Denied,
+        )
+        .is_err()
+    );
+    assert!(!denied.exists());
+    let missing = parent.path().join("absent").join("package");
+    assert!(
+        citelattice_export::write_extended_transactional(
+            &summary(),
+            &missing,
+            ExportApproval::Allowed,
+        )
+        .is_err()
+    );
+    assert!(!missing.exists());
+    Ok(())
+}
+
+#[test]
+fn transactional_export_refuses_overwriting_existing_package()
+-> Result<(), Box<dyn std::error::Error>> {
+    let parent = tempfile::tempdir()?;
+    let destination = parent.path().join("existing");
+    std::fs::create_dir(&destination)?;
+    let sentinel = destination.join("do-not-touch");
+    std::fs::write(&sentinel, b"unchanged")?;
+    assert!(matches!(
+        citelattice_export::write_extended_transactional(
+            &summary(),
+            &destination,
+            ExportApproval::Allowed
+        ),
+        Err(citelattice_export::ExportError::DestinationExists)
+    ));
+    assert_eq!(std::fs::read(&sentinel)?, b"unchanged");
+    Ok(())
+}
