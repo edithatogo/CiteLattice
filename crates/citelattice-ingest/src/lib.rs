@@ -385,11 +385,7 @@ pub fn write_outputs(
     let assets = [
         ("summary.json", summary_json, "application/json"),
         ("annual.csv", annual_csv(summary).into_bytes(), "text/csv"),
-        (
-            "annual.svg",
-            svg.into_bytes(),
-            "image/svg+xml",
-        ),
+        ("annual.svg", svg.into_bytes(), "image/svg+xml"),
         (
             "annual.html",
             annual_html(summary).into_bytes(),

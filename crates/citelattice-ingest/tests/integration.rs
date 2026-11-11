@@ -116,7 +116,9 @@ fn oversized_author_list_is_rejected_before_pairwise_expansion() {
     let mut record: serde_json::Value =
         serde_json::from_str(FIXTURE.lines().next().unwrap()).unwrap();
     record["authors"] = serde_json::json!(
-        (0..257).map(|i| format!("Author {i:03}")).collect::<Vec<_>>()
+        (0..257)
+            .map(|i| format!("Author {i:03}"))
+            .collect::<Vec<_>>()
     );
     let input = serde_json::to_string(&record).unwrap();
     assert!(matches!(
