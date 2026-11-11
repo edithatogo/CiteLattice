@@ -1,8 +1,15 @@
 {
-  "status": "initial_analytical_slice_in_main_E09_output_hardening_under_review",
+  "status": "scoped_native_core_and_schema_ci_verified_full_method_evaluation_pending",
   "record": "../../../verification/citation-slice-evidence.json",
   "remote_written": true,
   "beyond_frontier_demonstrated": false,
-  "active_pr": "https://github.com/edithatogo/CiteLattice/pull/10",
-  "current_evidence_ceiling": "source_review_pending_hosted_verification"
+  "active_pr": null,
+  "current_evidence_ceiling": "GitHub-hosted compiler, Clippy and workspace tests at accepted merged PR heads; independent comparator, visual interpretation, source rights and external producer tests pending",
+  "merged_prs": [
+    10,
+    11,
+    12,
+    13
+  ],
+  "ci_evidence": "verification/ci-acceptance-2026-11-12.json"
 }

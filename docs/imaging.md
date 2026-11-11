@@ -23,6 +23,6 @@ membership conservation evidence; do not pretend that a huge SVG is usable.
 A graph projection from raw author strings must carry hard complexity budgets,
 and cannot be presented as disambiguated identities.
 
-## Implemented annual scene slice — validation pending
+## Implemented annual scene slice — hosted core tests passed; independent evaluation pending
 
 The `citelattice-visualize` crate creates a small evidence-bearing annual-production scene from the same typed annual counts used by Parquet and XLSX. Each bar refers to one exact `year` row key, and the scene is separately fingerprinted from its SVG rendering. Values above JavaScript's maximum safe integer are **rejected**, not rounded in Vega-Lite or `EvidenceMark.value`. Source totals and distinct ascending years are validated before graphics generation; caller approval is required but does **not** independently establish rights. The direct renderer does not do clustering, semantic zoom or temporal network layouts, and its geometry/disclosure checks are explicitly self-checks, not independent validation.

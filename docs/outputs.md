@@ -8,7 +8,7 @@ Parquet uses Arrow Int32 year and UInt64 publication counts, with schema metadat
 
 Maintain a single authoritative source table and independent artifact digests. Avoid silent row truncation and count conversion to inaccurate floating-point values. Validation must include native reading of Parquet and workbook content, not only file existence.
 
-## Transactional publication (increment under review)
+## Transactional publication (hosted core CI verified; durability pending)
 
 `write_extended_transactional` stages the existing Parquet/XLSX/Typst outputs in a temporary directory under the final destination's parent, verifies each artifact SHA-256, rewrites the final manifest path, and publishes by a single same-filesystem directory rename. The destination must not exist and the parent must already exist. Denied exports create no package; staging is cleaned up on failure.
 
