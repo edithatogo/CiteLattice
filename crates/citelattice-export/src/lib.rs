@@ -273,7 +273,6 @@ pub fn write_extended_transactional(
         return Err(ExportError::DestinationExists);
     }
     fs::rename(staging.path(), destination).map_err(|_| ExportError::Io)?;
-    // Suppress TempDir cleanup after the staging path has been moved.
-    std::mem::forget(staging);
+    // TempDir cleanup now sees an absent staging path; published assets remain.
     Ok(receipt)
 }
