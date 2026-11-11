@@ -117,6 +117,8 @@ pub struct EventSnapshot {
     pub epoch: Option<u64>,
     /// Last exactly contiguous sequence admitted.
     pub last_sequence: u64,
+    /// Source snapshot digest for the last accepted event.
+    pub source_digest: Option<String>,
     /// Number of distinct applied events.
     pub applied: u64,
     /// Materialised, disclosure-minimised objects and hashed tombstones.
@@ -139,7 +141,7 @@ struct Artifact {
     media_type: String,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 struct Rights {
     metadata: String,
@@ -311,11 +313,21 @@ impl EventLedger {
     pub fn snapshot(&self) -> EventSnapshot {
         let mut objects: Vec<_> = self.observed.values().cloned().collect();
         objects.extend(self.tombstones.values().cloned());
+        // A restricted or unverified source identifier must not be disclosed
+        // from the introspection API. Raw keys remain private to the ledger.
+        for object in &mut objects {
+            if object.state != ObjectState::Deleted
+                && object.metadata_rights != "redistributable"
+            {
+                object.key = format!("sha256:{}", hex_digest(object.key.as_bytes()));
+            }
+        }
         objects.sort_by(|a, b| a.key.cmp(&b.key));
         EventSnapshot {
             stream_id: self.stream_id.clone(),
             epoch: self.epoch,
             last_sequence: self.last_sequence,
+            source_digest: self.last_source.as_ref().map(|src| src.digest.hex.clone()),
             applied: u64::try_from(self.seen_events.len()).unwrap_or(u64::MAX),
             objects,
         }
