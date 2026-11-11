@@ -159,9 +159,10 @@
         "06",
         "12"
       ],
-      "state": "consumer_source_authored_native_ci_pending_producer_not_implemented",
+      "state": "source_authored_native_unverified",
       "claimed_beyond_frontier": false,
-      "research_question": null
+      "research_question": null,
+      "implementation_note": "Source-authored event consumer; producer integration and native CI not yet qualified."
     },
     {
       "id": "E07",
