@@ -1,13 +1,19 @@
 {
-  "status": "source_authored_native_ci_pending",
-  "latest_source_commit": "b71272d7513382f3253c2307f46f3284ea37b159",
+  "status": "native_core_and_schemas_verified_producer_and_durable_pending",
+  "latest_source_commit": "6cdd0924dc44eb29574df4ce3ebd46184903f005",
   "source_tests": "crates/citelattice-ingest/tests/events.rs",
   "contract": "org.scholarly.stream/1.0.0-design.2",
   "snapshot_contract": "org.citelattice.scholarly-event-snapshot/0.1.0",
-  "claim_boundary": "No native CI, actual Searchright producer, durable checkpoint or external method validation is implied.",
+  "claim_boundary": "Bounded single-epoch in-memory semantic event consumer compiled and tested; no actual Searchright producer bytes, durable restart, or full CSL semantics qualified.",
   "planned_gates": [
     "cargo test -p citelattice-ingest --test events",
     "python -m unittest discover -s tests -v",
     "Searchright exact producer replay and crash-injection tests"
-  ]
+  ],
+  "merge_commit": "ae0de26a9fa4418f775cdc58628428f8b55ea815",
+  "github_workflow_run": 43101461286,
+  "observed_jobs": {
+    "schemas": "success",
+    "rust-core": "success"
+  }
 }

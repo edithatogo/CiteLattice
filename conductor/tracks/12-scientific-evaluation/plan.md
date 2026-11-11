@@ -95,3 +95,7 @@ Next E09 tasks: transactional staging/commit of all output assets, integrity
 verification before publication, explicit missing/withheld mark provenance,
 reproducible geometry fixtures and accessibility review. Prior Conductor states
 are historical snapshots rather than new automatic completion claims.
+
+## Reconciled current status (2026-11-12)
+
+Scoped native compilation, formatting, Clippy and workspace tests passed in PRs #10–#13; these facts are recorded with exact heads and merged commits. Original RED/GREEN per-method observations and full independent scientific validation are **not** inferred from a passing workspace suite. E06's in-memory event consumer is merged but not a durable producer/consumer transport; E09's transactional and imaging slices are merged but do not establish PDF output, semantic cross-renderer equivalence or frontier superiority.

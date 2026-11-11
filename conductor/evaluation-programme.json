@@ -162,7 +162,17 @@
       "state": "source_authored_native_unverified",
       "claimed_beyond_frontier": false,
       "research_question": null,
-      "implementation_note": "Source-authored event consumer; producer integration and native CI not yet qualified."
+      "implementation_note": "In-memory single-epoch event consumer compiled and passed hosted Rust and schema tests; actual Searchright producer, durable replay and rights-deletion propagation remain unverified.",
+      "native_ci": {
+        "run": 43101461286,
+        "head": "6cdd0924dc44eb29574df4ce3ebd46184903f005",
+        "jobs": [
+          "schemas",
+          "rust-core"
+        ],
+        "result": "passed",
+        "boundary": "consumer-only: real Searchright producer, durable checkpoint and independent evidence missing"
+      }
     },
     {
       "id": "E07",
@@ -243,7 +253,19 @@
       "state": "source_authored_native_unverified",
       "claimed_beyond_frontier": false,
       "research_question": null,
-      "implementation_note": "Transactional export source authored; exact-revision native tests and portability remain pending. Evidence-linked annual scene source authored; cross-renderer evaluation and native CI pending. Annual scene and transaction sources are authored; independent scientific validation remains pending."
+      "implementation_note": "Transactional export and evidence-linked annual scene source compiled and passed hosted Rust and schema tests; independent cross-format equivalence, durability, accessibility and scientific methods remain unverified.",
+      "native_ci": {
+        "runs": [
+          43004890148,
+          43101003995
+        ],
+        "head_commits": [
+          "3fef7f2ed5fa76cee5bb2d24720609738001b04f",
+          "cbbbf82849e013ffb6c901a9f8ad86a2166c6ed7"
+        ],
+        "result": "passed",
+        "boundary": "authoritative annual-source/table/scene/export slices only; independent cross-format and methodological evaluation pending"
+      }
     },
     {
       "id": "R01",

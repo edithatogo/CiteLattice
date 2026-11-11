@@ -3,7 +3,7 @@
 **Contract-first, Rust-native bibliometrics, scientometrics and research-system mapping.**
 
 CiteLattice is the canonical successor to the `bibx` architectural prototype.
-**Status: contract foundation with an initial citation-analysis source increment. Native acceptance of that increment is pending; this is not a validated full scientometrics engine.**
+**Status: native CI-verified scoped analytical, network, ingestion, export and visualisation slices; not a complete or independently scientifically validated scientometrics engine.**
 Do not infer method coverage, zero-copy behaviour, Searchright runtime compatibility, or beyond-frontier scientific performance from schemas alone.
 
 ## Boundaries
@@ -32,7 +32,7 @@ Do not infer method coverage, zero-copy behaviour, Searchright runtime compatibi
 
 ## Developer status
 
-Core Rust contracts live in `crates/citelattice-core`. Heavy backend dependency probes live in an **excluded** optional workspace `backend-probes`; no untested dependency is forced into the default build. Contract schemas/fixtures are exercised in CI. The `citelattice-analysis` source increment adds h/g/i10/totals, missing-count ranges, reproducible identity keys and bounded independent-request JSONL. See [scope and usage](docs/citation-summary.md). Its Rust build and tests remain unverified in the authoring environment. Searchright event replay, graph analytics, actual figures, workbook/report writers and full feature parity remain pending.
+Core Rust contracts live in `crates/citelattice-core`. Heavy backend dependency probes live in an **excluded** optional workspace `backend-probes`; no untested dependency is forced into the default build. Contract schemas/fixtures are exercised in CI. The `citelattice-analysis` source increment adds h/g/i10/totals, missing-count ranges, reproducible identity keys and bounded independent-request JSONL. See [scope and usage](docs/citation-summary.md). The citation, network, native JSONL ingestion, transactional Parquet/XLSX/Typst-source export, and annual Vega-Lite/SVG scene components have passed hosted Rust core and schema tests at [recorded exact commits](verification/ci-acceptance-2026-11-12.json). Durable Searchright event replay, full scientific method parity, independent output fidelity and publication-quality PDF rendering remain pending.
 
 The earlier `bibx` design.2 archive contains a more extensive initial API sketch and coverage inventory. Migration is tracked in Conductor: do not discard useful definitions or claim all files have been imported.
 
@@ -48,7 +48,7 @@ a prespecified, held-out comparative result and scoped independent reproduction.
 
 ## Experimental evidence-linked imaging
 
-`citelattice-visualize` (PR pending) builds scoped annual mark-to-source scenes, declarative Vega-Lite, offline SVG, accessible exact integer rows and self-check render receipts. No global citation coverage, independent scientific visualisation validation, or GPU capability is claimed. See `conductor/tracks/07-scientific-imaging/`.
+`citelattice-visualize` (merged and native CI-verified) builds scoped annual mark-to-source scenes, declarative Vega-Lite, offline SVG, accessible exact integer rows and self-check render receipts. No global citation coverage, independent scientific visualisation validation, or GPU capability is claimed. See `conductor/tracks/07-scientific-imaging/`.
 
 ## Proposed scholarly change-event consumer
 

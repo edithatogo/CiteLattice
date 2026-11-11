@@ -1,5 +1,5 @@
 {
-  "status": "source_authored_native_ci_pending",
+  "status": "native_core_and_schemas_verified_independent_imaging_pending",
   "primary_track": "07",
   "affected_tracks": [
     "06",
@@ -7,7 +7,7 @@
     "09",
     "12"
   ],
-  "source_revision": "8d0fdb2592597c7cf5183b1df65ada3e5db1fef7",
+  "source_revision": "cbbbf82849e013ffb6c901a9f8ad86a2166c6ed7",
   "scientific_claim": "none",
   "beyond_frontier_demonstrated": false,
   "tests": "crates/citelattice-visualize/tests/annual.rs",
@@ -21,5 +21,11 @@
     "cargo test -p citelattice-visualize",
     "cargo clippy --workspace --all-targets -- -D warnings",
     "cargo fmt --all -- --check"
-  ]
+  ],
+  "merge_commit": "63df6b2f2f8bbc7479168e8de0d7d67f10024776",
+  "github_workflow_run": 43101003995,
+  "observed_jobs": {
+    "schemas": "success",
+    "rust-core": "success"
+  }
 }
