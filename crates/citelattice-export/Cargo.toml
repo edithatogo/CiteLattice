@@ -1,0 +1,24 @@
+[package]
+name = "citelattice-export"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+citelattice-ingest = { path = "../citelattice-ingest", version = "0.1.0-alpha.1" }
+serde.workspace = true
+serde_json.workspace = true
+arrow-array = "60.1.0"
+arrow-schema = "60.1.0"
+parquet = { version = "60.1.0", features = ["arrow"] }
+rust_xlsxwriter = "0.93"
+sha2 = "0.11"
+hex = "0.4"
+thiserror = "2"
+
+[dev-dependencies]
+tempfile = "3"
+
+[lints]
+workspace = true

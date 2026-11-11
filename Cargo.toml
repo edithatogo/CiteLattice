@@ -1,5 +1,5 @@
 [workspace]
-members = ["crates/citelattice-core", "crates/citelattice-analysis", "crates/citelattice-ingest"]
+members = ["crates/citelattice-core", "crates/citelattice-analysis", "crates/citelattice-ingest", "crates/citelattice-export"]
 exclude = ["backend-probes"]
 resolver = "3"
 
