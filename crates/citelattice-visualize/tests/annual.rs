@@ -69,3 +69,19 @@ fn denied_or_budget_exhausted_rendering_is_side_effect_free() {
         Err(SceneError::TooManyMarks)
     ));
 }
+
+#[test]
+fn identical_numeric_geometry_can_have_distinct_source_lineage() {
+    let original = source();
+    let first = build_annual_scene(
+        &original, ExportApproval::Allowed, SceneLimits::default()
+    ).unwrap();
+    let mut new_source = original;
+    new_source.input_sha256 = "b".repeat(64);
+    let second = build_annual_scene(
+        &new_source, ExportApproval::Allowed, SceneLimits::default()
+    ).unwrap();
+    assert_ne!(first.scene.scene.sha256, second.scene.scene.sha256);
+    assert_eq!(first.svg, second.svg);
+    assert_eq!(first.receipt.output.sha256, second.receipt.output.sha256);
+}
