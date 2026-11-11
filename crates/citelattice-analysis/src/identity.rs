@@ -2,11 +2,14 @@ use serde::Serialize;
 use sha2::{Digest, Sha256};
 
 use crate::{
-    validate, AnalysisError, AnalysisResult, CitationRequest, ExportPermission,
-    ImplementationIdentity, RenderSpec, RunIdentity, METHOD_ID, METHOD_VERSION,
+    AnalysisError, AnalysisResult, CitationRequest, ExportPermission, ImplementationIdentity,
+    METHOD_ID, METHOD_VERSION, RenderSpec, RunIdentity, validate,
 };
 
-pub(crate) fn fingerprint<T: Serialize>(domain: &str, payload: &T) -> Result<String, AnalysisError> {
+pub(crate) fn fingerprint<T: Serialize>(
+    domain: &str,
+    payload: &T,
+) -> Result<String, AnalysisError> {
     #[derive(Serialize)]
     struct Framed<'a, T> {
         domain: &'a str,
@@ -93,6 +96,9 @@ pub fn render_key(result: &AnalysisResult, spec: &RenderSpec) -> Result<String, 
     }
     fingerprint(
         "citelattice.render.v1",
-        &Render { result_sha256: &result.sha256, specification: spec },
+        &Render {
+            result_sha256: &result.sha256,
+            specification: spec,
+        },
     )
 }

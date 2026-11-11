@@ -1,6 +1,6 @@
 //! Property and metamorphic tests, separate from the independent known-answer fixtures.
 mod common;
-use citelattice_analysis::{analyze, CitationCount};
+use citelattice_analysis::{CitationCount, analyze};
 use proptest::prelude::*;
 
 proptest! {

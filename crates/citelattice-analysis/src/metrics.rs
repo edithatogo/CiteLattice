@@ -1,6 +1,6 @@
 use crate::{
-    identity, validate, AnalysisError, AnalysisResult, CitationRequest, CitationStatus,
-    CitationSummary, IndexInterval, ResultBody, METHOD_ID, METHOD_VERSION,
+    AnalysisError, AnalysisResult, CitationRequest, CitationStatus, CitationSummary, IndexInterval,
+    METHOD_ID, METHOD_VERSION, ResultBody, identity, validate,
 };
 
 struct Indices {
@@ -12,10 +12,18 @@ struct Indices {
 
 fn indices(mut counts: Vec<u64>) -> Result<Indices, AnalysisError> {
     counts.sort_unstable_by(|a, b| b.cmp(a));
-    let mut result = Indices { h: 0, g: 0, i10: 0, total: 0 };
+    let mut result = Indices {
+        h: 0,
+        g: 0,
+        i10: 0,
+        total: 0,
+    };
     for (offset, count) in counts.into_iter().enumerate() {
         let rank = u64::try_from(offset + 1).map_err(|_| AnalysisError::Limit)?;
-        result.total = result.total.checked_add(u128::from(count)).ok_or(AnalysisError::Limit)?;
+        result.total = result
+            .total
+            .checked_add(u128::from(count))
+            .ok_or(AnalysisError::Limit)?;
         if count >= rank {
             result.h = rank;
         }
@@ -32,12 +40,30 @@ fn indices(mut counts: Vec<u64>) -> Result<Indices, AnalysisError> {
 
 fn summary(request: &CitationRequest) -> Result<CitationSummary, AnalysisError> {
     let works = u64::try_from(request.observations.len()).map_err(|_| AnalysisError::Limit)?;
-    let observed = u64::try_from(request.observations.iter().filter(|r| r.citations.is_some()).count())
-        .map_err(|_| AnalysisError::Limit)?;
-    let lower = indices(request.observations.iter().map(|r| r.citations.map_or(0, |v| v.0)).collect())?;
+    let observed = u64::try_from(
+        request
+            .observations
+            .iter()
+            .filter(|r| r.citations.is_some())
+            .count(),
+    )
+    .map_err(|_| AnalysisError::Limit)?;
+    let lower = indices(
+        request
+            .observations
+            .iter()
+            .map(|r| r.citations.map_or(0, |v| v.0))
+            .collect(),
+    )?;
     // Under MAX_OBSERVATIONS, u64::MAX exceeds every relevant h/g/i10
     // threshold. It is a mathematical upper construction, not imputed data.
-    let upper = indices(request.observations.iter().map(|r| r.citations.map_or(u64::MAX, |v| v.0)).collect())?;
+    let upper = indices(
+        request
+            .observations
+            .iter()
+            .map(|r| r.citations.map_or(u64::MAX, |v| v.0))
+            .collect(),
+    )?;
     let status = if observed == works {
         CitationStatus::Complete
     } else if observed == 0 {
@@ -50,9 +76,18 @@ fn summary(request: &CitationRequest) -> Result<CitationSummary, AnalysisError> 
         observed,
         missing: works - observed,
         status,
-        h: IndexInterval { lower: lower.h, upper: upper.h },
-        g: IndexInterval { lower: lower.g, upper: upper.g },
-        i10: IndexInterval { lower: lower.i10, upper: upper.i10 },
+        h: IndexInterval {
+            lower: lower.h,
+            upper: upper.h,
+        },
+        g: IndexInterval {
+            lower: lower.g,
+            upper: upper.g,
+        },
+        i10: IndexInterval {
+            lower: lower.i10,
+            upper: upper.i10,
+        },
         known_total: lower.total.to_string(),
         total_upper: (observed == works).then(|| lower.total.to_string()),
     })

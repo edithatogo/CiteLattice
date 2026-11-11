@@ -13,7 +13,7 @@ mod validate;
 
 pub use identity::render_key;
 pub use metrics::analyze;
-pub use stream::{run_jsonl, StreamError, StreamLimits};
+pub use stream::{StreamError, StreamLimits, run_jsonl};
 pub use types::*;
 
 /// Maximum number of actual publications in one analysis request.

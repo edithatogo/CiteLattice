@@ -17,7 +17,10 @@ impl TryFrom<String> for CitationCount {
         {
             return Err("count must be a canonical unsigned decimal string");
         }
-        value.parse::<u64>().map(Self).map_err(|_| "count exceeds u64")
+        value
+            .parse::<u64>()
+            .map(Self)
+            .map_err(|_| "count exceeds u64")
     }
 }
 

@@ -1,6 +1,6 @@
 use std::io::{BufRead, Read, Write};
 
-use crate::{analyze, AnalysisError, CitationRequest, ExportPermission};
+use crate::{AnalysisError, CitationRequest, ExportPermission, analyze};
 
 /// Per-process framing limits; the API also limits publications per request.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -13,7 +13,10 @@ pub struct StreamLimits {
 
 impl Default for StreamLimits {
     fn default() -> Self {
-        Self { max_line_bytes: 1_048_576, max_frames: 10_000 }
+        Self {
+            max_line_bytes: 1_048_576,
+            max_frames: 10_000,
+        }
     }
 }
 
@@ -65,13 +68,19 @@ pub fn run_jsonl<R: BufRead, W: Write>(
     if limits.max_line_bytes == 0 || limits.max_frames == 0 {
         return Err(StreamError::Limits);
     }
-    let probe = limits.max_line_bytes.checked_add(1).ok_or(StreamError::Limits)?;
+    let probe = limits
+        .max_line_bytes
+        .checked_add(1)
+        .ok_or(StreamError::Limits)?;
     let probe = u64::try_from(probe).map_err(|_| StreamError::Limits)?;
     let mut frames = 0_u64;
     let mut line = Vec::new();
     loop {
         line.clear();
-        let count = (&mut input).take(probe).read_until(b'\n', &mut line).map_err(|_| StreamError::Input)?;
+        let count = (&mut input)
+            .take(probe)
+            .read_until(b'\n', &mut line)
+            .map_err(|_| StreamError::Input)?;
         if count == 0 {
             break;
         }
@@ -82,15 +91,24 @@ pub fn run_jsonl<R: BufRead, W: Write>(
         if frames >= limits.max_frames {
             return Err(StreamError::CountLimit);
         }
-        let request: CitationRequest = serde_json::from_slice(&line).map_err(|_| StreamError::InvalidFrame(number))?;
+        let request: CitationRequest =
+            serde_json::from_slice(&line).map_err(|_| StreamError::InvalidFrame(number))?;
         if request.export != ExportPermission::Allowed {
-            return Err(StreamError::Analysis { line: number, error: AnalysisError::ExportDenied });
+            return Err(StreamError::Analysis {
+                line: number,
+                error: AnalysisError::ExportDenied,
+            });
         }
-        let result = analyze(&request).map_err(|error| StreamError::Analysis { line: number, error })?;
+        let result = analyze(&request).map_err(|error| StreamError::Analysis {
+            line: number,
+            error,
+        })?;
         // Serialise before any write, so an encoding failure cannot emit a JSON prefix.
         let mut encoded = serde_json::to_vec(&result).map_err(|_| StreamError::Output)?;
         encoded.push(b'\n');
-        output.write_all(&encoded).map_err(|_| StreamError::Output)?;
+        output
+            .write_all(&encoded)
+            .map_err(|_| StreamError::Output)?;
         output.flush().map_err(|_| StreamError::Output)?;
         frames = number;
     }

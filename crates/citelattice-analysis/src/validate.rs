@@ -1,9 +1,9 @@
 use std::collections::BTreeSet;
 
 use citelattice_core::contracts::versioning::Revision;
-use time::{format_description::well_known::Rfc3339, OffsetDateTime};
+use time::{OffsetDateTime, format_description::well_known::Rfc3339};
 
-use crate::{AnalysisError, CitationRequest, MissingPolicy, MAX_OBSERVATIONS};
+use crate::{AnalysisError, CitationRequest, MAX_OBSERVATIONS, MissingPolicy};
 
 pub(crate) fn text(value: &str) -> bool {
     !value.is_empty()
@@ -14,7 +14,9 @@ pub(crate) fn text(value: &str) -> bool {
 
 pub(crate) fn digest(value: &str) -> bool {
     value.len() == 64
-        && value.bytes().all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))
+        && value
+            .bytes()
+            .all(|b| b.is_ascii_digit() || (b'a'..=b'f').contains(&b))
 }
 
 pub(crate) fn revision(value: &Revision) -> Result<(), AnalysisError> {
