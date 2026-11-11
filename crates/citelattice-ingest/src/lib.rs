@@ -293,7 +293,7 @@ pub fn summarize_reader<R: BufRead>(
 fn annual_csv(summary: &PublicationSummary) -> String {
     let mut out = String::from("year,publications\n");
     for row in &summary.annual {
-        let _ = write!(out, "{},{}\n", row.year, row.count);
+        let _ = writeln!(out, "{},{}", row.year, row.count);
     }
     out
 }
