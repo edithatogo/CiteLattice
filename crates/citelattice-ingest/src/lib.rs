@@ -195,7 +195,11 @@ fn accumulate_coauthor_edges(
     edges: &mut BTreeMap<(String, String), u64>,
     authors: Vec<String>,
 ) -> Result<(), SourceError> {
-    let distinct: Vec<String> = authors.into_iter().collect::<BTreeSet<_>>().into_iter().collect();
+    let distinct: Vec<String> = authors
+        .into_iter()
+        .collect::<BTreeSet<_>>()
+        .into_iter()
+        .collect();
     for (i, a) in distinct.iter().enumerate() {
         for b in distinct.iter().skip(i + 1) {
             let key = (a.clone(), b.clone());
