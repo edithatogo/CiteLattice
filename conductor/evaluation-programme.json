@@ -2,7 +2,7 @@
   "schema_version": "org.citelattice.evaluation-programme.v1",
   "baseline_commit": "5ec968d181b89237d3e7b1f477671627d3248986",
   "primary_track": "12",
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "publication_claim": "none",
   "delivery_mode": "single-maintainer; tests and evidence, not repeated approval boards",
   "tasks": [
@@ -214,6 +214,8 @@
       "artifacts": [
         "verification/outputs/roundtrip-manifest.json",
         "verification/imaging/geometry-oracles.json",
+        "crates/citelattice-export/src/lib.rs",
+        "crates/citelattice-export/tests/portable.rs",
         "crates/citelattice-visualize/src/lib.rs",
         "crates/citelattice-visualize/tests/annual.rs"
       ],
@@ -222,6 +224,8 @@
         "Generate all formats from the same authoritative table; no independent workbook recalculation.",
         "Every quantitative mark resolves to rows or aggregate membership; malformed geometry and hidden restricted payloads are rejected.",
         "Test CSV/XLSX formula injection, SVG/HTML scripts, hover/hidden layers and accessible equivalent tables.",
+        "Stage all extended artifacts on same filesystem; validate SHA-256 and manifest path before final rename; refuse existing destinations; deny before any filesystem writes.",
+        "Distinguish same-filesystem atomic visibility from fsync durability, concurrency safety, or remote-object-store atomicity.",
         "Annual evidence-scene render must preserve all source years, exact table counts, mark row keys, Vega-Lite rows and source/scene/render fingerprints without binary64 integer loss."
       ],
       "owners": [
@@ -233,7 +237,7 @@
       "state": "source_authored_native_unverified",
       "claimed_beyond_frontier": false,
       "research_question": null,
-      "implementation_note": "Evidence-linked annual scene source authored; cross-renderer evaluation and native CI pending."
+      "implementation_note": "Transactional export source authored; exact-revision native tests and portability remain pending. Evidence-linked annual scene source authored; cross-renderer evaluation and native CI pending. Annual scene and transaction sources are authored; independent scientific validation remains pending."
     },
     {
       "id": "R01",
