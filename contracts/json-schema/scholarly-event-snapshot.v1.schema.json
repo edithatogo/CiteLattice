@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:citelattice:scholarly-event-snapshot:0.1.0",
+  "title": "CiteLattice bounded scholarly event snapshot",
+  "description": "Status-only, privacy-minimised output. Not durable checkpoint, full CSL cache, producer admission or scientific metric. Deletion retains only permitted hashed tombstones.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_id",
+    "version",
+    "stream_id",
+    "epoch",
+    "last_sequence",
+    "source_digest",
+    "applied",
+    "objects"
+  ],
+  "properties": {
+    "contract_id": {
+      "const": "org.citelattice.scholarly-event-snapshot"
+    },
+    "version": {
+      "const": "0.1.0"
+    },
+    "stream_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "epoch": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "last_sequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "source_digest": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "applied": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "key",
+          "kind",
+          "state",
+          "body_digest",
+          "replacement_digest",
+          "metadata_rights"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "active",
+              "correction_pending",
+              "retracted",
+              "deleted"
+            ]
+          },
+          "body_digest": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "replacement_digest": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "metadata_rights": {
+            "enum": [
+              "redistributable",
+              "restricted",
+              "unknown"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -141,22 +141,28 @@
       ],
       "artifacts": [
         "integration/searchright-citation-slice.json",
-        "crates/citelattice-analysis/tests/searchright_handoff.rs"
+        "crates/citelattice-analysis/tests/searchright_handoff.rs",
+        "crates/citelattice-ingest/src/events.rs",
+        "crates/citelattice-ingest/tests/events.rs",
+        "contracts/json-schema/scholarly-event-snapshot.v1.schema.json"
       ],
       "acceptance": [
         "Use actual bytes from exact Searchright and CiteLattice revisions, not two handwritten lookalike fixtures.",
         "Preserve CSL and source receipts; citation counts arrive in typed evidence sidecars with coverage and permissions.",
         "Test duplicates, conflicting replay, corrections, missing sequence, cancellation and version rejection.",
-        "Demonstrate spooled restart and a consistent sink/checkpoint boundary before claiming replay."
+        "Demonstrate spooled restart and a consistent sink/checkpoint boundary before claiming replay.",
+        "Validate canonical digest, decimal counters, strict sequence/prior revision and event ID replay conflicts; keep raw CSL out of serialized state.",
+        "Demonstrate durable event spool and exact checkpoint consistency before promoting beyond in-memory single-epoch processing."
       ],
       "owners": [
         "01",
         "06",
         "12"
       ],
-      "state": "planned",
+      "state": "source_authored_native_unverified",
       "claimed_beyond_frontier": false,
-      "research_question": null
+      "research_question": null,
+      "implementation_note": "Source-authored event consumer; producer integration and native CI not yet qualified."
     },
     {
       "id": "E07",

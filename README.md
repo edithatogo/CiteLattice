@@ -49,3 +49,7 @@ a prespecified, held-out comparative result and scoped independent reproduction.
 ## Experimental evidence-linked imaging
 
 `citelattice-visualize` (PR pending) builds scoped annual mark-to-source scenes, declarative Vega-Lite, offline SVG, accessible exact integer rows and self-check render receipts. No global citation coverage, independent scientific visualisation validation, or GPU capability is claimed. See `conductor/tracks/07-scientific-imaging/`.
+
+## Proposed scholarly change-event consumer
+
+`citelattice-ingest::events` implements a bounded, single-epoch, in-memory consumer for proposed `org.scholarly.stream/1.0.0-design.2` envelopes, with canonical payload digests, revision/sequence validation, privacy-minimised state and correction/deletion semantics. It is **not** a qualified live Searchright producer connection, durable event spool, full CSL validator or established scientific-method comparison. See [Track 01](conductor/tracks/01-scholarly-events/spec.md).

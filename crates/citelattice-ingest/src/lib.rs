@@ -4,6 +4,8 @@
 //! It does not claim support for the proposed revision/event envelope, complete
 //! citation graphs, or name-disambiguated collaboration.
 #![forbid(unsafe_code)]
+pub mod events;
+
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt::Write as _;
 use std::io::{BufRead, Read};

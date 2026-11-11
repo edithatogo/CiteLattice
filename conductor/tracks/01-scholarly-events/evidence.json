@@ -1,0 +1,13 @@
+{
+  "status": "source_authored_native_ci_pending",
+  "latest_source_commit": "b71272d7513382f3253c2307f46f3284ea37b159",
+  "source_tests": "crates/citelattice-ingest/tests/events.rs",
+  "contract": "org.scholarly.stream/1.0.0-design.2",
+  "snapshot_contract": "org.citelattice.scholarly-event-snapshot/0.1.0",
+  "claim_boundary": "No native CI, actual Searchright producer, durable checkpoint or external method validation is implied.",
+  "planned_gates": [
+    "cargo test -p citelattice-ingest --test events",
+    "python -m unittest discover -s tests -v",
+    "Searchright exact producer replay and crash-injection tests"
+  ]
+}
