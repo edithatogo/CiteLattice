@@ -1,0 +1,12 @@
+test_evaluation_dependencies_are_acyclic (test_citation_evaluation.EvaluationTests.test_evaluation_dependencies_are_acyclic) ... ok
+test_evaluation_task_integrity (test_citation_evaluation.EvaluationTests.test_evaluation_task_integrity) ... ok
+test_independent_subset_oracles (test_citation_evaluation.EvaluationTests.test_independent_subset_oracles) ... ok
+test_invalid_wire (test_citation_evaluation.EvaluationTests.test_invalid_wire) ... ok
+test_partial_bounds_enclose_completed_values (test_citation_evaluation.EvaluationTests.test_partial_bounds_enclose_completed_values) ... ok
+test_schema_examples (test_citation_evaluation.EvaluationTests.test_schema_examples) ... ok
+test_u64_wire_boundary_neighbourhood (test_citation_evaluation.EvaluationTests.test_u64_wire_boundary_neighbourhood) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.025s
+
+OK

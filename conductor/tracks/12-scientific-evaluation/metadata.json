@@ -1,0 +1,27 @@
+{
+  "id": "12",
+  "name": "Scientific evaluation and measured advances",
+  "state": "specified_with_initial_source_increment",
+  "implementation_state": "source_authored_native_unverified",
+  "evidence_state": "local_python_reference_and_schema_checks_only",
+  "canonical_tasks": "../../evaluation-programme.json",
+  "scope": [
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E05",
+    "E06",
+    "E07",
+    "E08",
+    "E09",
+    "E10",
+    "E11",
+    "E12",
+    "R01",
+    "R02",
+    "R03",
+    "R04"
+  ],
+  "remote_applied": false
+}

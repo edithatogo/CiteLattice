@@ -1,0 +1,432 @@
+{
+  "schema_version": "org.citelattice.evaluation-programme.v1",
+  "baseline_commit": "5ec968d181b89237d3e7b1f477671627d3248986",
+  "primary_track": "12",
+  "updated": "2026-11-10",
+  "publication_claim": "none",
+  "delivery_mode": "single-maintainer; tests and evidence, not repeated approval boards",
+  "tasks": [
+    {
+      "id": "E01",
+      "title": "Exact citation kernels and independent oracles",
+      "depends_on": [],
+      "artifacts": [
+        "crates/citelattice-analysis/src/metrics.rs",
+        "verification/citation-oracles.json",
+        "crates/citelattice-analysis/tests/metrics.rs"
+      ],
+      "acceptance": [
+        "Run Rust tests against every independent subset-enumeration case, including empty population and u64-overflow totals.",
+        "Reject duplicate IDs and missing counts under reject policy.",
+        "Keep g capped at N actual works; document differing comparator conventions."
+      ],
+      "owners": [
+        "02",
+        "12"
+      ],
+      "state": "source_authored_native_unverified",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E02",
+      "title": "Versioned wire identities and safe missingness",
+      "depends_on": [
+        "E01"
+      ],
+      "artifacts": [
+        "crates/citelattice-analysis/src/identity.rs",
+        "contracts/json-schema/citation-request.v1.schema.json",
+        "contracts/json-schema/citation-result.v1.schema.json"
+      ],
+      "acceptance": [
+        "Rust and JSON Schema agree on valid/invalid wire fixtures.",
+        "Equivalent observation permutations produce identical result bytes; source/scope/method changes invalidate calculation keys.",
+        "Permission/style changes do not silently change scientific values; denied output and modified results are rejected.",
+        "Use RFC8785/SHA256 dependencies, not handwritten cryptography."
+      ],
+      "owners": [
+        "01",
+        "06",
+        "12"
+      ],
+      "state": "source_authored_native_unverified",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E03",
+      "title": "Bounded local JSONL and CLI",
+      "depends_on": [
+        "E01",
+        "E02"
+      ],
+      "artifacts": [
+        "crates/citelattice-analysis/src/stream.rs",
+        "crates/citelattice-analysis/tests/stream.rs",
+        "crates/citelattice-analysis/tests/cli.rs"
+      ],
+      "acceptance": [
+        "Run compiled CLI fixtures, including CRLF, no final newline, byte/count limits, malformed JSON and denied exports.",
+        "Assert data-only stdout, non-disclosing stderr and documented partial-prefix behaviour.",
+        "Demonstrate bounded memory on adversarial oversized frames."
+      ],
+      "owners": [
+        "01",
+        "10",
+        "12"
+      ],
+      "state": "source_authored_native_unverified",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E04",
+      "title": "Native build, feature and supply-chain qualification",
+      "depends_on": [
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "artifacts": [
+        "Cargo.lock",
+        "verification/native-ci-receipt.json",
+        "verification/dependency-review.json"
+      ],
+      "acceptance": [
+        "Resolve and commit lockfile in a networked trusted checkout; retain exact tools/targets.",
+        "Run fmt, Clippy, tests, doctests and semantic schema parity on Linux/macOS/Windows.",
+        "Run cargo-audit/deny and secret scanning with real tool exit codes; no blanket exemptions.",
+        "Run property, mutation and parser fuzz tests on changed core; scheduled longer runs use the same corpus."
+      ],
+      "owners": [
+        "09",
+        "10",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E05",
+      "title": "Independent bibliometric method comparison",
+      "depends_on": [
+        "E04"
+      ],
+      "artifacts": [
+        "verification/comparators/manifest.json",
+        "verification/comparators/results.parquet",
+        "docs/evaluation/method-parity.md"
+      ],
+      "acceptance": [
+        "Pin bibliometrix and PyBibX revisions, environments, licences and method definitions.",
+        "Use identical identities, corpus, citation universe, cutoff, missingness and actual-N convention.",
+        "Integer outputs must match exactly; unresolved disagreements are reported, never averaged away.",
+        "For each of 147 inventoried outcomes, retain explicit unsupported/deferred/qualified state."
+      ],
+      "owners": [
+        "02",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E06",
+      "title": "Searchright installed producer-consumer slice",
+      "depends_on": [
+        "E04"
+      ],
+      "artifacts": [
+        "integration/searchright-citation-slice.json",
+        "crates/citelattice-analysis/tests/searchright_handoff.rs"
+      ],
+      "acceptance": [
+        "Use actual bytes from exact Searchright and CiteLattice revisions, not two handwritten lookalike fixtures.",
+        "Preserve CSL and source receipts; citation counts arrive in typed evidence sidecars with coverage and permissions.",
+        "Test duplicates, conflicting replay, corrections, missing sequence, cancellation and version rejection.",
+        "Demonstrate spooled restart and a consistent sink/checkpoint boundary before claiming replay."
+      ],
+      "owners": [
+        "01",
+        "06",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E07",
+      "title": "Entity-resolution benchmark and downstream error propagation",
+      "depends_on": [
+        "E04"
+      ],
+      "artifacts": [
+        "benchmarks/entities/manifest.json",
+        "verification/entities/results.parquet"
+      ],
+      "acceptance": [
+        "Qualify a pinned S2AND release and rights for each component; isolate author blocks and labels from development.",
+        "Report pairwise and cluster metrics, splits/merges, abstention and downstream metric distortion.",
+        "Stratify by ambiguity, field, geography/language where legitimate metadata exists; do not infer sensitive traits."
+      ],
+      "owners": [
+        "03",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E08",
+      "title": "Graph and temporal scientific baselines",
+      "depends_on": [
+        "E05",
+        "E06"
+      ],
+      "artifacts": [
+        "verification/graphs/known-answer.json",
+        "verification/graphs/comparator-results.parquet"
+      ],
+      "acceptance": [
+        "Validate citation, coauthorship, co-citation and coupling on independent graph fixtures.",
+        "Preserve directed/undirected edge semantics, node types, multiedges, self-citation policy and stable dictionary epochs.",
+        "Qualify CD_t, sleeping beauty, RPYS/main paths with exact windows and insufficient-reference/citation statuses."
+      ],
+      "owners": [
+        "03",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E09",
+      "title": "Typed outputs and rendering audit baseline",
+      "depends_on": [
+        "E04"
+      ],
+      "artifacts": [
+        "verification/outputs/roundtrip-manifest.json",
+        "verification/imaging/geometry-oracles.json"
+      ],
+      "acceptance": [
+        "Round-trip Arrow/Parquet types, units, nulls, exact integers, metadata and row identities.",
+        "Generate all formats from the same authoritative table; no independent workbook recalculation.",
+        "Every quantitative mark resolves to rows or aggregate membership; malformed geometry and hidden restricted payloads are rejected.",
+        "Test CSV/XLSX formula injection, SVG/HTML scripts, hover/hidden layers and accessible equivalent tables."
+      ],
+      "owners": [
+        "06",
+        "07",
+        "08",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "R01",
+      "title": "Coverage-aware comparative conclusions",
+      "depends_on": [
+        "E05",
+        "E07",
+        "E08"
+      ],
+      "artifacts": [
+        "research/coverage/protocol.json",
+        "research/coverage/frozen-splits.json",
+        "research/coverage/results.parquet"
+      ],
+      "acceptance": [
+        "Freeze selection rules, missingness mechanisms, baselines, primary endpoint and useful effect threshold before held-out confirmation.",
+        "Compare zero-imputation, complete-case and source-naive point metrics against explicit bounds/abstention; retain all failures.",
+        "Distinguish missing known counts from missing works, missing edges and erroneous linkage.",
+        "Show reduced false directional/rank claims at a prespecified abstention budget, with paired uncertainty and subgroup analyses; otherwise report no gain."
+      ],
+      "owners": [
+        "02",
+        "03",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": "Can source- and identity-aware uncertainty prevent misleading comparative conclusions without making the analysis unusably noncommittal?"
+    },
+    {
+      "id": "R02",
+      "title": "Incremental research graphs with exact revision semantics",
+      "depends_on": [
+        "E06",
+        "E08"
+      ],
+      "artifacts": [
+        "research/incremental/event-fixtures.jsonl",
+        "research/incremental/replay-results.parquet"
+      ],
+      "acceptance": [
+        "Test additions, deletions, corrections, identity merges/splits, rights revocation and out-of-order/conflicting events.",
+        "Every integer result must equal full recomputation; floating tolerances are method-specific and frozen.",
+        "Crash injection must preserve a consistent durable boundary; denied data cannot survive in stale renders or caches.",
+        "Benchmark full recomputation and candidate incremental backends on identical event histories and resource budgets; claim an advance only for held-out workloads showing a prespecified useful gain."
+      ],
+      "owners": [
+        "03",
+        "06",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": "Can auditable incremental analytics remain equivalent to full recomputation while reducing latency and resource use under real corrections?"
+    },
+    {
+      "id": "R03",
+      "title": "Evidence-linked uncertainty imaging",
+      "depends_on": [
+        "E09",
+        "R01",
+        "R02"
+      ],
+      "artifacts": [
+        "research/imaging/protocol.json",
+        "research/imaging/task-ground-truth.json",
+        "research/imaging/results.parquet"
+      ],
+      "acceptance": [
+        "Compare plain static/interactive maps with evidence drill-down, uncertainty layers and temporal alignment using the same data.",
+        "Verify mark membership conservation, approximate-layout diagnostics, stable labels, coordinate transforms and static accessibility equivalents.",
+        "Inject known denominator, coverage, identity and layout changes; assess detection/interpretation accuracy and time, not attractiveness alone.",
+        "Freeze user-study design, minimum useful effect and analysis before recruitment; obtain appropriate approvals when human data are collected.",
+        "Use optional GPU/3D only when measured scale or interpretability benefit exceeds complexity and distortion costs."
+      ],
+      "owners": [
+        "07",
+        "08",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": "Do traceable, uncertainty-aware scenes improve identification of misleading evidence changes compared with conventional science maps?"
+    },
+    {
+      "id": "R04",
+      "title": "Scholarly signals to adoption forecasts and information value",
+      "depends_on": [
+        "E05",
+        "E06",
+        "R01"
+      ],
+      "artifacts": [
+        "research/innovation-voi/protocol.json",
+        "integration/innovate-voiage-study.json",
+        "research/innovation-voi/results.parquet"
+      ],
+      "acceptance": [
+        "Pin Innovate/Voiage and supported methods; pass versioned Arrow/Parquet without copying engines.",
+        "Separate publication/effective dates from first-observed dates; use rolling-origin and technology-family-held-out splits.",
+        "Compare counts/trends and diffusion baselines against structural/semantic/cross-domain features using independently measured adoption outcomes.",
+        "Define alternatives, utilities/net benefit, joint uncertainty, population/horizon and study costs before VOI; citations are not utilities.",
+        "Assess prediction calibration and decision regret/ENBS separately; include source rights/cost, negative results and perspective/heterogeneity sensitivity."
+      ],
+      "owners": [
+        "11",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": "Do improved scholarly measurements change out-of-time adoption predictions and evidence-investment decisions, rather than merely describing past attention?"
+    },
+    {
+      "id": "E10",
+      "title": "Performance and portability evidence",
+      "depends_on": [
+        "E04",
+        "E08",
+        "E09"
+      ],
+      "artifacts": [
+        "benchmarks/performance/manifest.json",
+        "benchmarks/performance/raw-results.jsonl"
+      ],
+      "acceptance": [
+        "Measure wall/CPU time, peak RSS, allocations, cold/warm start and output bytes with hardware/toolchain/thread counts.",
+        "Use identical work, input bytes, output requirements and memory caps; include preprocessing and declared exclusions.",
+        "Report distributions and uncertainty rather than a cherry-picked best run.",
+        "Qualify each optional dependency/feature separately; align Arrow versions before combined backends."
+      ],
+      "owners": [
+        "09",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    },
+    {
+      "id": "E11",
+      "title": "Independent rerun and negative-result archive",
+      "depends_on": [
+        "E05",
+        "E09",
+        "E10"
+      ],
+      "artifacts": [
+        "research/replication/ro-crate-metadata.json",
+        "research/replication/reproduction-log.jsonl"
+      ],
+      "acceptance": [
+        "Freeze data/code/method/render manifests before independent rerun.",
+        "Retain hold-out custody, dependency/model checksums and lawful access instructions; no hidden licensed redistribution.",
+        "Publish failures, null findings, missing evidence and portability gaps alongside successes.",
+        "A coding agent review may inspect implementation, but does not substitute for independent datasets or empirical replication.",
+        "Scope each independent rerun to its claimed research result; do not require all four research programmes to finish before one can be evaluated."
+      ],
+      "owners": [
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null,
+      "activation": "Run per completed research comparison; one research claim does not wait for unrelated research tracks.",
+      "research_targets": [
+        "R01",
+        "R02",
+        "R03",
+        "R04"
+      ]
+    },
+    {
+      "id": "E12",
+      "title": "Scoped release and claim decision",
+      "depends_on": [
+        "E05",
+        "E06",
+        "E09",
+        "E10"
+      ],
+      "artifacts": [
+        "release/capability-evidence.json",
+        "docs/evaluation/claim-boundaries.md"
+      ],
+      "acceptance": [
+        "Release only capabilities passing their relevant profile; optional research hypotheses do not block a useful validated core.",
+        "Record per-method supported inputs, numerical conventions, limitations and evidence revision.",
+        "Do not describe the whole library as beyond-frontier from one successful experiment; name the measured capability, comparator, dataset and scope.",
+        "Re-run relevant baselines when substantive methods or dependencies change."
+      ],
+      "owners": [
+        "10",
+        "12"
+      ],
+      "state": "planned",
+      "claimed_beyond_frontier": false,
+      "research_question": null
+    }
+  ]
+}

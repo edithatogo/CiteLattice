@@ -1,0 +1,114 @@
+test_evaluation_task_integrity (test_citation_evaluation.EvaluationTests.test_evaluation_task_integrity) ... ERROR
+test_independent_subset_oracles (test_citation_evaluation.EvaluationTests.test_independent_subset_oracles) ... ERROR
+test_invalid_wire (test_citation_evaluation.EvaluationTests.test_invalid_wire) ... ERROR
+test_partial_bounds_enclose_completed_values (test_citation_evaluation.EvaluationTests.test_partial_bounds_enclose_completed_values) ... ERROR
+test_schema_examples (test_citation_evaluation.EvaluationTests.test_schema_examples) ... ERROR
+
+======================================================================
+ERROR: test_evaluation_task_integrity (test_citation_evaluation.EvaluationTests.test_evaluation_task_integrity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 49, in test_evaluation_task_integrity
+    tasks=load('conductor/evaluation-programme.json')['tasks'];ids={t['id'] for t in tasks}
+          ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 9, in load
+    def load(p): return json.loads((ROOT / p).read_text())
+                                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 548, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/work/CiteLattice/conductor/evaluation-programme.json'
+
+======================================================================
+ERROR: test_independent_subset_oracles (test_citation_evaluation.EvaluationTests.test_independent_subset_oracles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 17, in test_independent_subset_oracles
+    cases = load('verification/citation-oracles.json')['cases']
+            ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 9, in load
+    def load(p): return json.loads((ROOT / p).read_text())
+                                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 548, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/work/CiteLattice/verification/citation-oracles.json'
+
+======================================================================
+ERROR: test_invalid_wire (test_citation_evaluation.EvaluationTests.test_invalid_wire)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 28, in test_invalid_wire
+    v=Draft202012Validator(load('contracts/json-schema/citation-request.v1.schema.json'),format_checker=FormatChecker())
+                           ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 9, in load
+    def load(p): return json.loads((ROOT / p).read_text())
+                                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 548, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/work/CiteLattice/contracts/json-schema/citation-request.v1.schema.json'
+
+======================================================================
+ERROR: test_partial_bounds_enclose_completed_values (test_citation_evaluation.EvaluationTests.test_partial_bounds_enclose_completed_values)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 39, in test_partial_bounds_enclose_completed_values
+    for c in load('verification/citation-bounds.json')['cases']:
+             ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 9, in load
+    def load(p): return json.loads((ROOT / p).read_text())
+                                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 548, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/work/CiteLattice/verification/citation-bounds.json'
+
+======================================================================
+ERROR: test_schema_examples (test_citation_evaluation.EvaluationTests.test_schema_examples)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 22, in test_schema_examples
+    s = load('contracts/json-schema/citation-request.v1.schema.json')
+  File "/mnt/data/work/CiteLattice/tests/test_citation_evaluation.py", line 9, in load
+    def load(p): return json.loads((ROOT / p).read_text())
+                                   ~~~~~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 548, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/pathlib/_local.py", line 539, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/work/CiteLattice/contracts/json-schema/citation-request.v1.schema.json'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.004s
+
+FAILED (errors=5)

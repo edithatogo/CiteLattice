@@ -3,7 +3,7 @@
 **Contract-first, Rust-native bibliometrics, scientometrics and research-system mapping.**
 
 CiteLattice is the canonical successor to the `bibx` architectural prototype.
-**Status: design and API scaffold; not a working or validated bibliometric engine.**
+**Status: contract foundation with an initial citation-analysis source increment. Native acceptance of that increment is pending; this is not a validated full scientometrics engine.**
 Do not infer method coverage, zero-copy behaviour, Searchright runtime compatibility, or beyond-frontier scientific performance from schemas alone.
 
 ## Boundaries
@@ -25,13 +25,22 @@ Do not infer method coverage, zero-copy behaviour, Searchright runtime compatibi
 ## Key documents
 
 - [Conductor entry](conductor/index.md) with traceable requirements, workstreams and dependencies.
-- [Scientific capability matrix](docs/capabilities.md), [dependency plan](docs/dependencies.md) and [versioning](docs/versioning.md).
+- [Scientific capability matrix](docs/capabilities.md), [dependency plan](conductor/dependencies.md) and [versioning](docs/versioning.md).
 - [Scientific imaging and accessibility](docs/imaging.md).
 - [Searchright producer/consumer integration](docs/searchright.md).
 - [Innovate/Voiage research protocol](docs/studies/innovation-voi.md).
 
 ## Developer status
 
-Core Rust contracts live in `crates/citelattice-core`. Heavy backend dependency probes live in an **excluded** optional workspace `backend-probes`; no untested dependency is forced into the default build. Contract schemas/fixtures are exercised in CI. Runtime streaming, mathematical algorithms, actual figures, notebook/workbook/report writers and complete feature parity are **not yet implemented**.
+Core Rust contracts live in `crates/citelattice-core`. Heavy backend dependency probes live in an **excluded** optional workspace `backend-probes`; no untested dependency is forced into the default build. Contract schemas/fixtures are exercised in CI. The `citelattice-analysis` source increment adds h/g/i10/totals, missing-count ranges, reproducible identity keys and bounded independent-request JSONL. See [scope and usage](docs/citation-summary.md). Its Rust build and tests remain unverified in the authoring environment. Searchright event replay, graph analytics, actual figures, workbook/report writers and full feature parity remain pending.
 
 The earlier `bibx` design.2 archive contains a more extensive initial API sketch and coverage inventory. Migration is tracked in Conductor: do not discard useful definitions or claim all files have been imported.
+
+## Verification and research programme
+
+[Track 12](conductor/tracks/12-scientific-evaluation/spec.md) sets out independent
+method comparisons, missingness/identity stress tests, incremental/full replay,
+evidence-linked imaging and the Innovate/Voiage study. It has an executable plan
+and machine-readable task dependencies, without a second issue hierarchy.
+The current source is not described as beyond-frontier; each such claim requires
+a prespecified, held-out comparative result and scoped independent reproduction.

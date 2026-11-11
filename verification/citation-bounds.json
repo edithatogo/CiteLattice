@@ -1,0 +1,122 @@
+{
+  "scope": "Unknown nonnegative counts for known works; observed counts exact in a declared universe. Not unknown-work or linkage-error bounds.",
+  "cases": [
+    {
+      "counts": [
+        null,
+        0,
+        0
+      ],
+      "lower": {
+        "h": 0,
+        "g": 0,
+        "i10": 0
+      },
+      "upper": {
+        "h": 1,
+        "g": 3,
+        "i10": 1
+      }
+    },
+    {
+      "counts": [
+        100,
+        null,
+        null
+      ],
+      "lower": {
+        "h": 1,
+        "g": 3,
+        "i10": 1
+      },
+      "upper": {
+        "h": 3,
+        "g": 3,
+        "i10": 3
+      }
+    },
+    {
+      "counts": [
+        null,
+        null
+      ],
+      "lower": {
+        "h": 0,
+        "g": 0,
+        "i10": 0
+      },
+      "upper": {
+        "h": 2,
+        "g": 2,
+        "i10": 2
+      }
+    },
+    {
+      "counts": [
+        0,
+        null,
+        2
+      ],
+      "lower": {
+        "h": 1,
+        "g": 1,
+        "i10": 0
+      },
+      "upper": {
+        "h": 2,
+        "g": 3,
+        "i10": 1
+      }
+    },
+    {
+      "counts": [
+        10,
+        null,
+        0,
+        null
+      ],
+      "lower": {
+        "h": 1,
+        "g": 3,
+        "i10": 1
+      },
+      "upper": {
+        "h": 3,
+        "g": 4,
+        "i10": 3
+      }
+    },
+    {
+      "counts": [
+        null
+      ],
+      "lower": {
+        "h": 0,
+        "g": 0,
+        "i10": 0
+      },
+      "upper": {
+        "h": 1,
+        "g": 1,
+        "i10": 1
+      }
+    },
+    {
+      "counts": [
+        null,
+        null,
+        null
+      ],
+      "lower": {
+        "h": 0,
+        "g": 0,
+        "i10": 0
+      },
+      "upper": {
+        "h": 3,
+        "g": 3,
+        "i10": 3
+      }
+    }
+  ]
+}

@@ -14,6 +14,15 @@
 | 09 — Dependency evaluation | Scaffolded | Polars/graph/datafusion/render/backend substitutions only on evidence | Isolated compile, security, benchmark and parity |
 | 10 — Lean agent harness/security | Planned | CodeQL, Gitleaks, deny/audit/vet, fuzz/property/mutation with adaptive CI | Exact revision observed hosted CI |
 | 11 — Innovate/Voiage research | Specified | Hold-out prediction, decision-value estimation | Registered/frozen protocol and independent analysis |
-| 12 — Scientific evaluation | Planned | Broad validation and honest release claims | Independent oracles, differential comparator tests, versioned research reports |
+| 12 — [Scientific evaluation](tracks/12-scientific-evaluation/spec.md) | Specified; initial source increment | Citation kernels plus E01–E12/R01–R04 verification/research programme | Python reference/schema checks; native and external evidence pending |
 
 Each planned track should have one small implementation PR at a time. Avoid automatic phase/subissue multiplication. Do not claim the previous scaffold has been migrated until it is actually present and compiling.
+
+### Current source increment (not a remote or native completion claim)
+
+Track 12 coordinates the [citation analysis plan](tracks/12-scientific-evaluation/plan.md),
+with responsibilities in 01/02/06/07/09/10/11. `citelattice-analysis` contains
+source-authored h/g/i10/totals, missing-count bounds, versioned fingerprints and
+bounded request JSONL. The 147-item catalogue remains an inventory; this narrow
+method profile and its evidence are in `contracts/methods/citation-summary.v1.json`.
+No other track's historical status is promoted by these files.

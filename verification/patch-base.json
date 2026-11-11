@@ -1,0 +1,14 @@
+{
+  "repository": "edithatogo/CiteLattice",
+  "observed_base_commit": "5ec968d181b89237d3e7b1f477671627d3248986",
+  "local_baseline": "partial exact-blob reconstruction, not a complete clone",
+  "verified_base_blobs": {
+    "Cargo.toml": "e613b2419bb1a974b40f8b1bf55827940d8560c9",
+    "README.md": "6aa022f0e23e02147d6d135de927b49d43879a76",
+    "conductor/index.md": "780baa50784b0bf4b48732fcbb2634bf175d3b31",
+    "conductor/tracks.md": "84962f5190b04a3d84847f4f7a640c9da1c38a16",
+    "crates/citelattice-core/src/contracts/versioning.rs": "377f69b6b88788982832ebe699e7964cd855dc06"
+  },
+  "remote_changes": false,
+  "required_before_apply": "git apply --check; preserve concurrent changes and do not force overwrite"
+}
