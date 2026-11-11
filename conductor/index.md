@@ -15,5 +15,6 @@ Lean solo workflow: scoped plan + contract + failing test + implementation + rec
 - [Machine-readable task/dependency registry](evaluation-programme.json)
 - [Current citation-summary API](../docs/citation-summary.md)
 
-The local continuation patch contains source-authored kernels, not native build
-evidence or a merged remote change. Consult its evidence record before promotion.
+Source implementation exists in GitHub. The current source-evidence ceiling is determined by the exact observed CI run, not by the historical local continuation patch.
+
+- [Track 01 versioned scholarly stream consumer](tracks/01-scholarly-events/spec.md) — source-authored; CI and producer agreement pending.
