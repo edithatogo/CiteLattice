@@ -18,7 +18,7 @@ pub(crate) fn fingerprint<T: Serialize>(
     let bytes = serde_json_canonicalizer::to_vec(&Framed { domain, payload })
         .map_err(|_| AnalysisError::Encoding)?;
     let digest = Sha256::digest(bytes);
-    Ok(digest.iter().map(|byte| format!("{byte:02x}")).collect())
+    Ok(hex::encode(digest))
 }
 
 pub(crate) fn implementation() -> ImplementationIdentity {
@@ -79,6 +79,11 @@ pub(crate) fn identity(
 /// modified result. This detects accidental tampering, not adversarial forgery:
 /// an unkeyed digest is not a digital signature or independent rights decision.
 pub fn render_key(result: &AnalysisResult, spec: &RenderSpec) -> Result<String, AnalysisError> {
+    #[derive(Serialize)]
+    struct Render<'a> {
+        result_sha256: &'a str,
+        specification: &'a RenderSpec,
+    }
     if result.body.export != ExportPermission::Allowed {
         return Err(AnalysisError::ExportDenied);
     }
@@ -88,11 +93,6 @@ pub fn render_key(result: &AnalysisResult, spec: &RenderSpec) -> Result<String, 
     }
     if fingerprint("citelattice.result.v1", &result.body)? != result.sha256 {
         return Err(AnalysisError::Integrity);
-    }
-    #[derive(Serialize)]
-    struct Render<'a> {
-        result_sha256: &'a str,
-        specification: &'a RenderSpec,
     }
     fingerprint(
         "citelattice.render.v1",
