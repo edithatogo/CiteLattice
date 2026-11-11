@@ -163,7 +163,11 @@ pub fn analyze(
         return Err(NetworkError::PaperBudget);
     }
     let mut observed = BTreeMap::<String, (Vec<String>, ReferenceCoverage)>::new();
-    let mut completeness = CoverageCounts { complete: 0, partial: 0, unknown: 0 };
+    let mut completeness = CoverageCounts {
+        complete: 0,
+        partial: 0,
+        unknown: 0,
+    };
     for row in records {
         if !identifier_is_valid(&row.paper_id) {
             return Err(NetworkError::InvalidIdentifier);
@@ -171,11 +175,24 @@ pub fn analyze(
         if row.references.len() > limits.max_references_per_paper {
             return Err(NetworkError::ReferenceBudget);
         }
-        if row.references.iter().any(|value| !identifier_is_valid(value) || value == &row.paper_id) {
+        if row
+            .references
+            .iter()
+            .any(|value| !identifier_is_valid(value) || value == &row.paper_id)
+        {
             return Err(NetworkError::InvalidIdentifier);
         }
-        let refs: Vec<String> = row.references.iter().cloned().collect::<BTreeSet<_>>().into_iter().collect();
-        if observed.insert(row.paper_id.clone(), (refs, row.coverage)).is_some() {
+        let refs: Vec<String> = row
+            .references
+            .iter()
+            .cloned()
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .collect();
+        if observed
+            .insert(row.paper_id.clone(), (refs, row.coverage))
+            .is_some()
+        {
             return Err(NetworkError::DuplicatePaper);
         }
         match row.coverage {
@@ -195,10 +212,16 @@ pub fn analyze(
     let mut operations = 0_u64;
     for (id, (refs, _)) in &observed {
         for reference in refs {
-            inverted.entry(reference.clone()).or_default().insert(id.clone());
+            inverted
+                .entry(reference.clone())
+                .or_default()
+                .insert(id.clone());
             if let Some(target) = nodes.get(reference) {
                 graph.add_edge(nodes[id], *target, ());
-                direct.push(DirectedCitation { citing: id.clone(), cited: reference.clone() });
+                direct.push(DirectedCitation {
+                    citing: id.clone(),
+                    cited: reference.clone(),
+                });
             }
         }
         for (i, first) in refs.iter().enumerate() {
@@ -222,7 +245,10 @@ pub fn analyze(
     for (id, node) in nodes {
         let count = u64::try_from(graph.neighbors_directed(node, Incoming).count())
             .map_err(|_| NetworkError::Overflow)?;
-        in_degree.push(PaperInDegree { paper_id: id, count });
+        in_degree.push(PaperInDegree {
+            paper_id: id,
+            count,
+        });
     }
     Ok(NetworkSummary {
         schema_version: "org.citelattice.network.v1".to_owned(),
