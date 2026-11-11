@@ -1,6 +1,8 @@
 {
-  "status": "source_authored_native_unverified",
+  "status": "initial_analytical_slice_in_main_E09_output_hardening_under_review",
   "record": "../../../verification/citation-slice-evidence.json",
-  "remote_written": false,
-  "beyond_frontier_demonstrated": false
+  "remote_written": true,
+  "beyond_frontier_demonstrated": false,
+  "active_pr": "https://github.com/edithatogo/CiteLattice/pull/10",
+  "current_evidence_ceiling": "source_review_pending_hosted_verification"
 }
