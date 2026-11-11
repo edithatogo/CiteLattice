@@ -313,7 +313,13 @@ fn annual_svg(summary: &PublicationSummary) -> String {
         let x = 30 + index * 37;
         let height = row.count * 280 / largest;
         let y = 330 - height;
-        let _ = write!(s, "<rect x=\"{x}\" y=\"{y}\" width=\"26\" height=\"{height}\" fill=\"#465f82\"/><text x=\"{x}\" y=\"350\" font-size=\"9\">{}</text><text x=\"{x}\" y=\"{}\" font-size=\"9\">{}</text>", row.year, y.saturating_sub(5), row.count);
+        let _ = write!(
+            s,
+            "<rect x=\"{x}\" y=\"{y}\" width=\"26\" height=\"{height}\" fill=\"#465f82\"/><text x=\"{x}\" y=\"350\" font-size=\"9\">{}</text><text x=\"{x}\" y=\"{}\" font-size=\"9\">{}</text>",
+            row.year,
+            y.saturating_sub(5),
+            row.count
+        );
     }
     s.push_str("</svg>");
     s
