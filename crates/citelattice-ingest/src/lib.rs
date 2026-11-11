@@ -391,16 +391,22 @@ pub fn write_outputs(
             })
         })
         .collect();
+    let mut graph = vec![
+        serde_json::json!({"@id": "ro-crate-metadata.json", "@type": "CreativeWork", "about": {"@id": "./"}}),
+        serde_json::json!({
+            "@id": "./",
+            "@type": "Dataset",
+            "name": "CiteLattice scoped publication summary",
+            "conformsTo": {"@id": "https://w3id.org/ro/crate/1.3"},
+            "hasPart": manifest.assets.iter().map(|a| serde_json::json!({"@id":a.path})).collect::<Vec<_>>(),
+            "description": "Source-corpus descriptive statistics, not global scientometric coverage.",
+            "sourceInputSha256": summary.input_sha256
+        }),
+    ];
+    graph.extend(parts);
     let doc = serde_json::json!({
         "@context": "https://w3id.org/ro/crate/1.3/context",
-        "@graph": [
-            {"@id": "ro-crate-metadata.json", "@type": "CreativeWork", "about": {"@id": "./"}},
-            {"@id": "./", "@type": "Dataset", "name": "CiteLattice scoped publication summary",
-             "conformsTo": {"@id": "https://w3id.org/ro/crate/1.3"},
-             "hasPart": manifest.assets.iter().map(|a| serde_json::json!({"@id":a.path})).collect::<Vec<_>>(),
-             "description": "Source-corpus descriptive statistics, not global scientometric coverage.",
-             "sourceInputSha256": summary.input_sha256}
-        ].into_iter().chain(parts).collect::<Vec<_>>()
+        "@graph": graph
     });
     std::fs::write(
         directory.join("ro-crate-metadata.json"),
