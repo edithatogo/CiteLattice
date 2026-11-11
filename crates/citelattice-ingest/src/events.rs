@@ -111,6 +111,10 @@ pub struct ObservedObject {
 /// Immutable snapshot of the in-memory ledger's declared event state.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct EventSnapshot {
+    /// Namespaced output contract for consumer snapshots.
+    pub contract_id: String,
+    /// Exact output schema version, independent of the source stream version.
+    pub version: String,
     /// One stream only, preventing accidental implicit cross-source order.
     pub stream_id: Option<String>,
     /// One declared epoch (cross-epoch migration is not implemented).
@@ -324,6 +328,8 @@ impl EventLedger {
         }
         objects.sort_by(|a, b| a.key.cmp(&b.key));
         EventSnapshot {
+            contract_id: "org.citelattice.scholarly-event-snapshot".to_owned(),
+            version: "0.1.0".to_owned(),
             stream_id: self.stream_id.clone(),
             epoch: self.epoch,
             last_sequence: self.last_sequence,

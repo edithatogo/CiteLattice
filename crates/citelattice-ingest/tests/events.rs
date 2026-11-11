@@ -169,3 +169,50 @@ fn multi_event_reader_preserves_sequence_and_rejects_gaps() {
         Err(EventError::Sequence)
     ));
 }
+
+#[test]
+fn unverified_rights_redact_source_identifiers_from_snapshot() {
+    let mut input = fixture();
+    input["rights"]["metadata"] = json!("restricted");
+    let mut ledger = EventLedger::new(EventLimits::default());
+    ledger.apply_json(&serde_json::to_vec(&input).unwrap()).unwrap();
+    let summary = ledger.snapshot();
+    assert_eq!(summary.version, "0.1.0");
+    assert_eq!(summary.contract_id, "org.citelattice.scholarly-event-snapshot");
+    assert!(summary.objects[0].key.starts_with("sha256:"));
+    let exposed = serde_json::to_string(&summary).unwrap();
+    assert!(!exposed.contains("fixture:paper-1"));
+    assert!(!exposed.contains("Synthetic scholarly stream fixture"));
+}
+
+#[test]
+fn mismatched_prior_revision_fails_without_mutation() {
+    let first = fixture();
+    let mut ledger = EventLedger::new(EventLimits::default());
+    ledger.apply_json(&serde_json::to_vec(&first).unwrap()).unwrap();
+    let mut second = next_event(&first, "retract");
+    second["prior_revision"] = Value::Null;
+    assert!(matches!(
+        ledger.apply_json(&serde_json::to_vec(&second).unwrap()),
+        Err(EventError::Sequence)
+    ));
+    assert_eq!(ledger.snapshot().last_sequence, 1);
+}
+
+#[test]
+fn illegal_change_fields_and_unknown_kind_fail_closed() {
+    let mut event = fixture();
+    event["change"]["object"]["kind"] = json!("imaginary_research_type");
+    let bytes = serde_json_canonicalizer::to_vec(&event["change"]).unwrap();
+    event["payload_digest"]["hex"] = json!(hex::encode(Sha256::digest(&bytes)));
+    assert!(matches!(
+        EventLedger::new(EventLimits::default()).apply_json(&serde_json::to_vec(&event).unwrap()),
+        Err(EventError::InvalidWire)
+    ));
+    let mut unexpected = fixture();
+    unexpected["new_undeclared_field"] = json!("not valid");
+    assert!(matches!(
+        EventLedger::new(EventLimits::default()).apply_json(&serde_json::to_vec(&unexpected).unwrap()),
+        Err(EventError::InvalidWire)
+    ));
+}
