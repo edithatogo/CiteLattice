@@ -18,7 +18,7 @@ pub(crate) fn fingerprint<T: Serialize>(
     let bytes = serde_json_canonicalizer::to_vec(&Framed { domain, payload })
         .map_err(|_| AnalysisError::Encoding)?;
     let digest = Sha256::digest(bytes);
-    Ok(format!("{digest:x}"))
+    Ok(digest.iter().map(|byte| format!("{byte:02x}")).collect())
 }
 
 pub(crate) fn implementation() -> ImplementationIdentity {
