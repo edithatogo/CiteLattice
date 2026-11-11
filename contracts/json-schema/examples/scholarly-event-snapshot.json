@@ -1,0 +1,19 @@
+{
+  "contract_id": "org.citelattice.scholarly-event-snapshot",
+  "version": "0.1.0",
+  "stream_id": "synthetic-stream",
+  "epoch": 1,
+  "last_sequence": 1,
+  "source_digest": "230840ba9eb009b23c9f8fcb40c81b9443a8b71202089d95ea49c8872cff407d",
+  "applied": 1,
+  "objects": [
+    {
+      "key": "fixture:paper-1",
+      "kind": "publication",
+      "state": "active",
+      "body_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "replacement_digest": null,
+      "metadata_rights": "redistributable"
+    }
+  ]
+}
