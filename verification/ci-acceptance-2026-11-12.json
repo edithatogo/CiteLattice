@@ -1,0 +1,61 @@
+{
+  "schema_version": "org.citelattice.ci-acceptance.v1",
+  "captured_on": "2026-11-12",
+  "repository": "edithatogo/CiteLattice",
+  "evidence_type": "observed_github_pull_request_and_job_status",
+  "claim_boundary": "Passing Rust core and static schema jobs establishes scoped build/test checks at exact PR heads; it is not proof of independent methodological validity, end-to-end Searchright interoperability, crash durability or frontier superiority.",
+  "entries": [
+    {
+      "pr": 11,
+      "head": "3fef7f2ed5fa76cee5bb2d24720609738001b04f",
+      "merge_commit": "ae5842bc76376a427cdd49d587f47dee0521f78f",
+      "workflow_run": 43004890148,
+      "jobs": {
+        "schemas": "success",
+        "rust-core": "success"
+      },
+      "scope": "transactional Parquet/XLSX/Typst-source outputs"
+    },
+    {
+      "pr": 10,
+      "head": "60af903df3775260fe990574536433cf2ff9a2b2",
+      "merge_commit": "4d0119187d105357473b45219ddd849fe5311b55",
+      "workflow_run": 43099860124,
+      "jobs": {
+        "schemas": "success",
+        "rust-core": "success"
+      },
+      "scope": "bounded coauthorship and complete integer-safe SVG"
+    },
+    {
+      "pr": 13,
+      "head": "cbbbf82849e013ffb6c901a9f8ad86a2166c6ed7",
+      "merge_commit": "63df6b2f2f8bbc7479168e8de0d7d67f10024776",
+      "workflow_run": 43101003995,
+      "jobs": {
+        "schemas": "success",
+        "rust-core": "success"
+      },
+      "scope": "annual evidence scene, mark provenance, Vega-Lite and SVG"
+    },
+    {
+      "pr": 12,
+      "head": "6cdd0924dc44eb29574df4ce3ebd46184903f005",
+      "merge_commit": "ae0de26a9fa4418f775cdc58628428f8b55ea815",
+      "workflow_run": 43101461286,
+      "jobs": {
+        "schemas": "success",
+        "rust-core": "success"
+      },
+      "scope": "bounded in-memory single-epoch event consumer"
+    }
+  ],
+  "pending": [
+    "actual Searchright producer + compiled cross-repository integration",
+    "durable checkpoint/replay and rights deletion propagation",
+    "independent bibliometrix/PyBibX comparators",
+    "output semantic round-trip and privacy audit",
+    "beyond-frontier held-out research comparisons",
+    "offline four-layer security infrastructure"
+  ]
+}

@@ -15,8 +15,7 @@ Lean solo workflow: scoped plan + contract + failing test + implementation + rec
 - [Machine-readable task/dependency registry](evaluation-programme.json)
 - [Current citation-summary API](../docs/citation-summary.md)
 
-The local continuation patch contains source-authored kernels, not native build
-evidence or a merged remote change. Consult its evidence record before promotion.
+The current merged source has passed the scoped Rust core and schema workflows. See [exact CI acceptance](../verification/ci-acceptance-2026-11-12.json). Scientific fidelity, full producer/consumer interoperability, security qualification and beyond-frontier hypotheses require separate evidence.
 
-- [Track 07 evidence-linked annual scenes](tracks/07-scientific-imaging/spec.md) — Vega-Lite, SVG and mark-to-row contracts; hosted CI and wider imaging evaluation pending.
+- [Track 07 evidence-linked annual scenes](tracks/07-scientific-imaging/spec.md) — Vega-Lite, SVG and mark-to-row contracts; hosted core CI passed; independent imaging evaluation pending.
 - [Track 01 versioned scholarly stream consumer](tracks/01-scholarly-events/spec.md) — producer and durable replay verification pending.
