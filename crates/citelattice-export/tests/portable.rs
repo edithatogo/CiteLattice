@@ -45,7 +45,7 @@ fn workbook_and_report_source_are_derived_from_the_same_rows()
     assert!(report.assets.iter().any(|a| a.format == ExportFormat::Xlsx));
     assert!(std::fs::read(dir.path().join("analysis.xlsx"))?.starts_with(b"PK"));
     let typst = std::fs::read_to_string(dir.path().join("report.typ"))?;
-    assert!(typst.contains("2024") && typst.contains("2"));
+    assert!(typst.contains("[2024], [2]"));
     assert!(
         report
             .assets
