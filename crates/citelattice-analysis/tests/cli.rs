@@ -17,7 +17,7 @@ fn offline_binary_emits_metric_json_only() -> Result<(), Box<dyn std::error::Err
     drop(input);
     let result = child.wait_with_output()?;
     assert!(result.status.success());
-    assert!(result.stderr.is_empty());
+    assert_eq!(result.stderr.len(), 0);
     let output: serde_json::Value = serde_json::from_slice(&result.stdout)?;
     assert_eq!(output["body"]["summary"]["h"]["lower"], 4);
     assert_eq!(output["body"]["summary"]["g"]["lower"], 5);

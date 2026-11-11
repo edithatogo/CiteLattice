@@ -16,7 +16,7 @@ fn crlf_and_final_line_without_newline() -> Result<(), Box<dyn std::error::Error
         )?,
         2
     );
-    assert_eq!(out.iter().filter(|&&b| b == b'\n').count(), 2);
+    assert_eq!(bytecount::count(&out, b'\n'), 2);
     Ok(())
 }
 #[test]
@@ -30,7 +30,7 @@ fn oversized_frame_and_frame_count_rejected() -> Result<(), Box<dyn std::error::
         run_jsonl(Cursor::new(vec![b'x'; 128]), &mut out, limits),
         Err(StreamError::FrameLimit(1))
     ));
-    assert!(out.is_empty());
+    assert_eq!(out.len(), 0);
     let s = serde_json::to_string(&common::request(&[Some(1)]))?;
     let limits = StreamLimits {
         max_line_bytes: 4096,
@@ -55,7 +55,7 @@ fn denied_output_and_late_failure() -> Result<(), Box<dyn std::error::Error>> {
         )
         .is_err()
     );
-    assert!(out.is_empty());
+    assert_eq!(out.len(), 0);
     r.export = ExportPermission::Allowed;
     let s = serde_json::to_string(&r)?;
     let err = run_jsonl(
@@ -65,7 +65,7 @@ fn denied_output_and_late_failure() -> Result<(), Box<dyn std::error::Error>> {
     )
     .err()
     .ok_or("expected error")?;
-    assert_eq!(out.iter().filter(|&&b| b == b'\n').count(), 1);
+    assert_eq!(bytecount::count(&out, b'\n'), 1);
     assert!(!err.to_string().contains("private-secret-content"));
     Ok(())
 }
