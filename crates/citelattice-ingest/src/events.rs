@@ -311,6 +311,45 @@ pub struct EventLedger {
     seen_events: BTreeMap<String, String>,
 }
 
+// Validate source envelope and its semantic digest before any ledger mutation.
+fn validate_envelope(event: &EventEnvelope) -> Result<(u64, u64, String), EventError> {
+    if event.contract_id != "org.scholarly.stream"
+        || event.version != "1.0.0-design.2"
+        || event.canonicalization != "rfc8785"
+    {
+        return Err(EventError::Version);
+    }
+    if !identifier(&event.stream_id)
+        || !identifier(&event.event_id)
+        || event.observed_at.len() > 64
+        || OffsetDateTime::parse(&event.observed_at, &Rfc3339).is_err()
+        || !valid_artifact(&event.source_revision)
+        || !valid_rights(&event.rights)
+        || !valid_digest(&event.payload_digest)
+        || event
+            .prior_revision
+            .as_ref()
+            .is_some_and(|rev| !valid_artifact(rev))
+    {
+        return Err(EventError::Metadata);
+    }
+    let epoch = parse_counter(&event.epoch)?;
+    let sequence = parse_counter(&event.sequence)?;
+    if epoch == 0 || sequence == 0 {
+        return Err(EventError::Sequence);
+    }
+    if hex_digest(&canonical(&event.change)?) != event.payload_digest.hex {
+        return Err(EventError::Digest);
+    }
+    Ok((epoch, sequence, hex_digest(&canonical(event)?)))
+}
+
+enum Planned {
+    Insert(String, ObservedObject),
+    Update(String, ObservedObject),
+    Delete(String, String, ObservedObject),
+}
+
 impl EventLedger {
     /// Create a bounded consumer with explicit limits.
     #[must_use]
@@ -352,57 +391,12 @@ impl EventLedger {
         }
     }
 
-    /// Verify and apply one JSON envelope without retaining raw CSL fields.
-    ///
-    /// # Errors
-    /// Rejects invalid versions, missing/invalid digests, sequence gaps,
-    /// conflicting replays, illegal transitions or exhausted budgets.
-    pub fn apply_json(&mut self, bytes: &[u8]) -> Result<ApplyStatus, EventError> {
-        if self.limits.max_line_bytes == 0
-            || self.limits.max_events == 0
-            || self.limits.max_objects == 0
-            || bytes.len() > self.limits.max_line_bytes
-        {
-            return Err(EventError::FrameLimit);
-        }
-        let event: EventEnvelope =
-            serde_json::from_slice(bytes).map_err(|_| EventError::InvalidWire)?;
-        if event.contract_id != "org.scholarly.stream"
-            || event.version != "1.0.0-design.2"
-            || event.canonicalization != "rfc8785"
-        {
-            return Err(EventError::Version);
-        }
-        if !identifier(&event.stream_id)
-            || !identifier(&event.event_id)
-            || event.observed_at.len() > 64
-            || OffsetDateTime::parse(&event.observed_at, &Rfc3339).is_err()
-            || !valid_artifact(&event.source_revision)
-            || !valid_rights(&event.rights)
-            || !valid_digest(&event.payload_digest)
-            || event
-                .prior_revision
-                .as_ref()
-                .is_some_and(|rev| !valid_artifact(rev))
-        {
-            return Err(EventError::Metadata);
-        }
-        let epoch = parse_counter(&event.epoch)?;
-        let sequence = parse_counter(&event.sequence)?;
-        if epoch == 0 || sequence == 0 {
-            return Err(EventError::Sequence);
-        }
-        if hex_digest(&canonical(&event.change)?) != event.payload_digest.hex {
-            return Err(EventError::Digest);
-        }
-        let event_hash = hex_digest(&canonical(&event)?);
-        if let Some(prior) = self.seen_events.get(&event.event_id) {
-            return if prior == &event_hash {
-                Ok(ApplyStatus::Duplicate)
-            } else {
-                Err(EventError::ConflictingReplay)
-            };
-        }
+    fn validate_order(
+        &self,
+        event: &EventEnvelope,
+        epoch: u64,
+        sequence: u64,
+    ) -> Result<(), EventError> {
         if self.seen_events.len() >= self.limits.max_events {
             return Err(EventError::ResourceLimit);
         }
@@ -423,100 +417,109 @@ impl EventLedger {
         } else if sequence != 1 || event.prior_revision.is_some() {
             return Err(EventError::Sequence);
         }
+        Ok(())
+    }
 
-        let change = event.change.as_object().ok_or(EventError::InvalidWire)?;
-        let op = change
-            .get("op")
-            .and_then(Value::as_str)
-            .ok_or(EventError::InvalidWire)?;
-        // Check all mutations and resource limits before committing any state.
-        enum Planned {
-            Insert(String, ObservedObject),
-            Update(String, ObservedObject),
-            Delete(String, String, ObservedObject),
+    fn plan_upsert(
+        &self,
+        event: &EventEnvelope,
+        change: &Map<String, Value>,
+    ) -> Result<Planned, EventError> {
+        if !exact_fields(change, &["op", "object"]) {
+            return Err(EventError::InvalidWire);
         }
-        let planned = if op == "upsert" {
-            if !exact_fields(change, &["op", "object"]) {
-                return Err(EventError::InvalidWire);
-            }
-            let (key, kind, body_digest) =
-                parse_object(change.get("object").ok_or(EventError::InvalidWire)?)?;
-            let key_hash = hex_digest(key.as_bytes());
-            if self.tombstones.contains_key(&key_hash) {
-                return Err(EventError::Transition);
-            }
-            if !self.observed.contains_key(&key)
-                && self.observed.len() + self.tombstones.len() >= self.limits.max_objects
-            {
-                return Err(EventError::ResourceLimit);
-            }
-            Planned::Insert(
-                key.clone(),
-                ObservedObject {
-                    key,
-                    kind,
-                    state: ObjectState::Active,
-                    body_digest: Some(body_digest),
-                    replacement_digest: None,
-                    metadata_rights: event.rights.metadata.clone(),
-                },
-            )
-        } else if matches!(op, "correct" | "retract" | "delete") {
-            if !exact_fields(change, &["op", "target", "reason", "replacement"]) {
-                return Err(EventError::InvalidWire);
-            }
-            let key = change
-                .get("target")
-                .and_then(Value::as_str)
-                .filter(|v| identifier(v))
-                .ok_or(EventError::Metadata)?;
-            let reason = change
-                .get("reason")
-                .and_then(Value::as_str)
-                .filter(|v| identifier(v))
-                .ok_or(EventError::Metadata)?;
-            // A reason must exist, but raw text is deliberately never retained.
-            let _ = reason;
-            let before = self.observed.get(key).ok_or(EventError::Transition)?;
-            let replacement: Option<Artifact> = match change.get("replacement") {
-                Some(Value::Null) => None,
-                Some(v) => {
-                    Some(serde_json::from_value(v.clone()).map_err(|_| EventError::InvalidWire)?)
-                }
-                None => return Err(EventError::InvalidWire),
-            };
-            if replacement.as_ref().is_some_and(|v| !valid_artifact(v)) {
-                return Err(EventError::Metadata);
-            }
-            if op == "correct" && replacement.is_none() {
-                return Err(EventError::Transition);
-            }
-            let mut next = before.clone();
-            next.metadata_rights.clone_from(&event.rights.metadata);
-            match op {
-                "correct" => {
-                    next.state = ObjectState::CorrectionPending;
-                    next.body_digest = None;
-                    next.replacement_digest = replacement.map(|r| r.digest.hex);
-                    Planned::Update(key.to_owned(), next)
-                }
-                "retract" => {
-                    next.state = ObjectState::Retracted;
-                    Planned::Update(key.to_owned(), next)
-                }
-                _ => {
-                    let hash = hex_digest(key.as_bytes());
-                    next.key = format!("sha256:{hash}");
-                    next.state = ObjectState::Deleted;
-                    next.body_digest = None;
-                    next.replacement_digest = None;
-                    Planned::Delete(key.to_owned(), hash, next)
-                }
-            }
-        } else {
+        let (key, kind, body_digest) =
+            parse_object(change.get("object").ok_or(EventError::InvalidWire)?)?;
+        let key_hash = hex_digest(key.as_bytes());
+        if self.tombstones.contains_key(&key_hash) {
             return Err(EventError::Transition);
-        };
+        }
+        if !self.observed.contains_key(&key)
+            && self.observed.len() + self.tombstones.len() >= self.limits.max_objects
+        {
+            return Err(EventError::ResourceLimit);
+        }
+        Ok(Planned::Insert(
+            key.clone(),
+            ObservedObject {
+                key,
+                kind,
+                state: ObjectState::Active,
+                body_digest: Some(body_digest),
+                replacement_digest: None,
+                metadata_rights: event.rights.metadata.clone(),
+            },
+        ))
+    }
 
+    fn plan_revision(
+        &self,
+        event: &EventEnvelope,
+        change: &Map<String, Value>,
+        op: &str,
+    ) -> Result<Planned, EventError> {
+        if !exact_fields(change, &["op", "target", "reason", "replacement"]) {
+            return Err(EventError::InvalidWire);
+        }
+        let key = change
+            .get("target")
+            .and_then(Value::as_str)
+            .filter(|v| identifier(v))
+            .ok_or(EventError::Metadata)?;
+        change
+            .get("reason")
+            .and_then(Value::as_str)
+            .filter(|v| identifier(v))
+            .ok_or(EventError::Metadata)?;
+        let before = self.observed.get(key).ok_or(EventError::Transition)?;
+        let replacement: Option<Artifact> = match change.get("replacement") {
+            Some(Value::Null) => None,
+            Some(v) => Some(serde_json::from_value(v.clone()).map_err(|_| EventError::InvalidWire)?),
+            None => return Err(EventError::InvalidWire),
+        };
+        if replacement.as_ref().is_some_and(|v| !valid_artifact(v)) {
+            return Err(EventError::Metadata);
+        }
+        if op == "correct" && replacement.is_none() {
+            return Err(EventError::Transition);
+        }
+        let mut next = before.clone();
+        next.metadata_rights.clone_from(&event.rights.metadata);
+        match op {
+            "correct" => {
+                next.state = ObjectState::CorrectionPending;
+                next.body_digest = None;
+                next.replacement_digest = replacement.map(|r| r.digest.hex);
+                Ok(Planned::Update(key.to_owned(), next))
+            }
+            "retract" => {
+                next.state = ObjectState::Retracted;
+                Ok(Planned::Update(key.to_owned(), next))
+            }
+            "delete" => {
+                let hash = hex_digest(key.as_bytes());
+                next.key = format!("sha256:{hash}");
+                next.state = ObjectState::Deleted;
+                next.body_digest = None;
+                next.replacement_digest = None;
+                Ok(Planned::Delete(key.to_owned(), hash, next))
+            }
+            _ => Err(EventError::Transition),
+        }
+    }
+
+    fn plan_change(&self, event: &EventEnvelope) -> Result<Planned, EventError> {
+        let change = event.change.as_object().ok_or(EventError::InvalidWire)?;
+        match change.get("op").and_then(Value::as_str) {
+            Some("upsert") => self.plan_upsert(event, change),
+            Some(op @ ("correct" | "retract" | "delete")) => {
+                self.plan_revision(event, change, op)
+            }
+            _ => Err(EventError::Transition),
+        }
+    }
+
+    fn commit_plan(&mut self, planned: Planned) {
         match planned {
             Planned::Insert(key, value) | Planned::Update(key, value) => {
                 self.observed.insert(key, value);
@@ -526,12 +529,42 @@ impl EventLedger {
                 self.tombstones.insert(hash, tombstone);
             }
         }
+    }
+
+    /// Verify and apply one JSON envelope without retaining raw CSL fields.
+    ///
+    /// # Errors
+    /// Rejects invalid versions, missing/invalid digests, sequence gaps,
+    /// conflicting replays, illegal transitions or exhausted budgets.
+    pub fn apply_json(&mut self, bytes: &[u8]) -> Result<ApplyStatus, EventError> {
+        if self.limits.max_line_bytes == 0
+            || self.limits.max_events == 0
+            || self.limits.max_objects == 0
+            || bytes.len() > self.limits.max_line_bytes
+        {
+            return Err(EventError::FrameLimit);
+        }
+        let event: EventEnvelope =
+            serde_json::from_slice(bytes).map_err(|_| EventError::InvalidWire)?;
+        let (epoch, sequence, event_hash) = validate_envelope(&event)?;
+        if let Some(prior) = self.seen_events.get(&event.event_id) {
+            return if prior == &event_hash {
+                Ok(ApplyStatus::Duplicate)
+            } else {
+                Err(EventError::ConflictingReplay)
+            };
+        }
+        self.validate_order(&event, epoch, sequence)?;
+        // The transition and all limits are checked before state mutation.
+        let planned = self.plan_change(&event)?;
+        self.commit_plan(planned);
         self.last_sequence = sequence;
         self.epoch = Some(epoch);
         self.stream_id = Some(event.stream_id);
         self.last_source = Some(event.source_revision);
         self.seen_events.insert(event.event_id, event_hash);
         Ok(ApplyStatus::Applied)
+
     }
 }
 
