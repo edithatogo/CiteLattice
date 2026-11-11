@@ -1,0 +1,62 @@
+[
+  {
+    "id": "work:0",
+    "type": "article-journal",
+    "title": "Synthetic fixture work 0",
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    }
+  },
+  {
+    "id": "work:1",
+    "type": "article-journal",
+    "title": "Synthetic fixture work 1",
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    }
+  },
+  {
+    "id": "work:2",
+    "type": "article-journal",
+    "title": "Synthetic fixture work 2",
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    }
+  },
+  {
+    "id": "work:3",
+    "type": "article-journal",
+    "title": "Synthetic fixture work 3",
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    }
+  },
+  {
+    "id": "work:4",
+    "type": "article-journal",
+    "title": "Synthetic fixture work 4",
+    "issued": {
+      "date-parts": [
+        [
+          2025
+        ]
+      ]
+    }
+  }
+]

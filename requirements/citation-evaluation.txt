@@ -1,0 +1,4 @@
+# Local reference and schema checks; no scientific implementation in Python.
+jsonschema==4.26.0
+rfc3339-validator==0.1.4
+six==1.17.0

@@ -1,0 +1,266 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:citelattice:citation-result:1.0.0",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "object",
+      "properties": {
+        "contract": {
+          "const": "org.citelattice.citation_result"
+        },
+        "version": {
+          "const": "1.0.0"
+        },
+        "method": {
+          "const": "org.citelattice.citation-summary.actual-n"
+        },
+        "method_version": {
+          "const": "1.0.0"
+        },
+        "implementation": {
+          "type": "object",
+          "properties": {
+            "package": {
+              "const": "citelattice-analysis"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-((?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$"
+            },
+            "build_revision": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "package",
+            "version",
+            "build_revision"
+          ],
+          "additionalProperties": false
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            "version": {
+              "type": "string",
+              "maxLength": 1024,
+              "pattern": "^(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)\\.(0|[1-9][0-9]*)(?:-((?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*)(?:\\.(?:0|[1-9][0-9]*|[0-9]*[A-Za-z-][0-9A-Za-z-]*))*))?(?:\\+([0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*))?$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "id",
+            "version",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "context": {
+          "type": "object",
+          "properties": {
+            "population_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            "citation_universe": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            "as_of": {
+              "type": "string",
+              "format": "date-time",
+              "maxLength": 64
+            }
+          },
+          "required": [
+            "population_id",
+            "citation_universe",
+            "as_of"
+          ],
+          "additionalProperties": false
+        },
+        "export": {
+          "enum": [
+            "allowed",
+            "denied",
+            "unknown"
+          ]
+        },
+        "identity": {
+          "type": "object",
+          "properties": {
+            "input_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "calculation_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "request_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "input_sha256",
+            "calculation_sha256",
+            "request_sha256"
+          ],
+          "additionalProperties": false
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "works": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "observed": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "missing": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 100000
+            },
+            "status": {
+              "enum": [
+                "complete",
+                "partial",
+                "unavailable"
+              ]
+            },
+            "h": {
+              "type": "object",
+              "properties": {
+                "lower": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "upper": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "required": [
+                "lower",
+                "upper"
+              ],
+              "additionalProperties": false
+            },
+            "g": {
+              "type": "object",
+              "properties": {
+                "lower": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "upper": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "required": [
+                "lower",
+                "upper"
+              ],
+              "additionalProperties": false
+            },
+            "i10": {
+              "type": "object",
+              "properties": {
+                "lower": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                },
+                "upper": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 100000
+                }
+              },
+              "required": [
+                "lower",
+                "upper"
+              ],
+              "additionalProperties": false
+            },
+            "known_total": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]{0,38})$"
+            },
+            "total_upper": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^(0|[1-9][0-9]{0,38})$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "works",
+            "observed",
+            "missing",
+            "status",
+            "h",
+            "g",
+            "i10",
+            "known_total",
+            "total_upper"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "contract",
+        "version",
+        "method",
+        "method_version",
+        "implementation",
+        "source",
+        "context",
+        "export",
+        "identity",
+        "summary"
+      ],
+      "additionalProperties": false
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "required": [
+    "body",
+    "sha256"
+  ],
+  "additionalProperties": false,
+  "$comment": "Shape validation does not verify hashes, bounds or scientific correctness. sha256 excludes itself and covers the domain-separated canonical body."
+}

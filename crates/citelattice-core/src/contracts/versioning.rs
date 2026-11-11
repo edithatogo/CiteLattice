@@ -3,6 +3,7 @@ use serde::{Deserialize, Serialize};
 
 /// `SemVer` identity plus exact content fingerprint of a schema, method or tool.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct Revision {
     /// Namespaced stable identifier.
     pub id: String,

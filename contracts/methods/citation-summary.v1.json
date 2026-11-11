@@ -1,0 +1,43 @@
+{
+  "method_id": "org.citelattice.citation-summary.actual-n",
+  "version": "1.0.0",
+  "state": "source_authored_native_unverified",
+  "package": "citelattice-analysis",
+  "definitions": {
+    "h": "max k in [0,N] with at least k works having c_i>=k",
+    "g": "max k in [0,N] with sum of top k counts >= k^2; no fictitious extra zero-citation works",
+    "i10": "count(c_i >= 10)",
+    "known_total": "sum of observed counts accumulated with checked u128 and serialized as decimal text"
+  },
+  "missingness": "reject, or monotone extremal completions: zero lower; u64::MAX upper for each unknown count. Upper construction valid for index thresholds under N<=100000. No unknown-work or erroneous-count guarantee.",
+  "empty_population": "complete summary with all indices and total zero; no coverage fraction is asserted",
+  "canonicalization": "RFC8785 via serde_json_canonicalizer; counts are decimal strings; observations are sorted by unchanged identifier before hashing",
+  "denominator": "N supplied, uniquely identified actual publications in the named population; counts refer to the explicitly named citation universe and cutoff",
+  "comparators": [
+    {
+      "name": "bibliometrix Hindex",
+      "state": "not_run",
+      "requirements": "pin package, corpus, author-resolution and actual-N g convention; record divergences rather than forcing equality"
+    },
+    {
+      "name": "PyBibX",
+      "state": "not_run",
+      "requirements": "confirm method support and input conventions before comparison"
+    }
+  ],
+  "oracles": [
+    "verification/citation-oracles.json",
+    "verification/citation-bounds.json"
+  ],
+  "references": [
+    {
+      "id": "hirsch2005",
+      "url": "https://doi.org/10.1073/pnas.0507655102"
+    },
+    {
+      "id": "egghe2006",
+      "url": "https://doi.org/10.1007/s11192-006-0144-7"
+    }
+  ],
+  "claim_boundary": "Conventional methods; no new metric, scientific quality ranking, global author completeness, external parity or beyond-frontier claim."
+}

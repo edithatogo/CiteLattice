@@ -1,0 +1,53 @@
+{
+  "schema_version": "org.citelattice.citation-slice-evidence.v1",
+  "base_commit": "5ec968d181b89237d3e7b1f477671627d3248986",
+  "source_state": "authored_native_unverified",
+  "remote_written": false,
+  "checks": {
+    "new_python_tests": {
+      "state": "passed",
+      "methods": 7,
+      "command": "python -m unittest discover -s tests -p test_citation_evaluation.py -v",
+      "log": "verification/logs/citation-python.txt"
+    },
+    "independent_synthetic_oracles": {
+      "state": "reference_fixtures_checked_in_python_not_rust",
+      "exact_cases": 260,
+      "partial_scenarios": 7,
+      "finite_completions": 2743
+    },
+    "json_toml_parsing": {
+      "state": "passed",
+      "json_files": 13,
+      "toml_files": 2
+    },
+    "rust_build_tests_lint_format": {
+      "state": "not_executed",
+      "reason": "cargo/rustc/rustfmt unavailable; container cannot fetch toolchain",
+      "attempt_exit_code": 127
+    },
+    "full_existing_repository_suite": {
+      "state": "not_executed",
+      "reason": "local workspace is a partial exact-blob baseline plus changed files"
+    },
+    "native_rust_red_green": {
+      "state": "not_observed"
+    },
+    "independent_tool_parity": {
+      "state": "not_executed"
+    },
+    "performance_research_human_evaluation": {
+      "state": "not_executed"
+    },
+    "dependency_security_lockfile": {
+      "state": "not_executed"
+    }
+  },
+  "local_environment": {
+    "python": "3.13.5",
+    "jsonschema": "4.26.0",
+    "rfc3339-validator": "0.1.4",
+    "six": "1.17.0"
+  },
+  "claim_boundary": "Python oracles and schema checks do not establish Rust execution, code formatting, security, runtime compatibility, mathematical library validation or scientific superiority."
+}

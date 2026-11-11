@@ -1,0 +1,1 @@
+bash: line 37: cargo: command not found

@@ -1,0 +1,26 @@
+[package]
+name = "citelattice-analysis"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+citelattice-core = { path = "../citelattice-core", version = "0.1.0-alpha.1" }
+serde.workspace = true
+serde_json.workspace = true
+serde_json_canonicalizer = "=0.3.2"
+sha2 = "0.11"
+semver = "1"
+time = { version = "0.3", features = ["parsing"] }
+thiserror = "2"
+
+[dev-dependencies]
+proptest = "1"
+
+[[bin]]
+name = "citelattice"
+path = "src/bin/citelattice.rs"
+
+[lints]
+workspace = true
