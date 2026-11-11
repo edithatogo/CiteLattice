@@ -168,9 +168,17 @@ fn nonempty(value: &str) -> bool {
 }
 
 fn document_kind(value: &serde_json::Value) -> Option<String> {
-    value.as_str().map(str::to_owned).or_else(|| {
-        value.as_object().and_then(|obj| obj.get("other"))?.as_str().map(str::to_owned)
-    }).filter(|kind| nonempty(kind))
+    value
+        .as_str()
+        .map(str::to_owned)
+        .or_else(|| {
+            value
+                .as_object()
+                .and_then(|obj| obj.get("other"))?
+                .as_str()
+                .map(str::to_owned)
+        })
+        .filter(|kind| nonempty(kind))
 }
 
 /// Parse a bounded genuine Searchright JSONL file into scoped descriptive statistics.
@@ -185,8 +193,13 @@ pub fn summarize_reader<R: BufRead>(
     if limits.max_line_bytes == 0 || limits.max_records == 0 {
         return Err(SourceError::TooLarge);
     }
-    let probe = u64::try_from(limits.max_line_bytes.checked_add(1).ok_or(SourceError::TooLarge)?)
-        .map_err(|_| SourceError::TooLarge)?;
+    let probe = u64::try_from(
+        limits
+            .max_line_bytes
+            .checked_add(1)
+            .ok_or(SourceError::TooLarge)?,
+    )
+    .map_err(|_| SourceError::TooLarge)?;
     let mut bytes = Vec::new();
     let mut digest = Sha256::new();
     let mut annual = BTreeMap::<i32, u64>::new();
@@ -199,7 +212,9 @@ pub fn summarize_reader<R: BufRead>(
     let mut line = 0_usize;
     loop {
         bytes.clear();
-        let count = (&mut reader).take(probe).read_until(b'\n', &mut bytes)
+        let count = (&mut reader)
+            .take(probe)
+            .read_until(b'\n', &mut bytes)
             .map_err(|_| SourceError::Io)?;
         if count == 0 {
             break;
@@ -239,7 +254,12 @@ pub fn summarize_reader<R: BufRead>(
         }
         let kind = document_kind(&record.kind).ok_or(SourceError::InvalidContract(line))?;
         *kinds.entry(kind).or_default() += 1;
-        let distinct: Vec<String> = record.authors.into_iter().collect::<BTreeSet<_>>().into_iter().collect();
+        let distinct: Vec<String> = record
+            .authors
+            .into_iter()
+            .collect::<BTreeSet<_>>()
+            .into_iter()
+            .collect();
         for (i, a) in distinct.iter().enumerate() {
             for b in distinct.iter().skip(i + 1) {
                 *edges.entry((a.clone(), b.clone())).or_default() += 1;
@@ -252,9 +272,18 @@ pub fn summarize_reader<R: BufRead>(
         input_sha256: hex::encode(digest.finalize()),
         record_count,
         undated,
-        annual: annual.into_iter().map(|(year, count)| AnnualCount { year, count }).collect(),
-        document_types: kinds.into_iter().map(|(kind, count)| KindCount { kind, count }).collect(),
-        coauthors: edges.into_iter().map(|((a, b), works)| CollaborationEdge { a, b, works }).collect(),
+        annual: annual
+            .into_iter()
+            .map(|(year, count)| AnnualCount { year, count })
+            .collect(),
+        document_types: kinds
+            .into_iter()
+            .map(|(kind, count)| KindCount { kind, count })
+            .collect(),
+        coauthors: edges
+            .into_iter()
+            .map(|((a, b), works)| CollaborationEdge { a, b, works })
+            .collect(),
         source_receipts: receipts.into_iter().collect(),
         author_resolution: "exact_source_strings_not_disambiguated".to_owned(),
     })
@@ -269,8 +298,16 @@ fn annual_csv(summary: &PublicationSummary) -> String {
 }
 
 fn annual_svg(summary: &PublicationSummary) -> String {
-    let largest = summary.annual.iter().map(|r| r.count).max().unwrap_or(1).max(1);
-    let mut s = String::from("<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 400\" role=\"img\" aria-label=\"Publications by year\"><title>Publications by year</title>");
+    let largest = summary
+        .annual
+        .iter()
+        .map(|r| r.count)
+        .max()
+        .unwrap_or(1)
+        .max(1);
+    let mut s = String::from(
+        "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 640 400\" role=\"img\" aria-label=\"Publications by year\"><title>Publications by year</title>",
+    );
     for (index, row) in summary.annual.iter().take(16).enumerate() {
         let x = 30 + index * 37;
         let height = row.count * 280 / largest;
@@ -282,9 +319,14 @@ fn annual_svg(summary: &PublicationSummary) -> String {
 }
 
 fn annual_html(summary: &PublicationSummary) -> String {
-    let mut s = String::from("<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; style-src 'unsafe-inline'\"><title>Annual publication production</title></head><body><h1>Annual publication production</h1><table><caption>Works grouped by reported publication year</caption><thead><tr><th>Year</th><th>Publications</th></tr></thead><tbody>");
+    let mut s = String::from(
+        "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; style-src 'unsafe-inline'\"><title>Annual publication production</title></head><body><h1>Annual publication production</h1><table><caption>Works grouped by reported publication year</caption><thead><tr><th>Year</th><th>Publications</th></tr></thead><tbody>",
+    );
     for row in &summary.annual {
-        s.push_str(&format!("<tr><td>{}</td><td>{}</td></tr>", row.year, row.count));
+        s.push_str(&format!(
+            "<tr><td>{}</td><td>{}</td></tr>",
+            row.year, row.count
+        ));
     }
     s.push_str("</tbody></table></body></html>");
     s
@@ -313,8 +355,16 @@ pub fn write_outputs(
     let assets = [
         ("summary.json", summary_json, "application/json"),
         ("annual.csv", annual_csv(summary).into_bytes(), "text/csv"),
-        ("annual.svg", annual_svg(summary).into_bytes(), "image/svg+xml"),
-        ("annual.html", annual_html(summary).into_bytes(), "text/html"),
+        (
+            "annual.svg",
+            annual_svg(summary).into_bytes(),
+            "image/svg+xml",
+        ),
+        (
+            "annual.html",
+            annual_html(summary).into_bytes(),
+            "text/html",
+        ),
     ];
     let mut records = Vec::new();
     for (path, bytes, media_type) in assets {
@@ -329,12 +379,18 @@ pub fn write_outputs(
         input_sha256: summary.input_sha256.clone(),
         assets: records,
     };
-    let parts: Vec<_> = manifest.assets.iter().map(|a| serde_json::json!({
-        "@id": a.path,
-        "@type": "File",
-        "encodingFormat": a.media_type,
-        "sha256": a.sha256
-    })).collect();
+    let parts: Vec<_> = manifest
+        .assets
+        .iter()
+        .map(|a| {
+            serde_json::json!({
+                "@id": a.path,
+                "@type": "File",
+                "encodingFormat": a.media_type,
+                "sha256": a.sha256
+            })
+        })
+        .collect();
     let doc = serde_json::json!({
         "@context": "https://w3id.org/ro/crate/1.3/context",
         "@graph": [
@@ -346,8 +402,10 @@ pub fn write_outputs(
              "sourceInputSha256": summary.input_sha256}
         ].into_iter().chain(parts).collect::<Vec<_>>()
     });
-    std::fs::write(directory.join("ro-crate-metadata.json"),
-        serde_json::to_vec_pretty(&doc).map_err(|_| OutputError::Write)?)
-        .map_err(|_| OutputError::Write)?;
+    std::fs::write(
+        directory.join("ro-crate-metadata.json"),
+        serde_json::to_vec_pretty(&doc).map_err(|_| OutputError::Write)?,
+    )
+    .map_err(|_| OutputError::Write)?;
     Ok(manifest)
 }
