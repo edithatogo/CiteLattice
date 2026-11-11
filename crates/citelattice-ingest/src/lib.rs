@@ -17,6 +17,9 @@ pub const SOURCE_SCHEMA: &str = "org.searchright.bibliographic-record.v1";
 /// `CiteLattice`'s descriptive-output contract identifier.
 pub const RESULT_SCHEMA: &str = "org.citelattice.searchright-summary.v1";
 
+const MAX_AUTHORS_PER_RECORD: usize = 256;
+const MAX_COAUTHOR_EDGES: usize = 1_000_000;
+
 /// Bounded input limits for independent native JSONL exports.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct SourceLimits {
@@ -188,6 +191,24 @@ fn document_kind(value: &serde_json::Value) -> Option<String> {
         .filter(|kind| nonempty(kind))
 }
 
+fn accumulate_coauthor_edges(
+    edges: &mut BTreeMap<(String, String), u64>,
+    authors: Vec<String>,
+) -> Result<(), SourceError> {
+    let distinct: Vec<String> = authors.into_iter().collect::<BTreeSet<_>>().into_iter().collect();
+    for (i, a) in distinct.iter().enumerate() {
+        for b in distinct.iter().skip(i + 1) {
+            let key = (a.clone(), b.clone());
+            if !edges.contains_key(&key) && edges.len() >= MAX_COAUTHOR_EDGES {
+                return Err(SourceError::TooManyEdges);
+            }
+            let count = edges.entry(key).or_default();
+            *count = count.checked_add(1).ok_or(SourceError::Overflow)?;
+        }
+    }
+    Ok(())
+}
+
 /// Parse a bounded genuine Searchright JSONL file into scoped descriptive statistics.
 ///
 /// # Errors
@@ -251,7 +272,6 @@ pub fn summarize_reader<R: BufRead>(
         }
         // Each source author creates O(n²) candidate coauthorship pairs.
         // A genuine large consortium requires a separately budgeted graph adapter.
-        const MAX_AUTHORS_PER_RECORD: usize = 256;
         if record.authors.len() > MAX_AUTHORS_PER_RECORD {
             return Err(SourceError::TooManyAuthors);
         }
@@ -267,21 +287,7 @@ pub fn summarize_reader<R: BufRead>(
         }
         let kind = document_kind(&record.kind).ok_or(SourceError::InvalidContract(line))?;
         *kinds.entry(kind).or_default() += 1;
-        let distinct: Vec<String> = record
-            .authors
-            .into_iter()
-            .collect::<BTreeSet<_>>()
-            .into_iter()
-            .collect();
-        for (i, a) in distinct.iter().enumerate() {
-            for b in distinct.iter().skip(i + 1) {
-                if !edges.contains_key(&(a.clone(), b.clone())) && edges.len() >= 1_000_000 {
-                    return Err(SourceError::TooManyEdges);
-                }
-                let count = edges.entry((a.clone(), b.clone())).or_default();
-                *count = count.checked_add(1).ok_or(SourceError::Overflow)?;
-            }
-        }
+        accumulate_coauthor_edges(&mut edges, record.authors)?;
     }
     Ok(PublicationSummary {
         schema_version: RESULT_SCHEMA.to_owned(),
