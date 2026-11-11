@@ -81,8 +81,14 @@ fn digest(bytes: &[u8]) -> String {
 
 fn arrow_batch(summary: &PublicationSummary) -> Result<RecordBatch, ExportError> {
     let mut metadata = std::collections::HashMap::new();
-    metadata.insert("org.citelattice.input_sha256".to_owned(), summary.input_sha256.clone());
-    metadata.insert("org.citelattice.result_contract".to_owned(), summary.schema_version.clone());
+    metadata.insert(
+        "org.citelattice.input_sha256".to_owned(),
+        summary.input_sha256.clone(),
+    );
+    metadata.insert(
+        "org.citelattice.result_contract".to_owned(),
+        summary.schema_version.clone(),
+    );
     let schema = Arc::new(Schema::new_with_metadata(
         vec![
             Field::new("year", DataType::Int32, false),
@@ -90,17 +96,32 @@ fn arrow_batch(summary: &PublicationSummary) -> Result<RecordBatch, ExportError>
         ],
         metadata,
     ));
-    let years = Int32Array::from(summary.annual.iter().map(|row| row.year).collect::<Vec<_>>());
-    let counts = UInt64Array::from(summary.annual.iter().map(|row| row.count).collect::<Vec<_>>());
-    RecordBatch::try_new(schema, vec![Arc::new(years) as ArrayRef, Arc::new(counts) as ArrayRef])
-        .map_err(|_| ExportError::Parquet)
+    let years = Int32Array::from(
+        summary
+            .annual
+            .iter()
+            .map(|row| row.year)
+            .collect::<Vec<_>>(),
+    );
+    let counts = UInt64Array::from(
+        summary
+            .annual
+            .iter()
+            .map(|row| row.count)
+            .collect::<Vec<_>>(),
+    );
+    RecordBatch::try_new(
+        schema,
+        vec![Arc::new(years) as ArrayRef, Arc::new(counts) as ArrayRef],
+    )
+    .map_err(|_| ExportError::Parquet)
 }
 
 fn write_parquet(summary: &PublicationSummary, output: &Path) -> Result<(), ExportError> {
     let batch = arrow_batch(summary)?;
     let file = File::create(output).map_err(|_| ExportError::Io)?;
-    let mut writer = ArrowWriter::try_new(file, batch.schema(), None)
-        .map_err(|_| ExportError::Parquet)?;
+    let mut writer =
+        ArrowWriter::try_new(file, batch.schema(), None).map_err(|_| ExportError::Parquet)?;
     writer.write(&batch).map_err(|_| ExportError::Parquet)?;
     writer.close().map_err(|_| ExportError::Parquet)?;
     Ok(())
@@ -109,18 +130,30 @@ fn write_parquet(summary: &PublicationSummary, output: &Path) -> Result<(), Expo
 fn write_workbook(summary: &PublicationSummary, output: &Path) -> Result<(), ExportError> {
     let mut workbook = Workbook::new();
     let sheet = workbook.add_worksheet();
-    sheet.set_name("Annual Production").map_err(|_| ExportError::Workbook)?;
-    sheet.write_string(0, 0, "Year").map_err(|_| ExportError::Workbook)?;
-    sheet.write_string(0, 1, "Publications").map_err(|_| ExportError::Workbook)?;
+    sheet
+        .set_name("Annual Production")
+        .map_err(|_| ExportError::Workbook)?;
+    sheet
+        .write_string(0, 0, "Year")
+        .map_err(|_| ExportError::Workbook)?;
+    sheet
+        .write_string(0, 1, "Publications")
+        .map_err(|_| ExportError::Workbook)?;
     for (i, record) in summary.annual.iter().enumerate() {
-        let row = u32::try_from(i).map_err(|_| ExportError::Workbook)?
-            .checked_add(1).ok_or(ExportError::Workbook)?;
-        sheet.write_number(row, 0, f64::from(record.year))
+        let row = u32::try_from(i)
+            .map_err(|_| ExportError::Workbook)?
+            .checked_add(1)
+            .ok_or(ExportError::Workbook)?;
+        sheet
+            .write_number(row, 0, f64::from(record.year))
             .map_err(|_| ExportError::Workbook)?;
         if record.count <= 9_007_199_254_740_991 {
-            sheet.write_number(row, 1, record.count as f64).map_err(|_| ExportError::Workbook)?;
+            sheet
+                .write_number(row, 1, record.count as f64)
+                .map_err(|_| ExportError::Workbook)?;
         } else {
-            sheet.write_string(row, 1, record.count.to_string())
+            sheet
+                .write_string(row, 1, record.count.to_string())
                 .map_err(|_| ExportError::Workbook)?;
         }
     }
@@ -160,8 +193,7 @@ pub fn write_extended(
     fs::create_dir_all(output).map_err(|_| ExportError::Io)?;
     write_parquet(summary, &output.join("annual.parquet"))?;
     write_workbook(summary, &output.join("analysis.xlsx"))?;
-    fs::write(output.join("report.typ"), typst_source(summary))
-        .map_err(|_| ExportError::Io)?;
+    fs::write(output.join("report.typ"), typst_source(summary)).map_err(|_| ExportError::Io)?;
     let mut assets = Vec::new();
     for (name, format) in [
         ("annual.parquet", ExportFormat::Parquet),
