@@ -147,9 +147,9 @@ fn write_workbook(summary: &PublicationSummary, output: &Path) -> Result<(), Exp
         sheet
             .write_number(row, 0, f64::from(record.year))
             .map_err(|_| ExportError::Workbook)?;
-        if record.count <= 9_007_199_254_740_991 {
+        if let Ok(exact) = u32::try_from(record.count) {
             sheet
-                .write_number(row, 1, record.count as f64)
+                .write_number(row, 1, f64::from(exact))
                 .map_err(|_| ExportError::Workbook)?;
         } else {
             sheet
