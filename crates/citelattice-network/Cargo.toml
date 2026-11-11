@@ -1,0 +1,14 @@
+[package]
+name = "citelattice-network"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+
+[dependencies]
+serde.workspace = true
+petgraph = "0.8"
+thiserror = "2"
+
+[lints]
+workspace = true
