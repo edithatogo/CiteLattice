@@ -230,9 +230,10 @@
         "08",
         "12"
       ],
-      "state": "partial_annual_scene_source_authored_native_ci_pending",
+      "state": "source_authored_native_unverified",
       "claimed_beyond_frontier": false,
-      "research_question": null
+      "research_question": null,
+      "implementation_note": "Evidence-linked annual scene source authored; cross-renderer evaluation and native CI pending."
     },
     {
       "id": "R01",
