@@ -71,7 +71,7 @@ fn csv_svg_html_and_provenance_share_the_same_annual_table() {
     let svg = std::fs::read_to_string(dir.join("annual.svg")).unwrap();
     let html = std::fs::read_to_string(dir.join("annual.html")).unwrap();
     assert_eq!(csv, "year,publications\n2024,2\n");
-    assert!(svg.contains("2024") && svg.contains("2"));
+    assert!(svg.contains("2024") && svg.contains('>'));
     assert!(html.contains("<td>2024</td><td>2</td>"));
     assert!(manifest.assets.iter().any(|a| a.path == "annual.csv"));
     assert!(dir.join("ro-crate-metadata.json").is_file());
