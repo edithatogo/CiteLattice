@@ -474,7 +474,9 @@ impl EventLedger {
         let before = self.observed.get(key).ok_or(EventError::Transition)?;
         let replacement: Option<Artifact> = match change.get("replacement") {
             Some(Value::Null) => None,
-            Some(v) => Some(serde_json::from_value(v.clone()).map_err(|_| EventError::InvalidWire)?),
+            Some(v) => {
+                Some(serde_json::from_value(v.clone()).map_err(|_| EventError::InvalidWire)?)
+            }
             None => return Err(EventError::InvalidWire),
         };
         if replacement.as_ref().is_some_and(|v| !valid_artifact(v)) {
@@ -512,9 +514,7 @@ impl EventLedger {
         let change = event.change.as_object().ok_or(EventError::InvalidWire)?;
         match change.get("op").and_then(Value::as_str) {
             Some("upsert") => self.plan_upsert(event, change),
-            Some(op @ ("correct" | "retract" | "delete")) => {
-                self.plan_revision(event, change, op)
-            }
+            Some(op @ ("correct" | "retract" | "delete")) => self.plan_revision(event, change, op),
             _ => Err(EventError::Transition),
         }
     }
@@ -564,7 +564,6 @@ impl EventLedger {
         self.last_source = Some(event.source_revision);
         self.seen_events.insert(event.event_id, event_hash);
         Ok(ApplyStatus::Applied)
-
     }
 }
 
