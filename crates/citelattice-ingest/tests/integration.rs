@@ -77,3 +77,50 @@ fn csv_svg_html_and_provenance_share_the_same_annual_table() {
     assert!(dir.join("ro-crate-metadata.json").is_file());
     std::fs::remove_dir_all(dir).unwrap();
 }
+
+#[test]
+fn svg_shows_all_years_without_silent_truncation() {
+    let mut summary =
+        summarize_reader(Cursor::new(FIXTURE.as_bytes()), SourceLimits::default()).unwrap();
+    summary.annual = (2000..2017)
+        .map(|year| citelattice_ingest::AnnualCount { year, count: 1 })
+        .collect();
+    let dir = std::env::temp_dir().join(format!("citelattice-years-{}", std::process::id()));
+    if dir.exists() {
+        std::fs::remove_dir_all(&dir).unwrap();
+    }
+    write_outputs(&summary, &dir, ExportApproval::Allowed).unwrap();
+    let svg = std::fs::read_to_string(dir.join("annual.svg")).unwrap();
+    assert_eq!(svg.matches("<rect ").count(), 17);
+    assert!(svg.contains(">2016</text>"));
+    std::fs::remove_dir_all(dir).unwrap();
+}
+
+#[test]
+fn svg_handles_maximum_u64_count_without_arithmetic_overflow() {
+    let mut summary =
+        summarize_reader(Cursor::new(FIXTURE.as_bytes()), SourceLimits::default()).unwrap();
+    summary.annual[0].count = u64::MAX;
+    let dir = std::env::temp_dir().join(format!("citelattice-maxbars-{}", std::process::id()));
+    if dir.exists() {
+        std::fs::remove_dir_all(&dir).unwrap();
+    }
+    write_outputs(&summary, &dir, ExportApproval::Allowed).unwrap();
+    let svg = std::fs::read_to_string(dir.join("annual.svg")).unwrap();
+    assert!(svg.contains("18446744073709551615"));
+    std::fs::remove_dir_all(dir).unwrap();
+}
+
+#[test]
+fn oversized_author_list_is_rejected_before_pairwise_expansion() {
+    let mut record: serde_json::Value =
+        serde_json::from_str(FIXTURE.lines().next().unwrap()).unwrap();
+    record["authors"] = serde_json::json!(
+        (0..257).map(|i| format!("Author {i:03}")).collect::<Vec<_>>()
+    );
+    let input = serde_json::to_string(&record).unwrap();
+    assert!(matches!(
+        summarize_reader(Cursor::new(input.as_bytes()), SourceLimits::default()),
+        Err(SourceError::TooManyAuthors)
+    ));
+}
