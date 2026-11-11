@@ -231,9 +231,10 @@
         "08",
         "12"
       ],
-      "state": "partial_implementation_transactional_export_under_ci",
+      "state": "source_authored_native_unverified",
       "claimed_beyond_frontier": false,
-      "research_question": null
+      "research_question": null,
+      "implementation_note": "Transactional export source authored; exact-revision native tests and portability remain pending."
     },
     {
       "id": "R01",
