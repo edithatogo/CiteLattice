@@ -81,7 +81,7 @@ fn transactional_export_publishes_verified_assets() -> Result<(), Box<dyn std::e
     }
     let on_disk: citelattice_export::ExportReceipt =
         serde_json::from_slice(&std::fs::read(&receipt.output_manifest)?)?;
-    assert_eq!(on_disk.output_manifest, receipt.output_manifest);
+    assert_eq!(on_disk.output_manifest, std::path::PathBuf::from("extended-manifest.json"));
     Ok(())
 }
 

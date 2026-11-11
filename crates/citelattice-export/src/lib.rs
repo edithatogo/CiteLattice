@@ -263,10 +263,14 @@ pub fn write_extended_transactional(
             return Err(ExportError::Integrity);
         }
     }
+    // Keep the serialized package manifest relocatable; return an absolute or
+    // caller-relative path only in the API receipt, never inside the package.
+    let mut portable = receipt.clone();
+    portable.output_manifest = PathBuf::from("extended-manifest.json");
     receipt.output_manifest = destination.join("extended-manifest.json");
     fs::write(
         staging.path().join("extended-manifest.json"),
-        serde_json::to_vec_pretty(&receipt).map_err(|_| ExportError::Encoding)?,
+        serde_json::to_vec_pretty(&portable).map_err(|_| ExportError::Encoding)?,
     )
     .map_err(|_| ExportError::Io)?;
     if destination.exists() {
