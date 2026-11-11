@@ -11,3 +11,14 @@ Vega-Lite JSON and Plotters/SVG for low-cost charts. Optional WebGPU/wgpu, dimen
 Risk controls: XHTML/HTML escaping, CSV formula injection, SVG script/event stripping, privacy leakage through tooltip/labels/hidden layers/embedded assets, graphic overlays suggesting unwarranted significance, truncated axis, projection distortion and accessibility contrast/keyboard tests.
 
 Renderer receipt binds scene, backend, assets/fonts, geometry checks, source tables, output hashes and reproducibility class.
+
+## Risk register: completeness and integer safety
+
+Every generated temporal plot must either include all periods or prominently
+declare the omitted population and selection policy in a machine-readable
+scene contract. A fixed arbitrary first-N crop is prohibited. Use checked wide
+arithmetic for heights/scales and reject excess marks before writing files.
+For >512 annual periods, prefer an explicit aggregation/LOD adapter with
+membership conservation evidence; do not pretend that a huge SVG is usable.
+A graph projection from raw author strings must carry hard complexity budgets,
+and cannot be presented as disambiguated identities.

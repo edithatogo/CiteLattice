@@ -18,8 +18,9 @@ calculation/result/render fingerprints, and a bounded NDJSON CLI.
 - [x] Specify request/result schemas, precise method conventions and examples.
 - [ ] Observe Rust RED/GREEN, rustfmt, Clippy, tests and doctests.
 - [ ] Resolve and commit a trusted Cargo.lock and qualify dependencies.
-- [ ] Push scoped branch and run hosted checks; no remote write is possible in
-      this authoring session, so source is supplied as an apply-ready patch.
+- [x] Prior citation analysis/ingest/export source is now present on main.
+- [ ] Verify the complete current native CI and match any compiler/test evidence
+      to the exact main commit. A committed source path alone is not qualification.
 
 ## Execution commands
 
@@ -72,3 +73,25 @@ signatures. Permission flags are not independent entitlement verification.
 I/O failure can leave an incomplete last output line; callers requiring atomic
 files must use a temporary file plus verified rename. No full-stream transaction
 or durable checkpoint is claimed.
+
+## Current E09 risk remediation (PR #10, provisional pending CI)
+
+A scoped output correctness and computational safety fix adds red-first Rust
+regression cases: annual SVG must not silently truncate after 16 periods;
+u64::MAX publication counts must not overflow chart arithmetic; >256 author
+strings in a bibliographic record must be rejected before pair expansion.
+The fix renders all bars through a declared 512-bin display budget,
+uses u128 intermediate scaling, guards a million distinct coauthor edges
+and rejects excessive author counts. A very large temporal plot must use a
+tabular/summary view until an LOD chart adapter exists.
+
+Acceptance: exact-head `cargo fmt --check`, Clippy -D warnings, all native
+workspace tests, and output checks. Do not promote beyond-frontier evidence from
+these regressions; they prevent misleading graphics and input exhaustion.
+Validate publication-year and count agreement across CSV, SVG, HTML, Parquet
+and workbook as part of later E09/E10. Use independent known-answer tables.
+
+Next E09 tasks: transactional staging/commit of all output assets, integrity
+verification before publication, explicit missing/withheld mark provenance,
+reproducible geometry fixtures and accessibility review. Prior Conductor states
+are historical snapshots rather than new automatic completion claims.
