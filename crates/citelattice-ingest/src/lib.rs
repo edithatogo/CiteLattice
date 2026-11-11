@@ -334,7 +334,8 @@ fn annual_svg(summary: &PublicationSummary) -> Result<String, OutputError> {
     );
     for (index, row) in summary.annual.iter().enumerate() {
         let x = 30 + index * 37;
-        let height = (u128::from(row.count) * 280 / u128::from(largest)) as u64;
+        let height = u64::try_from(u128::from(row.count) * 280 / u128::from(largest))
+            .map_err(|_| OutputError::Write)?;
         let y = 330_u64.saturating_sub(height);
         let _ = write!(
             s,
