@@ -34,7 +34,10 @@ fn main() -> ExitCode {
     let cli = match Cli::try_parse_from(args) {
         Ok(cli) => cli,
         Err(error) => {
-            if matches!(error.kind(), ErrorKind::DisplayHelp | ErrorKind::DisplayVersion) {
+            if matches!(
+                error.kind(),
+                ErrorKind::DisplayHelp | ErrorKind::DisplayVersion
+            ) {
                 return if error.print().is_ok() {
                     ExitCode::SUCCESS
                 } else {
