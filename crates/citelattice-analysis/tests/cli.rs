@@ -36,7 +36,7 @@ fn cli_has_version_and_subcommand_help_without_network_or_stdin()
         "{}",
         String::from_utf8_lossy(&version.stderr)
     );
-    assert!(version.stderr.is_empty());
+    assert_eq!(version.stderr, Vec::<u8>::new());
     assert!(String::from_utf8_lossy(&version.stdout).contains("citelattice"));
 
     let help = Command::new(env!("CARGO_BIN_EXE_citelattice"))
@@ -47,7 +47,7 @@ fn cli_has_version_and_subcommand_help_without_network_or_stdin()
         "{}",
         String::from_utf8_lossy(&help.stderr)
     );
-    assert!(help.stderr.is_empty());
+    assert_eq!(help.stderr, Vec::<u8>::new());
     let help_text = String::from_utf8_lossy(&help.stdout);
     assert!(help_text.contains("citation-summary"));
     Ok(())
@@ -59,7 +59,7 @@ fn invalid_command_fails_closed_without_json_output() -> Result<(), Box<dyn std:
         .arg("unknown-command")
         .output()?;
     assert_eq!(output.status.code(), Some(2));
-    assert!(output.stdout.is_empty());
+    assert_eq!(output.stdout, Vec::<u8>::new());
     assert!(String::from_utf8_lossy(&output.stderr).contains("citation-summary"));
     Ok(())
 }
