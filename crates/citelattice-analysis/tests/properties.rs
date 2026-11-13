@@ -40,3 +40,20 @@ proptest! {
         }
     }
 }
+
+proptest! {
+    #[test]
+    fn indices_are_invariant_under_cyclic_rotation(
+        counts in prop::collection::vec(0_u64..100_000, 1..64),
+        rotation in 0_usize..128,
+    ) {
+        let values: Vec<_> = counts.into_iter().map(Some).collect();
+        let request = common::request(&values);
+        let baseline = analyze(&request).map_err(|e| TestCaseError::fail(e.to_string()))?;
+        let mut rotated = request;
+        let shift = rotation % rotated.observations.len();
+        rotated.observations.rotate_left(shift);
+        let candidate = analyze(&rotated).map_err(|e| TestCaseError::fail(e.to_string()))?;
+        prop_assert_eq!(baseline, candidate);
+    }
+}
