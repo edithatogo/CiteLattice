@@ -26,18 +26,27 @@ fn offline_binary_emits_metric_json_only() -> Result<(), Box<dyn std::error::Err
 }
 
 #[test]
-fn cli_has_version_and_subcommand_help_without_network_or_stdin() -> Result<(), Box<dyn std::error::Error>> {
+fn cli_has_version_and_subcommand_help_without_network_or_stdin()
+-> Result<(), Box<dyn std::error::Error>> {
     let version = Command::new(env!("CARGO_BIN_EXE_citelattice"))
         .arg("--version")
         .output()?;
-    assert!(version.status.success(), "{}", String::from_utf8_lossy(&version.stderr));
+    assert!(
+        version.status.success(),
+        "{}",
+        String::from_utf8_lossy(&version.stderr)
+    );
     assert!(version.stderr.is_empty());
     assert!(String::from_utf8_lossy(&version.stdout).contains("citelattice"));
 
     let help = Command::new(env!("CARGO_BIN_EXE_citelattice"))
         .args(["citation-summary", "--help"])
         .output()?;
-    assert!(help.status.success(), "{}", String::from_utf8_lossy(&help.stderr));
+    assert!(
+        help.status.success(),
+        "{}",
+        String::from_utf8_lossy(&help.stderr)
+    );
     assert!(help.stderr.is_empty());
     let help_text = String::from_utf8_lossy(&help.stdout);
     assert!(help_text.contains("citation-summary"));
