@@ -1,0 +1,168 @@
+{
+  "schema_version": "org.citelattice.e09.execution/1.0.0",
+  "implementation_commit": "314e906f5627f6a8a6800d44e2f78934bca55965",
+  "implementation_tree": "2b68cd9d547b27ca9d424e893a88e9ab53bd150b",
+  "baseline_commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+  "red_first_commit": "2c1e616e6b85b4f7e20c6c72fffbbeda2f731a4b",
+  "publication_transport": {
+    "method": "authenticated GitHub Git-data connector; shell push has no write credentials",
+    "local_implementation_commit": "250f8c9080a30714f73b6c13b42d44e12ad860f4",
+    "published_implementation_commit": "314e906f5627f6a8a6800d44e2f78934bca55965",
+    "verified_identical_tree": "2b68cd9d547b27ca9d424e893a88e9ab53bd150b",
+    "verification": "Every uploaded blob and full tree matched local Git identities; fetched published commit into clean checkout and reran all listed commands."
+  },
+  "initial_red": "unittest discovery failed to import the absent verification.outputs.audit module; source and tests committed before implementation",
+  "platform": {
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "os": "Linux",
+    "machine": "x86_64"
+  },
+  "tools": {
+    "pyarrow": "19.0.1",
+    "openpyxl": "3.1.5",
+    "et-xmlfile": "2.0.0",
+    "defusedxml": "0.7.1",
+    "XlsxWriter": "3.2.9",
+    "jsonschema": "4.26.0",
+    "rfc3339-validator": "0.1.4",
+    "six": "1.17.0"
+  },
+  "checks": [
+    {
+      "id": "full_python_suite",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/python-full.txt",
+      "log_sha256": "a3970a8d29b9b874f0bf687d86645a23672719678600649e93cef3b4e3bf2b42",
+      "tests": 44,
+      "skipped": 0
+    },
+    {
+      "id": "focused_e09",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_output_conservation.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/python-e09.txt",
+      "log_sha256": "6fffa6aa88bebef0b6e5c9e6ecbfe6f6c94ed6dec743657aab9f7290f2aef63c",
+      "tests": 29,
+      "skipped": 0
+    },
+    {
+      "id": "lightweight_e09",
+      "command": [
+        "python",
+        "-S",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_output_conservation.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/python-lightweight.txt",
+      "log_sha256": "f9072b779b2b7bb7d62da7f3e433b048769fd7ece3aa33f812d5d3c33fa51cac",
+      "tests": 29,
+      "skipped": 9
+    },
+    {
+      "id": "audit_mixed",
+      "command": [
+        "python",
+        "-m",
+        "verification.outputs.audit",
+        "verification/outputs/fixtures/source-mixed.json",
+        "verification/outputs/fixtures/mixed"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/audit-mixed.json",
+      "log_sha256": "0b200d267461aee5735dc995edb2ec17f23300fa3191e02a3959f847d60be68a",
+      "artifacts": 11,
+      "claim": "synthetic-fixture-auditor-only"
+    },
+    {
+      "id": "audit_integers",
+      "command": [
+        "python",
+        "-m",
+        "verification.outputs.audit",
+        "verification/outputs/fixtures/source-integers.json",
+        "verification/outputs/fixtures/integers"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/audit-integers.json",
+      "log_sha256": "8f7dab480a044ca4de4bd4e0d34ca35b91e6853d6e59fd842761964deb4fb489",
+      "artifacts": 8,
+      "claim": "synthetic-fixture-auditor-only"
+    },
+    {
+      "id": "reencode",
+      "status": "passed",
+      "byte_identical_files": 21,
+      "commands": "Run verification.outputs.build_fixtures separately for each source into fresh temporary directories; compare every artifact and manifest byte-for-byte."
+    }
+  ],
+  "scope": {
+    "status": "passed",
+    "changed_files": 35,
+    "allowed": [
+      "verification/outputs/**",
+      "verification/imaging/**",
+      "tests/test_output_conservation.py"
+    ]
+  },
+  "review_repairs": [
+    "Reject unused XLSX shared strings even when visible cells match.",
+    "Reject modified static workbook/document metadata.",
+    "Reject ignored worksheet XML and surplus physical cells.",
+    "Reject Arrow custom batch metadata.",
+    "Reject appended workbook payload."
+  ],
+  "tested_pin_manifest_sha256": "227324d6d9f914296000b7fc1c0b9199c0ce05a7b9ca2508c476bb749ee742ed",
+  "native_rust": {
+    "status": "not_executed",
+    "reason": "rustc and cargo unavailable on PATH; producer/spool/native qualification remains coordinator-owned",
+    "rustc_available": false,
+    "cargo_available": false
+  },
+  "claim": "synthetic-fixture-auditor-only",
+  "release_qualified": false,
+  "blocked_prerequisites": [
+    "E04 native/dependency admission",
+    "integrator-pinned producer conformance",
+    "durable spool recovery",
+    "actual production artifact/profile qualification"
+  ],
+  "hosted_ci": "not asserted by this local receipt; consult exact final PR head",
+  "evidence_commit_boundary": "This execution receipt is added after the corrected published implementation. Final exact-head reruns and hosted checks are recorded in the current PR and issue handoff; fixture and auditor hashes do not change in the evidence-only commit.",
+  "red_first_commit_context": "Original red-first commit is retained in superseded PR #23; corrected branch begins at the same main baseline.",
+  "supersedes": {
+    "pull_request": 23,
+    "head": "b5eefc5bb6ec47eeea948bd1fc4ee6f0bf0fea71",
+    "original_hosted_schemas": "passed",
+    "original_hosted_rust_core": "passed",
+    "original_hosted_privacy": "failed: two synthetic row identifier generic-api-key findings",
+    "privacy_job": "https://github.com/edithatogo/CiteLattice/actions/runs/43681726241/job/132713584417",
+    "correction": "Shortened two whole-row-denial fixture identifiers; no scanner exception, shared policy change, gate weakening or history rewrite. Original branch retained."
+  }
+}
