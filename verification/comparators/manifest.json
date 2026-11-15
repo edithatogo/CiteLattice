@@ -1,0 +1,127 @@
+{
+  "schema_version": "org.citelattice.e05-comparators/1.0.0",
+  "task": "E05",
+  "baseline_commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+  "claim_pr": "https://github.com/edithatogo/CiteLattice/pull/22",
+  "inputs": {
+    "method": {
+      "path": "contracts/methods/citation-summary.v1.json",
+      "sha256": "7da01d7e361857b8cd1a88c9d9ddedd856679e8e893c102e0b1309ebc7d2d6df"
+    },
+    "request_contract": {
+      "path": "contracts/json-schema/citation-request.v1.schema.json",
+      "sha256": "989df5328fbf4a4104d592e01871fee4e7aae9c6a0b0a9c71e3120cda7411c49"
+    },
+    "result_contract": {
+      "path": "contracts/json-schema/citation-result.v1.schema.json",
+      "sha256": "b8b30d70816b3227190875425295b7080108d355bd2827fa59d2d4c19288232d"
+    },
+    "catalogue": {
+      "path": "contracts/methods/catalog.json",
+      "sha256": "c7d17b568de98f7ed34777d01e9a78aaa104ba66fda9baa9fbe7696fd729b5ad"
+    },
+    "oracles": {
+      "path": "verification/citation-oracles.json",
+      "sha256": "d581d59465164c0ec21073ce2d9a4aeb9d84d04144a6fb08a7b6146ee6b4e969"
+    },
+    "bounds": {
+      "path": "verification/citation-bounds.json",
+      "sha256": "f2f3d7170929f9179c91dc30d4f1e6baf6237fc52505c119050f9823ef9dcc6e"
+    },
+    "known_answers": {
+      "path": "verification/comparators/known-answer.json",
+      "sha256": "8f2f81fb42351e8bcd53cd0f2ff0a9251c7367778f5f7d947a55ad7105345efd"
+    }
+  },
+  "comparators": {
+    "pybibx": {
+      "repository": "https://github.com/Valdecy/pybibx",
+      "commit": "c8086085a70a80042822f8886e34e98036d4e206",
+      "package_version": "5.9.5",
+      "license": "GPL-3.0-or-later",
+      "license_evidence": "LICENSE",
+      "entrypoint": "pybibx/base/pbx.py",
+      "methods": {
+        "h": "pbx_probe.h_index",
+        "g": "pbx_probe.g_index"
+      },
+      "files": {
+        "pybibx/base/pbx.py": "5d7cbb703884ae5d073eb7d6403c00a1ecb00ad041e318c1be4e29636b5d3426",
+        "setup.py": "eb5046c27f26eb11768dc4988cbf0a2679f315e9bf278ff2fb34ab6c5dedf3dc",
+        "LICENSE": "42276933f7107bc1c6335459215f37eefaef5073b1aee002f2e0e8b7a07a397b"
+      },
+      "runtime": {
+        "implementation": "CPython",
+        "python": "3.12.14",
+        "third_party_dependencies": []
+      },
+      "execution_surface": "Unmodified AST method nodes only; caller supplies one synthetic group and exact Python integers. Package imports, constructor, parsing and disambiguation are not executed.",
+      "method_support": {
+        "h": "supported_complete_only",
+        "g": "supported_complete_only_actual_n",
+        "i10": "unsupported_selected_surface",
+        "total": "unsupported_selected_surface"
+      },
+      "method_source_sha256": {
+        "h_index": "d5939df48c3585229dc90ccaaea878645f9b2d9dada89a48104463978e5edd39",
+        "g_index": "00c1c8344bc01e68bc93fa5c6729367e25f0f81f91b48024ecd6d57086f65376"
+      }
+    },
+    "bibliometrix": {
+      "repository": "https://github.com/massimoaria/bibliometrix",
+      "commit": "ea89af04e8568146f1c6c53363d65a65a86d4213",
+      "package_version": "5.5.0.9000",
+      "license": "GPL-3.0-only",
+      "license_evidence": "DESCRIPTION",
+      "entrypoint": "R/Hindex.R",
+      "methods": {
+        "h": "Hindex:h_index",
+        "g": "Hindex:g_index",
+        "total": "Hindex:TC"
+      },
+      "files": {
+        "R/Hindex.R": "6be011dfd786f40a4be1fb17d2f1ab26ea15227477203e15f29d5597ffafbca6",
+        "DESCRIPTION": "d7f7fd5e7d6505b37fd3968ca68af3386ba3e976897d600a14f3d3df63ca06a9"
+      },
+      "runtime": {
+        "R": "4.5.2",
+        "dplyr": "1.1.4",
+        "jsonlite": "2.0.0"
+      },
+      "environment_state": "target_versions_pinned; R unavailable in authoring environment; full installed dependency/session admission deferred",
+      "execution_surface": "Unchanged full Hindex source; field=source, one synthetic source, years=Inf; no package import or author cleaning.",
+      "method_support": {
+        "h": "supported_nonempty_complete_safe_integer_domain",
+        "g": "supported_nonempty_complete_safe_integer_domain_actual_n",
+        "i10": "unsupported_selected_surface",
+        "total": "supported_nonempty_complete_safe_integer_domain"
+      },
+      "integer_domain": {
+        "maximum_count_and_total": "9007199254740991",
+        "outside_domain": "unsupported_integer_range; no coercion or precision repair"
+      },
+      "missingness": "unsupported_missing_counts; upstream filters NA, which would change actual N"
+    }
+  },
+  "parquet_runtime": {
+    "pyarrow": "21.0.0",
+    "format_version": "2.6",
+    "integer_representation": "All integer fields are decimal UTF-8 strings; missing values are real nulls."
+  },
+  "e04_snapshot": {
+    "registry": "conductor/evaluation-programme.json",
+    "registry_sha256": "5b8582d4cc05ba951dd86c2edad2702e08f7de023fd857b56c2efa2e1a05cc95",
+    "state": "planned",
+    "required_receipts": [
+      "verification/native-ci-receipt.json",
+      "verification/dependency-review.json"
+    ],
+    "receipts_present": false,
+    "accepted_upstream_commit": null,
+    "accepted_receipt_sha256": null,
+    "production_numerical_qualification": false
+  },
+  "default_network": "off; local source required; harness performs no acquisition",
+  "source_distribution": "Upstream GPL implementations are neither vendored nor relicensed. Source byte digests and original upstream URLs only.",
+  "claim_boundary": "Independent source-method probes against known-answer fixtures. Not full-package parity, production execution, E04 admission, 147-outcome coverage, empirical replication or scientific superiority."
+}

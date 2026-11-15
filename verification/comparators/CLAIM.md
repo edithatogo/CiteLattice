@@ -47,6 +47,11 @@ number of actual works. Comparator disagreements must remain visible.
 ## Work state
 
 - [x] Inspect published ownership and E04 prerequisite.
-- [~] Implement independent fixtures, pinned comparator harness and tests.
-- [ ] Execute available checks; distinguish unavailable runtimes and blocked qualification.
-- [ ] Review/fix scoped implementation and publish exact-SHA integrator handoff.
+- [x] Implement independent fixtures, pinned comparator harness and tests.
+- [x] Execute available checks; distinguish unavailable runtimes and blocked qualification.
+- [x] Review/fix scoped implementation. Exact published SHA and integrator handoff are recorded in PR #22.
+- [!] E04 admission, production numerical qualification and R-native execution remain blocked.
+
+Durable claim: <https://github.com/edithatogo/CiteLattice/pull/22>.
+The coordinator has not acknowledged this lane; published overlap was rechecked
+during implementation. No additional worker or chat was created.

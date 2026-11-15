@@ -1,0 +1,742 @@
+{
+  "schema_version": "org.citelattice.e05-outcome-status/1.0.0",
+  "catalogue_sha256": "c7d17b568de98f7ed34777d01e9a78aaa104ba66fda9baa9fbe7696fd729b5ad",
+  "production_numerical_qualification": false,
+  "outcomes": [
+    {
+      "id": "descriptive.corpus_profile",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.annual_production",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.growth_rates",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.entity_profiles",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.document_types",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.language_distribution",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.source_productivity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.author_productivity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.institution_productivity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.country_productivity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.fractional_productivity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.single_multi_authorship",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.collaboration_index",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.international_collaboration",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.citation_summary",
+      "status": "deferred",
+      "reason": "Independent fixtures/probes only; E04 and matched production execution are not admitted."
+    },
+    {
+      "id": "descriptive.bradford",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.lotka",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.zipf",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.author_dominance",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "descriptive.source_growth",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.missingness",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.source_overlap",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.dedup_lineage",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.entity_map",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.identifier_conflicts",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.reference_coverage",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.citation_coverage",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.date_precision",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.retraction_signals",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "quality.source_contribution",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.h_index",
+      "status": "deferred",
+      "reason": "Independent fixtures/probes only; E04 and matched production execution are not admitted."
+    },
+    {
+      "id": "citation.g_index",
+      "status": "deferred",
+      "reason": "Independent fixtures/probes only; E04 and matched production execution are not admitted."
+    },
+    {
+      "id": "citation.e_index",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.m_index",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.j_index",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.i10_index",
+      "status": "unsupported",
+      "reason": "Neither selected upstream surface exposes i10; independent known answers only."
+    },
+    {
+      "id": "citation.local_citations",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.global_citations",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.normalised_citations",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.top_percentile_share",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.self_citation_sensitivity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.citation_trajectories",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.citation_matrix",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.reference_spectroscopy",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.citation_age",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "citation.recent_citations",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.direct_citation",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.co_citation",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.bibliographic_coupling",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.coauthorship",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.co_word",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.institution_collaboration",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.country_collaboration",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.keyword_association",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.network_statistics",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.centrality",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.hits",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.pagerank",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.community_detection",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.top_cocited_sets",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.main_path_spc",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.main_path_splc",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.main_path_spnp",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.historiograph",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.similarity_normalisation",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "network.ego_network",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.term_frequencies",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.ngrams",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.tfidf",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.term_growth",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.pca",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.correspondence_analysis",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.multiple_correspondence_analysis",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.mds",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.tsne",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.umap",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.embeddings",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.topic_modelling",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.topic_assignment",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.thematic_map",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.thematic_evolution",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.topic_stability",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.grounded_summary",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "conceptual.grounded_qa",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.cd_t",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.sleeping_beauty",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.awakening",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.prince",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.bursts",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.novelty",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.specialisation",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.diversity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.interdisciplinarity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.collaboration_impact",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.entity_portfolio",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "emergence.life_cycle",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.funding_outputs",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.funding_portfolio",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.funding_amounts",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.funding_lag",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.patent_citations",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.patent_families",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.patent_geography",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.trial_links",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.trial_reporting_lag",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.policy_citations",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.policy_geography",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.dataset_links",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.software_links",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.research_taxonomy",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.sdg_profiles",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.open_access",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.attention_signals",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.translation_paths",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.bar_line_heatmap",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.treemap",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.wordcloud",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.three_field",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.geography",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.projection",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.temporal_graph",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.multilayer_graph",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.semantic_zoom",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.uncertainty_scene",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.stable_temporal_layout",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.sensitivity_scene",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.evidence_trace",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.accessible_fallback",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "imaging.render_replay",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "reporting.typed_tables",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "reporting.csv_sidecar",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "reporting.workbook",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "reporting.html_report",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "reporting.pdf_report",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "reporting.docx_report",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "reporting.research_bundle",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "reporting.graph_exchange",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "forecast.diffusion_forecast",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "forecast.competition_forecast",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "forecast.hype_vs_adoption",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "decision.evpi",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "decision.evppi",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "decision.evsi_enbs",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "decision.research_portfolio",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "decision.perspective_heterogeneity",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.fcr_import",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    },
+    {
+      "id": "cross_domain.rcr_import",
+      "status": "deferred",
+      "reason": "Outside this bounded citation-kernel comparison; no numerical qualification evidence."
+    }
+  ]
+}

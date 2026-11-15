@@ -1,0 +1,88 @@
+{
+  "case_count": 280,
+  "ci": "Local verification only; exact published-head CI is recorded separately on PR #22.",
+  "executions": {
+    "bibliometrix": {
+      "reason": "Rscript is unavailable",
+      "status": "blocked_runtime"
+    },
+    "pybibx": {
+      "backend": "pybibx",
+      "execution_surface": "unchanged-ast-methods; no package-import or parser qualification",
+      "protocol": "org.citelattice.e05-worker/1.0.0",
+      "runtime": {
+        "implementation": "CPython",
+        "python": "3.12.14"
+      },
+      "source_sha256": "5d7cbb703884ae5d073eb7d6403c00a1ecb00ad041e318c1be4e29636b5d3426",
+      "status": "executed"
+    }
+  },
+  "files_sha256": {
+    "tests/test_method_comparators.py": "0f640d08a4b0e6ccf943dd595298c54a02815eb7a3f1141f8d615e9299377e90",
+    "verification/comparators/bibliometrix_worker.R": "f1416a5b9be037b9c60eb4b3d569f05ac8351cd9494b338927938514c6c8fa8c",
+    "verification/comparators/harness.py": "f0ec84f57c22071532edbffdff448d07eabcba08268de728aa809bcf4e79d6a7",
+    "verification/comparators/known-answer.json": "8f2f81fb42351e8bcd53cd0f2ff0a9251c7367778f5f7d947a55ad7105345efd",
+    "verification/comparators/manifest.json": "3c932ecd01fb85acda11629156a4fa3b00ec77b80e22e132a1fdee933a5fb4c5",
+    "verification/comparators/outcome-status.json": "a5f9cecec19cd8726b2176b50e690e36695b51934fa818c40dda2920cb3238fa",
+    "verification/comparators/pybibx_worker.py": "ee29ddf6c470303792ec219794db45b66c522c9efcfd0cc83d7aaf6fa29a1efb",
+    "verification/comparators/results.parquet": "6908e22eba89de82ee774ac8c7404cdd56858e9260cc50a98cfd6059fccc6e76"
+  },
+  "fixture_set_sha256": "4e1fa0b173867164f8e46cf09765deff3593cec2b4d3ee3ec45e2895e603f109",
+  "harness_runtime": {
+    "implementation": "CPython",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python": "3.12.14"
+  },
+  "manifest_sha256": "3c932ecd01fb85acda11629156a4fa3b00ec77b80e22e132a1fdee933a5fb4c5",
+  "observed_date": "2026-11-15",
+  "ownership_claim_commit": "2c9bf895d80224e5b9b8c370e724cd91d145c54d",
+  "parquet_roundtrip": "All 2240 rows exactly equal the report, including decimal strings and nulls; final rerun bytes equal committed artifact.",
+  "probe_exit_code": 0,
+  "qualification": {
+    "accepted_e04_receipt_sha256": null,
+    "accepted_upstream_commit": null,
+    "contract_snapshot_sha256": "7da01d7e361857b8cd1a88c9d9ddedd856679e8e893c102e0b1309ebc7d2d6df",
+    "observed_e04_state": "planned",
+    "production_numerical_qualification": false,
+    "reason": "Exact E04 source/contract/toolchain admission is not supplied by this lane.",
+    "state": "blocked_e04"
+  },
+  "raw_observations_sha256": "5ede13acf2e2a001729fd9df74fb856695bbdd50af58b356e44a25f738db9f6a",
+  "review": {
+    "fixed": [
+      "R text connection uses source() rather than sys.source().",
+      "Parent rejects a worker whose reported runtime differs from the pinned environment."
+    ],
+    "remaining": [
+      "R unavailable; adapter not natively executed.",
+      "Full installed R dependency environment lock not admitted.",
+      "E04 and production numerical execution are blocked."
+    ],
+    "type": "author static review plus executable negative cases; no independent worker or human review claimed"
+  },
+  "schema_version": "org.citelattice.e05-probe/1.0.0",
+  "source_baseline": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+  "summary": {
+    "blocked_runtime": 795,
+    "matched": 542,
+    "unsupported_empty_population": 6,
+    "unsupported_integer_range": 12,
+    "unsupported_method": 840,
+    "unsupported_missing_counts": 45
+  },
+  "test_log_sha256": "045ffc42dfe5081473b51d613ccbf418609f4ebe5dff0101927333c3edf4fa1c",
+  "tests": {
+    "command": "python -B -m unittest discover -s tests -v",
+    "count": 36,
+    "exit_code": 0,
+    "new_e05_tests": 21,
+    "python_dependencies": {
+      "jsonschema": "4.26.0",
+      "pyarrow": "21.0.0",
+      "rfc3339-validator": "0.1.4",
+      "six": "1.17.0"
+    },
+    "skipped": 0
+  }
+}
