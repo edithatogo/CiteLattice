@@ -1,0 +1,19 @@
+{
+  "profile": "org.citelattice.e09.xlsx-fixture-encoding/1.0.0",
+  "writer": "XlsxWriter==3.2.9",
+  "scope": "Approved static package parts and worksheet shells from the synthetic fixture encoding. Arbitrary XLSX encoders are not admitted by this fixture profile. Cell contents are independently decoded and compared to the authority.",
+  "static_parts_sha256": {
+    "[Content_Types].xml": "283023f8a11cf65023f0091e8368cf5e0edfccbf8178a57f284ab8c0007bca2c",
+    "_rels/.rels": "1285b20099c64699001f9d90ea040ca1c177fa99bc3ae8a841128874820f01a4",
+    "xl/_rels/workbook.xml.rels": "d160f6dcd672f894ae94e9b301b3b541cd3dccbd2279d7ed500e46ce47e4b814",
+    "xl/workbook.xml": "92b1c712b61a6f6af09b81df7e916790deb7ace2615791ab7988b896545b7483",
+    "xl/styles.xml": "b955eec7bf81e3497213a0e029a3d7837f6dd31fc9c30c829ac7358fe294b23c",
+    "xl/theme/theme1.xml": "75104b2164c20dab2578383d827deac3a7eec077c3f7c99a4099a551fdebb134",
+    "docProps/core.xml": "62e1d5ff3a6b338b14dc40685f312a939671fc268cf3126e9f76ba696c6c044b",
+    "docProps/app.xml": "78b783417a3b15fa9d05de8efb9d7d6ce038704c4948503976a256a28a35a97a"
+  },
+  "worksheet_shells_sha256": {
+    "xl/worksheets/sheet1.xml": "75cec8c70d043a044f5eef4d8b0766c8245d6df32f67d799b50dd0ba1e118ddd",
+    "xl/worksheets/sheet2.xml": "4b5231eb6356f685822e280898754e8df6c10765f5fa38c9fd2d96a73e8bb7d0"
+  }
+}

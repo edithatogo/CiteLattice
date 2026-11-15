@@ -1,0 +1,22 @@
+{
+  "version": "org.citelattice.e09.geometry-known-answers/1.0.0",
+  "source": "../outputs/fixtures/source-mixed.json",
+  "origin": "Hand-specified anchors for the independent 22-public-row synthetic table; no production output used.",
+  "license": "CC0-1.0",
+  "plot": {"baseline": 330, "maximum_height": 280, "maximum_count": 19, "bar_width": 26, "step": 37},
+  "anchors": [
+    {"row_key": "y2000", "value": 0, "x": 30, "height": 0, "y": 330},
+    {"row_key": "y2001", "value": 1, "x": 67, "height": 14, "y": 316},
+    {"row_key": "y2005", "value": null, "x": 215, "height": null, "y": null},
+    {"row_key": "y2010", "value": null, "x": 400, "height": null, "y": null},
+    {"row_key": "y2019", "value": 19, "x": 733, "height": 280, "y": 50},
+    {"row_key": "undated", "value": 2, "x": 770, "height": 29, "y": 301},
+    {"row_key": "formula_literal", "value": 3, "x": 807, "height": 44, "y": 286}
+  ],
+  "expected_public_marks": 22,
+  "expected_numeric_bars": 20,
+  "expected_missing_or_withheld_marks": 2,
+  "browser_integer_limit": 9007199254740991,
+  "unsafe_integer_behavior": "reject; preserve larger exact values in the tabular package",
+  "qualification": "fixture-auditor-only; browser rendering, producer conformance and release admission blocked"
+}

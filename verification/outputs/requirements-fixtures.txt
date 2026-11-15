@@ -1,0 +1,3 @@
+# Regeneration only; the auditor never imports fixture writers.
+-r requirements.txt
+XlsxWriter==3.2.9

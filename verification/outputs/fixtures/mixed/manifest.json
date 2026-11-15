@@ -1,0 +1,61 @@
+{
+  "profile": "org.citelattice.e09.synthetic-source/1.0.0",
+  "source_sha256": "da2b6a1b47936b72a959401daf29302273a2cf7d6a58b0fb782718180158eaed",
+  "artifacts": [
+    {
+      "path": "chart.svg",
+      "format": "svg",
+      "sha256": "20561c84920b4605f5b1ef82609cfac571991a2009c3e6bf79dfc8d4f95bd4c3"
+    },
+    {
+      "path": "chart.vl.json",
+      "format": "vega_lite",
+      "sha256": "242490aaddb959c7468c2e3ec2655bb3087f8dd7dd909b257bc0d73a0e392efe"
+    },
+    {
+      "path": "disclosure.json",
+      "format": "disclosure",
+      "sha256": "353c5453bf689330856aba751d8e207536827fc2855eb2277c2e051fa11674ec"
+    },
+    {
+      "path": "scene.json",
+      "format": "scene",
+      "sha256": "ae16288f324a39d09f4b996ee240b32850675cb67923033f3d30dee12d1fd855"
+    },
+    {
+      "path": "table.arrow",
+      "format": "arrow_ipc",
+      "sha256": "8ce6446f43fc2d9efe92017b4d0d93c9ea56e6b278c04c8de2d0521888f49498"
+    },
+    {
+      "path": "table.csv",
+      "format": "csv",
+      "sha256": "a31550ae0023d6d3faf4877c1ff69d49dccdddc44cdf2292f6408f0bf420d8ff"
+    },
+    {
+      "path": "table.html",
+      "format": "html",
+      "sha256": "e4d684fcacf8e0bc741e807eaf10b7e9ecb28a29d4cb94816d8b70e35ffa823c"
+    },
+    {
+      "path": "table.json",
+      "format": "json",
+      "sha256": "0c7523c76c87cdeb631c9cd1fb2146fa1c312263e2756d93a810a98b4a1e94b8"
+    },
+    {
+      "path": "table.parquet",
+      "format": "parquet",
+      "sha256": "63699ad75749aa552481975afc7cd3cc100ad46f600eb3b005d5696091574bb1"
+    },
+    {
+      "path": "table.typ",
+      "format": "typst_source",
+      "sha256": "309da4a841e98d082727a0b519f8909659069ef83d2d5d553afe13dcea2faeaf"
+    },
+    {
+      "path": "table.xlsx",
+      "format": "xlsx",
+      "sha256": "a2ede7e0d7a632058233c130cc64fb4e410f6c5f97cdc50792f03e3223bc541c"
+    }
+  ]
+}
