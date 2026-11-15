@@ -28,8 +28,9 @@ CLI, count/type/null/rights/withheld-count checks, source-to-mark geometry check
 and tamper/disclosure tests. Every passing result explicitly remains
 `synthetic-fixture-auditor-only` with `release_qualified: false`.
 
-The red-first source/test commit is
-`7302e2d3ec1342415dbf1b2dfb7b46c2173f60cf`. The first
+The published red-first source/test commit is
+`2c1e616e6b85b4f7e20c6c72fffbbeda2f731a4b` (local original:
+`7302e2d3ec1342415dbf1b2dfb7b46c2173f60cf`). The first
 observed run failed because the auditor module did not yet exist. Review then
 found and repaired three ignored-workbook-content cases: unused shared strings,
 document properties, and ignored worksheet XML. Additional coverage rejects
@@ -37,7 +38,13 @@ Arrow batch metadata and appended workbook data. No production defect was
 inferred or repaired from these harness findings.
 
 `results/execution.json` binds commands, outcomes, tools and code/fixture hashes
-to the implementation commit. A later evidence-only commit can add these
+to published implementation commit `7f1869681d944a15c8fcfc759fa203e9a4b127ed`.
+The shell had no Git push credentials, so the authenticated GitHub connector
+published the commits with new commit metadata. Every blob and the complete
+implementation tree (`c68e65209a1f097bb58ebfbf161c3613f3cce51f`) were verified
+identical to locally tested implementation `070e94459b217a1f051b354e91abb44a635b43e5`.
+The published source was then fetched into a clean checkout and the commands
+rerun there. A later evidence-only commit can add these
 receipts without changing the tested implementation. The PR body and issue
 handoff provide the final exact head and its rerun results; do not substitute a
 green result from a different head.

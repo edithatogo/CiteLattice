@@ -1,0 +1,87 @@
+{
+  "artifacts": [
+    {
+      "format": "svg",
+      "path": "chart.svg",
+      "sha256": "8065a27753d077f045c41657838c4fd374047a0438acc62383e67c702acd6560",
+      "status": "passed"
+    },
+    {
+      "format": "vega_lite",
+      "path": "chart.vl.json",
+      "sha256": "ffb75aa94bedfe89b84f6891b807dab2187f87d37c8bd30da8a5d14d815c362e",
+      "status": "passed"
+    },
+    {
+      "format": "disclosure",
+      "path": "disclosure.json",
+      "sha256": "d639fdd0a2c3339846570cf6302772200a4bbb15ea4d222f58ae19a825fb1a0b",
+      "status": "passed"
+    },
+    {
+      "format": "scene",
+      "path": "scene.json",
+      "sha256": "6f04834aeb457c9957f4307a9e27f6f1c717ad2dce36104b53f8ffb7d1860b38",
+      "status": "passed"
+    },
+    {
+      "format": "arrow_ipc",
+      "path": "table.arrow",
+      "sha256": "8e91d14158d7b9a3e6412493d50e06288a35858627afc64d975e4d4be16fb510",
+      "status": "passed"
+    },
+    {
+      "format": "csv",
+      "path": "table.csv",
+      "sha256": "a31550ae0023d6d3faf4877c1ff69d49dccdddc44cdf2292f6408f0bf420d8ff",
+      "status": "passed"
+    },
+    {
+      "format": "html",
+      "path": "table.html",
+      "sha256": "4c10e9626a9cc0401ad0d8c73c06fa2f26ece38594d6c1fccec44c35e5eae36c",
+      "status": "passed"
+    },
+    {
+      "format": "json",
+      "path": "table.json",
+      "sha256": "e924883300d963abbc57b3774a84cabc87714075435b2aa8d755dee049e36fa9",
+      "status": "passed"
+    },
+    {
+      "format": "parquet",
+      "path": "table.parquet",
+      "sha256": "dfeb7482773b522c60d5feb1adbbe6dd1eb908366aee563c0a03a9a66d970e8a",
+      "status": "passed"
+    },
+    {
+      "format": "typst_source",
+      "path": "table.typ",
+      "sha256": "56c8e03e117dbd8cc38c59dd1300166c375ec455c2c967555aa8790d2e361faa",
+      "status": "passed"
+    },
+    {
+      "format": "xlsx",
+      "path": "table.xlsx",
+      "sha256": "cc77349f98e4ef1846c1526aa7da4cbb79580289ac0ec1b73c68033545e1d9b7",
+      "status": "passed"
+    }
+  ],
+  "auditor_version": "1.0.0",
+  "blocked_prerequisites": [
+    "E04",
+    "pinned-producer-conformance",
+    "durable-spool-recovery"
+  ],
+  "claim": "synthetic-fixture-auditor-only",
+  "fixture_id": "mixed",
+  "reader_versions": {
+    "defusedxml": "0.7.1",
+    "et-xmlfile": "2.0.0",
+    "openpyxl": "3.1.5",
+    "pyarrow": "19.0.1"
+  },
+  "release_qualified": false,
+  "source_sha256": "effb7248bb88e5c8088a720d823e932fc487267a5c38d6e53d05d69db9426d92",
+  "status": "passed"
+}

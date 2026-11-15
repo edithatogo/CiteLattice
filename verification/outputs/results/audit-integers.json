@@ -1,0 +1,69 @@
+{
+  "artifacts": [
+    {
+      "format": "disclosure",
+      "path": "disclosure.json",
+      "sha256": "8aa83b8051071f98a3dd3e16deaf3021bebe5cbb1b9a17935b3708224f62d456",
+      "status": "passed"
+    },
+    {
+      "format": "arrow_ipc",
+      "path": "table.arrow",
+      "sha256": "dd813001ce69d33dbbf5ea64a963c864ea8f5c312e169be59db2631bb5aad421",
+      "status": "passed"
+    },
+    {
+      "format": "csv",
+      "path": "table.csv",
+      "sha256": "a50577fa700e2e492e86251161e02d4eb41e14a0cba253b7812bebb0e47985cc",
+      "status": "passed"
+    },
+    {
+      "format": "html",
+      "path": "table.html",
+      "sha256": "9b13ffd73421b0cb1cf5f72eab6b859943178e2dde51e1d5ae457fc736378810",
+      "status": "passed"
+    },
+    {
+      "format": "json",
+      "path": "table.json",
+      "sha256": "ec8d9e86686152f4f829c8c6ae1750c302e88897af98dfcd72e13c1ef4fa0faa",
+      "status": "passed"
+    },
+    {
+      "format": "parquet",
+      "path": "table.parquet",
+      "sha256": "5d0ddef9c773002ff3fea60319213fd89cb972cb9adc467421aac43eece88dee",
+      "status": "passed"
+    },
+    {
+      "format": "typst_source",
+      "path": "table.typ",
+      "sha256": "5298e8d4550ecbd7edd5332074c83a7fceff2cfc1471c1439c58723c3cdca290",
+      "status": "passed"
+    },
+    {
+      "format": "xlsx",
+      "path": "table.xlsx",
+      "sha256": "f20185572969718adeeb79ec5cae8c4b86798dccdae1ea4680dd01bb2a444b4a",
+      "status": "passed"
+    }
+  ],
+  "auditor_version": "1.0.0",
+  "blocked_prerequisites": [
+    "E04",
+    "pinned-producer-conformance",
+    "durable-spool-recovery"
+  ],
+  "claim": "synthetic-fixture-auditor-only",
+  "fixture_id": "integers",
+  "reader_versions": {
+    "defusedxml": "0.7.1",
+    "et-xmlfile": "2.0.0",
+    "openpyxl": "3.1.5",
+    "pyarrow": "19.0.1"
+  },
+  "release_qualified": false,
+  "source_sha256": "04458fe99ab79391b08dd487ccdefc256c190e48f79bbb2c19561dbe0346bc89",
+  "status": "passed"
+}

@@ -1,0 +1,160 @@
+{
+  "schema_version": "org.citelattice.e09.execution/1.0.0",
+  "implementation_commit": "7f1869681d944a15c8fcfc759fa203e9a4b127ed",
+  "implementation_tree": "c68e65209a1f097bb58ebfbf161c3613f3cce51f",
+  "baseline_commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+  "red_first_commit": "2c1e616e6b85b4f7e20c6c72fffbbeda2f731a4b",
+  "publication_transport": {
+    "method": "authenticated GitHub Git-data connector; shell push has no write credentials",
+    "local_red_commit": "7302e2d3ec1342415dbf1b2dfb7b46c2173f60cf",
+    "published_red_commit": "2c1e616e6b85b4f7e20c6c72fffbbeda2f731a4b",
+    "local_implementation_commit": "070e94459b217a1f051b354e91abb44a635b43e5",
+    "published_implementation_commit": "7f1869681d944a15c8fcfc759fa203e9a4b127ed",
+    "verified_identical_tree": "c68e65209a1f097bb58ebfbf161c3613f3cce51f",
+    "verification": "All uploaded blobs and trees matched local Git identities; published commit fetched and tests rerun from clean checkout."
+  },
+  "initial_red": "unittest discovery failed to import the absent verification.outputs.audit module; source and tests committed before implementation",
+  "platform": {
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "os": "Linux",
+    "machine": "x86_64"
+  },
+  "tools": {
+    "pyarrow": "19.0.1",
+    "openpyxl": "3.1.5",
+    "et-xmlfile": "2.0.0",
+    "defusedxml": "0.7.1",
+    "XlsxWriter": "3.2.9",
+    "jsonschema": "4.26.0",
+    "rfc3339-validator": "0.1.4",
+    "six": "1.17.0"
+  },
+  "checks": [
+    {
+      "id": "full_python_suite",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/python-full.txt",
+      "log_sha256": "a081cded3d8520bc4013c6910e9b75e0bd334516adc293fe939e2c6baf933c72",
+      "tests": 44,
+      "skipped": 0
+    },
+    {
+      "id": "focused_e09",
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_output_conservation.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/python-e09.txt",
+      "log_sha256": "12fa30957be663b4b87b4a6d71e9a4c1942529d6f79b2188d72de5a1736e9540",
+      "tests": 29,
+      "skipped": 0
+    },
+    {
+      "id": "lightweight_e09",
+      "command": [
+        "python",
+        "-S",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_output_conservation.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/python-lightweight.txt",
+      "log_sha256": "f9072b779b2b7bb7d62da7f3e433b048769fd7ece3aa33f812d5d3c33fa51cac",
+      "tests": 29,
+      "skipped": 9
+    },
+    {
+      "id": "audit_mixed",
+      "command": [
+        "python",
+        "-m",
+        "verification.outputs.audit",
+        "verification/outputs/fixtures/source-mixed.json",
+        "verification/outputs/fixtures/mixed"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/audit-mixed.json",
+      "log_sha256": "876854556549bd915afa8dfb420ea12de165b682f9ea47a797a2e5018b18fefa",
+      "artifacts": 11,
+      "claim": "synthetic-fixture-auditor-only"
+    },
+    {
+      "id": "audit_integers",
+      "command": [
+        "python",
+        "-m",
+        "verification.outputs.audit",
+        "verification/outputs/fixtures/source-integers.json",
+        "verification/outputs/fixtures/integers"
+      ],
+      "exit_code": 0,
+      "log": "verification/outputs/results/audit-integers.json",
+      "log_sha256": "8f7dab480a044ca4de4bd4e0d34ca35b91e6853d6e59fd842761964deb4fb489",
+      "artifacts": 8,
+      "claim": "synthetic-fixture-auditor-only"
+    },
+    {
+      "id": "reencode",
+      "status": "passed",
+      "byte_identical_files": 21,
+      "commands": "Run verification.outputs.build_fixtures separately for each source into fresh temporary directories; compare every artifact and manifest byte-for-byte."
+    }
+  ],
+  "scope": {
+    "status": "passed",
+    "changed_files": 35,
+    "allowed": [
+      "verification/outputs/**",
+      "verification/imaging/**",
+      "tests/test_output_conservation.py"
+    ]
+  },
+  "review_repairs": [
+    "Reject unused XLSX shared strings even when visible cells match.",
+    "Reject modified static workbook/document metadata.",
+    "Reject ignored worksheet XML and surplus physical cells.",
+    "Reject Arrow custom batch metadata.",
+    "Reject appended workbook payload."
+  ],
+  "tested_pin_manifest_sha256": "e7960766bef8c9a48fb87f2d707fa741d776b730b8a7231a9f47e9e2099b5fff",
+  "native_rust": {
+    "status": "not_executed",
+    "reason": "rustc and cargo unavailable on PATH; producer/spool/native qualification remains coordinator-owned",
+    "rustc_available": false,
+    "cargo_available": false
+  },
+  "claim": "synthetic-fixture-auditor-only",
+  "release_qualified": false,
+  "blocked_prerequisites": [
+    "E04 native/dependency admission",
+    "integrator-pinned producer conformance",
+    "durable spool recovery",
+    "actual production artifact/profile qualification"
+  ],
+  "hosted_ci": "not asserted by this local receipt; consult exact final PR head",
+  "evidence_commit_boundary": "This receipt and documentation of the publication transport are added after the implementation commit. The final PR head rerun results are recorded in its body and issue handoff; all 31 local code/fixture pins are unchanged."
+}
