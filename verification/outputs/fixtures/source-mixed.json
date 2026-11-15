@@ -1,0 +1,217 @@
+{
+  "profile": "org.citelattice.e09.synthetic-source/1.0.0",
+  "fixture_version": "1.0.0",
+  "origin": "Repository-authored synthetic known-answer table; no provider data or production-generated values.",
+  "license": "CC0-1.0",
+  "policy": {
+    "id": "e09:synthetic-rights",
+    "version": "1.0.0",
+    "export_allowed": true,
+    "disclose_withheld_count": true
+  },
+  "id": "mixed",
+  "rows": [
+    {
+      "row_key": "y2000",
+      "year": 2000,
+      "publications": 0,
+      "availability": "observed",
+      "label": "Public year 2000",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2001",
+      "year": 2001,
+      "publications": 1,
+      "availability": "observed",
+      "label": "Public year 2001",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2002",
+      "year": 2002,
+      "publications": 2,
+      "availability": "observed",
+      "label": "Public year 2002",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2003",
+      "year": 2003,
+      "publications": 3,
+      "availability": "observed",
+      "label": "Public year 2003",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2004",
+      "year": 2004,
+      "publications": 4,
+      "availability": "observed",
+      "label": "Public year 2004",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2005",
+      "year": 2005,
+      "publications": null,
+      "availability": "missing",
+      "label": "Public year 2005",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2006",
+      "year": 2006,
+      "publications": 6,
+      "availability": "observed",
+      "label": "Public year 2006",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2007",
+      "year": 2007,
+      "publications": 7,
+      "availability": "observed",
+      "label": "Public year 2007",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2008",
+      "year": 2008,
+      "publications": 8,
+      "availability": "observed",
+      "label": "Public year 2008",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2009",
+      "year": 2009,
+      "publications": 9,
+      "availability": "observed",
+      "label": "Public year 2009",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2010",
+      "year": 2010,
+      "publications": null,
+      "availability": "withheld",
+      "label": "Public year 2010",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2011",
+      "year": 2011,
+      "publications": 11,
+      "availability": "observed",
+      "label": "Public year 2011",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2012",
+      "year": 2012,
+      "publications": 12,
+      "availability": "observed",
+      "label": "Public year 2012",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2013",
+      "year": 2013,
+      "publications": 13,
+      "availability": "observed",
+      "label": "Public year 2013",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2014",
+      "year": 2014,
+      "publications": 14,
+      "availability": "observed",
+      "label": "Public year 2014",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2015",
+      "year": 2015,
+      "publications": 15,
+      "availability": "observed",
+      "label": "Public year 2015",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2016",
+      "year": 2016,
+      "publications": 16,
+      "availability": "observed",
+      "label": "Public year 2016",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2017",
+      "year": 2017,
+      "publications": 17,
+      "availability": "observed",
+      "label": "Public year 2017",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2018",
+      "year": 2018,
+      "publications": 18,
+      "availability": "observed",
+      "label": "Public year 2018",
+      "rights": "public"
+    },
+    {
+      "row_key": "y2019",
+      "year": 2019,
+      "publications": 19,
+      "availability": "observed",
+      "label": "Public year 2019",
+      "rights": "public"
+    },
+    {
+      "row_key": "undated",
+      "year": null,
+      "publications": 2,
+      "availability": "observed",
+      "label": "Undated works",
+      "rights": "public"
+    },
+    {
+      "row_key": "formula_literal",
+      "year": 2020,
+      "publications": 3,
+      "availability": "observed",
+      "label": "=1+1",
+      "rights": "public"
+    },
+    {
+      "row_key": "E09_WITHHELD_ROW_A",
+      "year": 2021,
+      "publications": 71,
+      "availability": "observed",
+      "label": "E09_RESTRICTED_PAYLOAD_A",
+      "rights": "withhold"
+    },
+    {
+      "row_key": "E09_WITHHELD_ROW_B",
+      "year": 2022,
+      "publications": 97,
+      "availability": "observed",
+      "label": "E09_RESTRICTED_PAYLOAD_B",
+      "rights": "withhold"
+    }
+  ],
+  "expected": {
+    "source_rows": 24,
+    "exported_rows": 22,
+    "withheld_rows": 2,
+    "missing_counts": 1,
+    "withheld_counts": 1,
+    "undated_rows": 1,
+    "known_publications": "180"
+  },
+  "imaging": true
+}
