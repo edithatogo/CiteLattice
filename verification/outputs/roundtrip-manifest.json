@@ -1,0 +1,293 @@
+{
+  "schema_version": "org.citelattice.e09.roundtrip-manifest/1.0.0",
+  "claim": "synthetic-fixture-auditor-only",
+  "release_qualified": false,
+  "baseline_commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+  "red_test_commit": "7302e2d3ec1342415dbf1b2dfb7b46c2173f60cf",
+  "source_origin": "Repository-authored synthetic authorities; no external corpus or production-generated values",
+  "fixture_license": "CC0-1.0",
+  "auditor_profile": "org.citelattice.e09.synthetic-source/1.0.0",
+  "source_contract_pins": [
+    {
+      "repository": "edithatogo/CiteLattice",
+      "commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+      "path": "conductor/evaluation-programme.json",
+      "sha256": "5b8582d4cc05ba951dd86c2edad2702e08f7de023fd857b56c2efa2e1a05cc95",
+      "admission": "inspection-only; dependent qualification blocked"
+    },
+    {
+      "repository": "edithatogo/CiteLattice",
+      "commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+      "path": "conductor/tracks/12-scientific-evaluation/spec.md",
+      "sha256": "6aadf0c21ada63aa7f775faeb8d7b49d6eea1b2f6a16db41b75ae466a12a5159",
+      "admission": "inspection-only; dependent qualification blocked"
+    },
+    {
+      "repository": "edithatogo/CiteLattice",
+      "commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+      "path": "conductor/tracks/12-scientific-evaluation/plan.md",
+      "sha256": "f0aa63147d324c14db6977c50c6088e0f07e386d153b34ef694e6f5675d72df5",
+      "admission": "inspection-only; dependent qualification blocked"
+    },
+    {
+      "repository": "edithatogo/CiteLattice",
+      "commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+      "path": "crates/citelattice-core/src/contracts/outputs.rs",
+      "sha256": "7e26d4803487eb37c753254be746af185a3aa1e5891a187701fcae162947a2e8",
+      "admission": "inspection-only; dependent qualification blocked"
+    },
+    {
+      "repository": "edithatogo/CiteLattice",
+      "commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+      "path": "crates/citelattice-core/src/contracts/imaging.rs",
+      "sha256": "b95d4e759db067d1f836a08cf52fe767d70828f05279df5daf822235a5887361",
+      "admission": "inspection-only; dependent qualification blocked"
+    },
+    {
+      "repository": "edithatogo/CiteLattice",
+      "commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+      "path": "crates/citelattice-export/src/lib.rs",
+      "sha256": "99280c4397bf7097392ddb7a319dedc74f3d3063790e801bd220f22c25428061",
+      "admission": "inspection-only; dependent qualification blocked"
+    },
+    {
+      "repository": "edithatogo/CiteLattice",
+      "commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+      "path": "crates/citelattice-visualize/src/lib.rs",
+      "sha256": "81f11f0027dd127fbf86d70cde2df7af47668edc2918b0283f43e7c45fe86c66",
+      "admission": "inspection-only; dependent qualification blocked"
+    },
+    {
+      "repository": "edithatogo/CiteLattice",
+      "commit": "966ff7d8650568804b90f3a8d3af2dd94516c3b0",
+      "path": "contracts/interop/scholarly-stream.v1.schema.json",
+      "sha256": "730f7d374185ed523ce7f362983933d0bdd20443ae047751cfbee9aef622d7ed",
+      "admission": "inspection-only; dependent qualification blocked"
+    }
+  ],
+  "reader_environment": {
+    "python": "3.12.14",
+    "implementation": "CPython",
+    "platform": "Linux x86_64",
+    "stdlib_readers": [
+      "json",
+      "csv",
+      "html.parser",
+      "xml.etree.ElementTree",
+      "zipfile"
+    ],
+    "packages": [
+      {
+        "name": "pyarrow",
+        "version": "19.0.1",
+        "declared_license": "Apache Software License",
+        "origin": [
+          "Homepage, https://arrow.apache.org/",
+          "Documentation, https://arrow.apache.org/docs/python",
+          "Repository, https://github.com/apache/arrow",
+          "Issues, https://github.com/apache/arrow/issues"
+        ],
+        "role": "reader (PyArrow also encodes synthetic fixtures)",
+        "licence_evidence": "installed distribution metadata; not E04 supply-chain admission"
+      },
+      {
+        "name": "openpyxl",
+        "version": "3.1.5",
+        "declared_license": "MIT",
+        "origin": [
+          "Documentation, https://openpyxl.readthedocs.io/en/stable/",
+          "Source, https://foss.heptapod.net/openpyxl/openpyxl",
+          "Tracker, https://foss.heptapod.net/openpyxl/openpyxl/-/issues"
+        ],
+        "role": "reader (PyArrow also encodes synthetic fixtures)",
+        "licence_evidence": "installed distribution metadata; not E04 supply-chain admission"
+      },
+      {
+        "name": "et-xmlfile",
+        "version": "2.0.0",
+        "declared_license": "MIT",
+        "origin": [
+          "Documentation, https://openpyxl.pages.heptapod.net/et_xmlfile/",
+          "Source, https://foss.heptapod.net/openpyxl/et_xmlfile",
+          "Tracker, https://foss.heptapod.net/openpyxl/et_xmfile/-/issues"
+        ],
+        "role": "reader (PyArrow also encodes synthetic fixtures)",
+        "licence_evidence": "installed distribution metadata; not E04 supply-chain admission"
+      },
+      {
+        "name": "defusedxml",
+        "version": "0.7.1",
+        "declared_license": "PSFL",
+        "origin": [
+          "https://github.com/tiran/defusedxml"
+        ],
+        "role": "reader (PyArrow also encodes synthetic fixtures)",
+        "licence_evidence": "installed distribution metadata; not E04 supply-chain admission"
+      },
+      {
+        "name": "XlsxWriter",
+        "version": "3.2.9",
+        "declared_license": "BSD-2-Clause",
+        "origin": [
+          "https://github.com/jmcnamara/XlsxWriter"
+        ],
+        "role": "fixture-writer-only",
+        "licence_evidence": "installed distribution metadata; not E04 supply-chain admission"
+      }
+    ]
+  },
+  "local_pins": [
+    {
+      "path": "tests/test_output_conservation.py",
+      "sha256": "a1bbd47b76234ed8f4539aeb74c67ed01f5222d626a34c7188d68fd233c3b9c4"
+    },
+    {
+      "path": "verification/imaging/audit.py",
+      "sha256": "c9c24e3d16e61bc0fde6b5a07068b538c6c9524b533c67187148211e254793b4"
+    },
+    {
+      "path": "verification/imaging/geometry-oracles.json",
+      "sha256": "01f27347b10ac8859c93353a2fa3b79f1a0badf37ea99cf0b9f8cd1b965cdadf"
+    },
+    {
+      "path": "verification/outputs/audit.py",
+      "sha256": "7cb0f97e4cbb38a6da3bc8eb0683a0b7b25673a9c1c9147ce6309fa819d3aab3"
+    },
+    {
+      "path": "verification/outputs/build_fixtures.py",
+      "sha256": "e8f252ac61eb75895850388433433ba4db85555f17547f05c2c0e67b82a5ea6c"
+    },
+    {
+      "path": "verification/outputs/requirements.txt",
+      "sha256": "b569a9ef729445ee934e5b6580692b920ab62f7915364091a87808e274323cac"
+    },
+    {
+      "path": "verification/outputs/requirements-fixtures.txt",
+      "sha256": "adf00f19faaa20a02963247a673fada8419f96fb01fde4c5a2afdf15fe8e1df1"
+    },
+    {
+      "path": "verification/outputs/xlsx-profile.json",
+      "sha256": "7153e42e59e1504d8226dee5101257b11eabb1680a759c6a94a16b12aac1f195"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/disclosure.json",
+      "sha256": "8aa83b8051071f98a3dd3e16deaf3021bebe5cbb1b9a17935b3708224f62d456"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/manifest.json",
+      "sha256": "3b45a50cb72d42afc18934fa06bc6d752987877c4b898e3db82556f0aa2e43b1"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/table.arrow",
+      "sha256": "dd813001ce69d33dbbf5ea64a963c864ea8f5c312e169be59db2631bb5aad421"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/table.csv",
+      "sha256": "a50577fa700e2e492e86251161e02d4eb41e14a0cba253b7812bebb0e47985cc"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/table.html",
+      "sha256": "9b13ffd73421b0cb1cf5f72eab6b859943178e2dde51e1d5ae457fc736378810"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/table.json",
+      "sha256": "ec8d9e86686152f4f829c8c6ae1750c302e88897af98dfcd72e13c1ef4fa0faa"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/table.parquet",
+      "sha256": "5d0ddef9c773002ff3fea60319213fd89cb972cb9adc467421aac43eece88dee"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/table.typ",
+      "sha256": "5298e8d4550ecbd7edd5332074c83a7fceff2cfc1471c1439c58723c3cdca290"
+    },
+    {
+      "path": "verification/outputs/fixtures/integers/table.xlsx",
+      "sha256": "f20185572969718adeeb79ec5cae8c4b86798dccdae1ea4680dd01bb2a444b4a"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/chart.svg",
+      "sha256": "8065a27753d077f045c41657838c4fd374047a0438acc62383e67c702acd6560"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/chart.vl.json",
+      "sha256": "ffb75aa94bedfe89b84f6891b807dab2187f87d37c8bd30da8a5d14d815c362e"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/disclosure.json",
+      "sha256": "d639fdd0a2c3339846570cf6302772200a4bbb15ea4d222f58ae19a825fb1a0b"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/manifest.json",
+      "sha256": "5face0d794b603c4c6dba840dbfa95953f9c5bd7342f304eb9666625ca221eaa"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/scene.json",
+      "sha256": "6f04834aeb457c9957f4307a9e27f6f1c717ad2dce36104b53f8ffb7d1860b38"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/table.arrow",
+      "sha256": "8e91d14158d7b9a3e6412493d50e06288a35858627afc64d975e4d4be16fb510"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/table.csv",
+      "sha256": "a31550ae0023d6d3faf4877c1ff69d49dccdddc44cdf2292f6408f0bf420d8ff"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/table.html",
+      "sha256": "4c10e9626a9cc0401ad0d8c73c06fa2f26ece38594d6c1fccec44c35e5eae36c"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/table.json",
+      "sha256": "e924883300d963abbc57b3774a84cabc87714075435b2aa8d755dee049e36fa9"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/table.parquet",
+      "sha256": "dfeb7482773b522c60d5feb1adbbe6dd1eb908366aee563c0a03a9a66d970e8a"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/table.typ",
+      "sha256": "56c8e03e117dbd8cc38c59dd1300166c375ec455c2c967555aa8790d2e361faa"
+    },
+    {
+      "path": "verification/outputs/fixtures/mixed/table.xlsx",
+      "sha256": "cc77349f98e4ef1846c1526aa7da4cbb79580289ac0ec1b73c68033545e1d9b7"
+    },
+    {
+      "path": "verification/outputs/fixtures/source-integers.json",
+      "sha256": "04458fe99ab79391b08dd487ccdefc256c190e48f79bbb2c19561dbe0346bc89"
+    },
+    {
+      "path": "verification/outputs/fixtures/source-mixed.json",
+      "sha256": "effb7248bb88e5c8088a720d823e932fc487267a5c38d6e53d05d69db9426d92"
+    }
+  ],
+  "blocked": [
+    "E04 native/dependency admission",
+    "integrator-pinned producer/consumer conformance",
+    "durable spool/recovery",
+    "production-profile adapter and actual native artifacts",
+    "external Vega/Typst rendering and accessibility"
+  ],
+  "known_answers": [
+    {
+      "id": "mixed",
+      "source_rows": 24,
+      "exported_rows": 22,
+      "withheld_rows": 2,
+      "missing_counts": 1,
+      "withheld_counts": 1,
+      "undated_rows": 1,
+      "known_publications": "180",
+      "formats": 11
+    },
+    {
+      "id": "integers",
+      "source_rows": 8,
+      "exported_rows": 8,
+      "known_publications": "18473765680063709182",
+      "formats": 8,
+      "imaging": "rejected beyond browser-safe integers"
+    }
+  ]
+}

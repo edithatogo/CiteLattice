@@ -1,0 +1,23 @@
+row_key,year,publications,availability,label,rights
+y2000,2000,0,observed,Public year 2000,public
+y2001,2001,1,observed,Public year 2001,public
+y2002,2002,2,observed,Public year 2002,public
+y2003,2003,3,observed,Public year 2003,public
+y2004,2004,4,observed,Public year 2004,public
+y2005,2005,NULL,missing,Public year 2005,public
+y2006,2006,6,observed,Public year 2006,public
+y2007,2007,7,observed,Public year 2007,public
+y2008,2008,8,observed,Public year 2008,public
+y2009,2009,9,observed,Public year 2009,public
+y2010,2010,NULL,withheld,Public year 2010,public
+y2011,2011,11,observed,Public year 2011,public
+y2012,2012,12,observed,Public year 2012,public
+y2013,2013,13,observed,Public year 2013,public
+y2014,2014,14,observed,Public year 2014,public
+y2015,2015,15,observed,Public year 2015,public
+y2016,2016,16,observed,Public year 2016,public
+y2017,2017,17,observed,Public year 2017,public
+y2018,2018,18,observed,Public year 2018,public
+y2019,2019,19,observed,Public year 2019,public
+undated,NULL,2,observed,Undated works,public
+formula_literal,2020,3,observed,'=1+1,public
