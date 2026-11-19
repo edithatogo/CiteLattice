@@ -1,0 +1,30 @@
+{
+  "receipt_schema": "org.citelattice.track11.synthetic-evidence.v1",
+  "evidence_date": "2026-11-19",
+  "environment": "isolated Linux container; Python 3.13.5; standard library only; offline",
+  "scope": "track_11_only; local source tests; upstream engines not executed",
+  "command": "python -m unittest discover -s conductor/tracks/11-innovate-voiage -p test_protocol.py -v",
+  "result": {"return_code": 0, "tests_executed": 14, "failures": 0, "errors": 0, "skips": 0},
+  "benchmark_command": "python conductor/tracks/11-innovate-voiage/run_synthetic.py",
+  "benchmark_output": {
+    "empirical_claim": false,
+    "models": {
+      "count_proxy": {"brier": 0.185, "ex_post_oracle_value": 6, "policy_regret": 6, "realized_value": 0},
+      "structural_proxy": {"brier": 0.26, "ex_post_oracle_value": 6, "policy_regret": 4, "realized_value": 2}
+    },
+    "n_evaluation_rows": 4,
+    "n_origins": 2,
+    "research_task": "R04",
+    "status": "synthetic_only",
+    "voi_calculated": false
+  },
+  "file_sha256": {
+    "protocol.json": "55e472ae4766db6f432fc96770e8a19d1ac59e00f46a6ca4b2e4948f1bac5835",
+    "run_synthetic.py": "006bdb0f28d56f348485b47ae1268833e140cc8ed319e3c59dcc9f79b0c967cb",
+    "test_protocol.py": "859d51f48a81124da810e2bb4a745a767535977eac5e6400c5422d1372b66e00"
+  },
+  "hosted_ci": "not_executed_or_configured_for_track11",
+  "upstream_innovate_voiage": "not_executed",
+  "empirical_data": "none",
+  "publication_status": "none"
+}
