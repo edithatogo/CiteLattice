@@ -6,7 +6,7 @@ import json
 import unittest
 from pathlib import Path
 
-from run_synthetic import qualify
+from run_synthetic import qualify, verify_receipt
 
 PROTOCOL = json.loads((Path(__file__).with_name("protocol.json")).read_text())
 
@@ -72,6 +72,97 @@ class Track11Tests(unittest.TestCase):
     def test_zero_cost_is_not_an_evpi_or_evsi_claim(self):
         self.rejects(lambda p: p["design"]["decision"].update(joint_uncertainty="qualified"))
 
+
+    def test_decision_threshold_matches_net_benefit_rule(self):
+        self.assertAlmostEqual(
+            PROTOCOL["design"]["decision"]["decision_probability_threshold"],
+            PROTOCOL["design"]["decision"]["cost_per_action"]
+            / PROTOCOL["design"]["decision"]["payoff_when_adopted"],
+            places=12,
+        )
+        self.rejects(lambda p: p["design"]["decision"].update(decision_probability_threshold=0.9))
+
+    def test_same_technology_cannot_change_family_between_labels(self):
+        self.rejects(lambda p: p["outcomes"][2].update(family="family_b"))
+
+    def test_undeclared_payload_fields_cannot_bypass_rights_or_provenance(self):
+        for path in (
+            lambda p: p.update(empirical_results={"adoption": 100}),
+            lambda p: p["sources"][0].update(licensed_source=True),
+            lambda p: p["signals"][0].update(personal_data="opaque"),
+            lambda p: p["outcomes"][0].update(independent_provider_truth=True),
+            lambda p: p["forecast_receipts"][0].update(engines_run=["innovate"]),
+        ):
+            with self.subTest(path=path):
+                self.rejects(path)
+
+    def test_falsified_rights_and_claim_flags_rejected(self):
+        self.rejects(lambda p: p["non_claims"].append("real_study_completed"))
+        self.rejects(lambda p: p["contract_pins"]["voiage"].update(
+            empirical_validated=True,
+        ))
+
+    def test_unlisted_predictions_are_rejected(self):
+        self.rejects(lambda p: p["forecast_receipts"][0]["probabilities"].update(
+            unexpected_candidate=0.8,
+        ))
+
+    def test_missing_family_holdout_label_at_origin_rejected(self):
+        self.rejects(lambda p: p["splits"][1]["evaluation_ids"].remove("b_2023"))
+
+    def test_pinned_receipt_recomputes_outputs_and_hashes(self):
+        result = verify_receipt(Path(__file__).parent)
+        self.assertEqual(result["benchmark_output"], qualify(copy.deepcopy(PROTOCOL)))
+        self.assertEqual(result["result"]["errors"], 0)
+
+    def test_digest_check_rejects_tampered_protocol(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            for name in ("protocol.json", "run_synthetic.py", "test_protocol.py", "receipt.json"):
+                (root / name).write_bytes(Path(__file__).with_name(name).read_bytes())
+            good = json.loads((root / "protocol.json").read_text())
+            good["forecast_receipts"][0]["probabilities"]["count_proxy"] = 0.99
+            (root / "protocol.json").write_text(json.dumps(good))
+            with self.assertRaises(ValueError):
+                verify_receipt(root)
+
+    def test_forged_known_answer_rejected(self):
+        self.rejects(lambda p: p["known_answers"]["count_proxy"].update(policy_regret=-1))
+
+    def test_revision_pins_must_match_audited_contract_sources(self):
+        self.rejects(lambda p: p["contract_pins"]["innovate"].update(revision="a" * 40))
+        self.rejects(lambda p: p["contract_pins"]["voiage"].update(
+            reference_contract="unreviewed/decision_model.py",
+        ))
+
+    def test_invalid_payload_shapes_raise_fail_closed_value_error(self):
+        for edit in (
+            lambda p: p.update(outcomes={}),
+            lambda p: p["design"].update(candidate_ids=[[]]),
+            lambda p: p["splits"][0].update(train_ids=[{}]),
+            lambda p: p["signals"][0].update(first_observed_at=None),
+        ):
+            with self.subTest(edit=edit):
+                self.rejects(edit)
+
+    def test_each_origin_reports_split_and_family_denominators(self):
+        observed = qualify(copy.deepcopy(PROTOCOL))
+        self.assertEqual([f["origin"] for f in observed["folds"]], PROTOCOL["design"]["origins"])
+        self.assertEqual([f["n_training_labels"] for f in observed["folds"]], [2, 3])
+        self.assertEqual([f["n_seen_family_scored"] for f in observed["folds"]], [1, 1])
+        self.assertEqual([f["n_heldout_family_scored"] for f in observed["folds"]], [1, 1])
+        self.assertEqual(set(observed["family_strata"]), {"seen_family", "heldout_family"})
+        self.assertEqual(observed["family_strata"]["seen_family"]["n"], 2)
+        self.assertEqual(observed["family_strata"]["heldout_family"]["n"], 2)
+        for stratum in observed["family_strata"].values():
+            self.assertAlmostEqual(stratum["models"]["count_proxy"]["brier"], 0.19105)
+            self.assertAlmostEqual(stratum["models"]["structural_proxy"]["brier"], 0.26)
+
+    def test_closed_world_family_holdout_rule(self):
+        self.rejects(lambda p: p["design"].update(
+            technology_family_holdout=["family_missing"],
+        ))
 
 if __name__ == "__main__":
     unittest.main()

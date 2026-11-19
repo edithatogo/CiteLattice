@@ -1,29 +1,95 @@
 {
   "receipt_schema": "org.citelattice.track11.synthetic-evidence.v1",
-  "evidence_date": "2026-11-19",
+  "evidence_date": "2026-11-20",
   "environment": "isolated Linux container; Python 3.13.5; standard library only; offline",
   "scope": "track_11_only; local source tests; upstream engines not executed",
   "command": "python -m unittest discover -s conductor/tracks/11-innovate-voiage -p test_protocol.py -v",
-  "result": {"return_code": 0, "tests_executed": 14, "failures": 0, "errors": 0, "skips": 0},
+  "result": {
+    "return_code": 0,
+    "tests_executed": 27,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0
+  },
   "benchmark_command": "python conductor/tracks/11-innovate-voiage/run_synthetic.py",
   "benchmark_output": {
-    "empirical_claim": false,
-    "models": {
-      "count_proxy": {"brier": 0.185, "ex_post_oracle_value": 6, "policy_regret": 6, "realized_value": 0},
-      "structural_proxy": {"brier": 0.26, "ex_post_oracle_value": 6, "policy_regret": 4, "realized_value": 2}
-    },
-    "n_evaluation_rows": 4,
-    "n_origins": 2,
-    "research_task": "R04",
     "status": "synthetic_only",
-    "voi_calculated": false
+    "research_task": "R04",
+    "n_origins": 2,
+    "n_evaluation_rows": 4,
+    "folds": [
+      {
+        "origin": "2022-01-01T00:00:00Z",
+        "n_training_labels": 2,
+        "n_seen_family_scored": 1,
+        "n_heldout_family_scored": 1
+      },
+      {
+        "origin": "2023-01-01T00:00:00Z",
+        "n_training_labels": 3,
+        "n_seen_family_scored": 1,
+        "n_heldout_family_scored": 1
+      }
+    ],
+    "family_strata": {
+      "seen_family": {
+        "n": 2,
+        "models": {
+          "count_proxy": {
+            "brier": 0.19105,
+            "realized_value": 0,
+            "ex_post_oracle_value": 3,
+            "policy_regret": 3
+          },
+          "structural_proxy": {
+            "brier": 0.26,
+            "realized_value": 1,
+            "ex_post_oracle_value": 3,
+            "policy_regret": 2
+          }
+        }
+      },
+      "heldout_family": {
+        "n": 2,
+        "models": {
+          "count_proxy": {
+            "brier": 0.19105,
+            "realized_value": 0,
+            "ex_post_oracle_value": 3,
+            "policy_regret": 3
+          },
+          "structural_proxy": {
+            "brier": 0.26,
+            "realized_value": 1,
+            "ex_post_oracle_value": 3,
+            "policy_regret": 2
+          }
+        }
+      }
+    },
+    "models": {
+      "count_proxy": {
+        "brier": 0.19105,
+        "realized_value": 0,
+        "ex_post_oracle_value": 6,
+        "policy_regret": 6
+      },
+      "structural_proxy": {
+        "brier": 0.26,
+        "realized_value": 2,
+        "ex_post_oracle_value": 6,
+        "policy_regret": 4
+      }
+    },
+    "voi_calculated": false,
+    "empirical_claim": false
   },
   "file_sha256": {
-    "protocol.json": "55e472ae4766db6f432fc96770e8a19d1ac59e00f46a6ca4b2e4948f1bac5835",
-    "run_synthetic.py": "006bdb0f28d56f348485b47ae1268833e140cc8ed319e3c59dcc9f79b0c967cb",
-    "test_protocol.py": "859d51f48a81124da810e2bb4a745a767535977eac5e6400c5422d1372b66e00"
+    "protocol.json": "116b202c7ed7cb2cc1c6cd950014e0fb161fc9ffc59894626283769cc7d31934",
+    "run_synthetic.py": "083603194de682e7ebdf8e610ee16bd3c3404c18e5fd6bbc97fa27151e78de63",
+    "test_protocol.py": "8aa7d15c98b1097b786e4520966333a05b8199ed0cf0f7673bfbbd9e7ab2471d"
   },
-  "hosted_ci": "not_executed_or_configured_for_track11",
+  "hosted_ci": "Two repository-level checks passed on original PR #28 head 3fe05d65; new head pending, Track 11 unit command is not wired into shared CI",
   "upstream_innovate_voiage": "not_executed",
   "empirical_data": "none",
   "publication_status": "none"

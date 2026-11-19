@@ -29,23 +29,34 @@
     }
   },
   "design": {
-    "origins": ["2022-01-01T00:00:00Z", "2023-01-01T00:00:00Z"],
+    "origins": [
+      "2022-01-01T00:00:00Z",
+      "2023-01-01T00:00:00Z"
+    ],
     "horizon_days": 365,
-    "technology_family_holdout": ["family_b"],
-    "candidate_ids": ["count_proxy", "structural_proxy"],
+    "technology_family_holdout": [
+      "family_b"
+    ],
+    "candidate_ids": [
+      "count_proxy",
+      "structural_proxy"
+    ],
     "model_origin": "predeclared_toy_probabilities_not_innovate_execution",
     "outcome_origin": "invented_binary_adoption_labels_not_empirical_data",
     "primary_prediction_loss": "mean_brier_loss_lower_is_better",
     "decision_endpoint": "ex_post_policy_regret_lower_is_better_not_evpi",
     "decision": {
-      "alternatives": ["act", "do_not_act"],
+      "alternatives": [
+        "act",
+        "do_not_act"
+      ],
       "decision_perspective": "one_abstract_synthetic_decision_maker",
       "population": "four_abstract_technology_years",
       "horizon": "one_year_per_origin",
       "utility_unit": "hypothetical_points_not_currency",
       "payoff_when_adopted": 5,
       "cost_per_action": 2,
-      "decision_probability_threshold": 0.5,
+      "decision_probability_threshold": 0.4,
       "source_cost": 0,
       "study_cost": null,
       "joint_uncertainty": "not_specified_no_voi_permitted"
@@ -61,32 +72,159 @@
     }
   ],
   "signals": [
-    {"id": "signal_a_2022", "technology_id": "tech_a", "source_id": "toy_research_system", "published_at": "2021-08-01T00:00:00Z", "first_observed_at": "2021-12-01T00:00:00Z", "source_rights": "allowed_synthetic"},
-    {"id": "signal_b_2022", "technology_id": "tech_b", "source_id": "toy_research_system", "published_at": "2021-09-01T00:00:00Z", "first_observed_at": "2021-12-15T00:00:00Z", "source_rights": "allowed_synthetic"},
-    {"id": "signal_a_2023", "technology_id": "tech_a", "source_id": "toy_research_system", "published_at": "2022-08-01T00:00:00Z", "first_observed_at": "2022-11-01T00:00:00Z", "source_rights": "allowed_synthetic"},
-    {"id": "signal_b_2023", "technology_id": "tech_b", "source_id": "toy_research_system", "published_at": "2022-09-01T00:00:00Z", "first_observed_at": "2022-12-01T00:00:00Z", "source_rights": "allowed_synthetic"}
+    {
+      "id": "signal_a_2022",
+      "technology_id": "tech_a",
+      "source_id": "toy_research_system",
+      "published_at": "2021-08-01T00:00:00Z",
+      "first_observed_at": "2021-12-01T00:00:00Z",
+      "source_rights": "allowed_synthetic"
+    },
+    {
+      "id": "signal_b_2022",
+      "technology_id": "tech_b",
+      "source_id": "toy_research_system",
+      "published_at": "2021-09-01T00:00:00Z",
+      "first_observed_at": "2021-12-15T00:00:00Z",
+      "source_rights": "allowed_synthetic"
+    },
+    {
+      "id": "signal_a_2023",
+      "technology_id": "tech_a",
+      "source_id": "toy_research_system",
+      "published_at": "2022-08-01T00:00:00Z",
+      "first_observed_at": "2022-11-01T00:00:00Z",
+      "source_rights": "allowed_synthetic"
+    },
+    {
+      "id": "signal_b_2023",
+      "technology_id": "tech_b",
+      "source_id": "toy_research_system",
+      "published_at": "2022-09-01T00:00:00Z",
+      "first_observed_at": "2022-12-01T00:00:00Z",
+      "source_rights": "allowed_synthetic"
+    }
   ],
   "outcomes": [
-    {"id": "a_2020", "technology_id": "tech_a", "family": "family_a", "first_observed_at": "2020-12-15T00:00:00Z", "adopted": 0},
-    {"id": "a_2021", "technology_id": "tech_a", "family": "family_a", "first_observed_at": "2021-12-15T00:00:00Z", "adopted": 1},
-    {"id": "a_2022", "technology_id": "tech_a", "family": "family_a", "first_observed_at": "2022-12-15T00:00:00Z", "adopted": 1},
-    {"id": "b_2022", "technology_id": "tech_b", "family": "family_b", "first_observed_at": "2022-12-15T00:00:00Z", "adopted": 0},
-    {"id": "a_2023", "technology_id": "tech_a", "family": "family_a", "first_observed_at": "2023-12-15T00:00:00Z", "adopted": 0},
-    {"id": "b_2023", "technology_id": "tech_b", "family": "family_b", "first_observed_at": "2023-12-15T00:00:00Z", "adopted": 1}
+    {
+      "id": "a_2020",
+      "technology_id": "tech_a",
+      "family": "family_a",
+      "first_observed_at": "2020-12-15T00:00:00Z",
+      "adopted": 0
+    },
+    {
+      "id": "a_2021",
+      "technology_id": "tech_a",
+      "family": "family_a",
+      "first_observed_at": "2021-12-15T00:00:00Z",
+      "adopted": 1
+    },
+    {
+      "id": "a_2022",
+      "technology_id": "tech_a",
+      "family": "family_a",
+      "first_observed_at": "2022-12-15T00:00:00Z",
+      "adopted": 1
+    },
+    {
+      "id": "b_2022",
+      "technology_id": "tech_b",
+      "family": "family_b",
+      "first_observed_at": "2022-12-15T00:00:00Z",
+      "adopted": 0
+    },
+    {
+      "id": "a_2023",
+      "technology_id": "tech_a",
+      "family": "family_a",
+      "first_observed_at": "2023-12-15T00:00:00Z",
+      "adopted": 0
+    },
+    {
+      "id": "b_2023",
+      "technology_id": "tech_b",
+      "family": "family_b",
+      "first_observed_at": "2023-12-15T00:00:00Z",
+      "adopted": 1
+    }
   ],
   "splits": [
-    {"origin": "2022-01-01T00:00:00Z", "train_ids": ["a_2020", "a_2021"], "evaluation_ids": ["a_2022", "b_2022"]},
-    {"origin": "2023-01-01T00:00:00Z", "train_ids": ["a_2020", "a_2021", "a_2022"], "evaluation_ids": ["a_2023", "b_2023"]}
+    {
+      "origin": "2022-01-01T00:00:00Z",
+      "train_ids": [
+        "a_2020",
+        "a_2021"
+      ],
+      "evaluation_ids": [
+        "a_2022",
+        "b_2022"
+      ]
+    },
+    {
+      "origin": "2023-01-01T00:00:00Z",
+      "train_ids": [
+        "a_2020",
+        "a_2021",
+        "a_2022"
+      ],
+      "evaluation_ids": [
+        "a_2023",
+        "b_2023"
+      ]
+    }
   ],
   "forecast_receipts": [
-    {"origin": "2022-01-01T00:00:00Z", "outcome_id": "a_2022", "signal_id": "signal_a_2022", "probabilities": {"count_proxy": 0.4, "structural_proxy": 0.6}},
-    {"origin": "2022-01-01T00:00:00Z", "outcome_id": "b_2022", "signal_id": "signal_b_2022", "probabilities": {"count_proxy": 0.1, "structural_proxy": 0.6}},
-    {"origin": "2023-01-01T00:00:00Z", "outcome_id": "a_2023", "signal_id": "signal_a_2023", "probabilities": {"count_proxy": 0.1, "structural_proxy": 0.6}},
-    {"origin": "2023-01-01T00:00:00Z", "outcome_id": "b_2023", "signal_id": "signal_b_2023", "probabilities": {"count_proxy": 0.4, "structural_proxy": 0.6}}
+    {
+      "origin": "2022-01-01T00:00:00Z",
+      "outcome_id": "a_2022",
+      "signal_id": "signal_a_2022",
+      "probabilities": {
+        "count_proxy": 0.39,
+        "structural_proxy": 0.6
+      }
+    },
+    {
+      "origin": "2022-01-01T00:00:00Z",
+      "outcome_id": "b_2022",
+      "signal_id": "signal_b_2022",
+      "probabilities": {
+        "count_proxy": 0.1,
+        "structural_proxy": 0.6
+      }
+    },
+    {
+      "origin": "2023-01-01T00:00:00Z",
+      "outcome_id": "a_2023",
+      "signal_id": "signal_a_2023",
+      "probabilities": {
+        "count_proxy": 0.1,
+        "structural_proxy": 0.6
+      }
+    },
+    {
+      "origin": "2023-01-01T00:00:00Z",
+      "outcome_id": "b_2023",
+      "signal_id": "signal_b_2023",
+      "probabilities": {
+        "count_proxy": 0.39,
+        "structural_proxy": 0.6
+      }
+    }
   ],
   "known_answers": {
-    "count_proxy": {"brier": 0.185, "realized_value": 0, "ex_post_oracle_value": 6, "policy_regret": 6},
-    "structural_proxy": {"brier": 0.26, "realized_value": 2, "ex_post_oracle_value": 6, "policy_regret": 4}
+    "count_proxy": {
+      "brier": 0.19105,
+      "realized_value": 0,
+      "ex_post_oracle_value": 6,
+      "policy_regret": 6
+    },
+    "structural_proxy": {
+      "brier": 0.26,
+      "realized_value": 2,
+      "ex_post_oracle_value": 6,
+      "policy_regret": 4
+    }
   },
   "non_claims": [
     "no_innovate_fit_or_scoring_executed",
