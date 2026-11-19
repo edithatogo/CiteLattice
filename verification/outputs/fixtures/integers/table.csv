@@ -1,0 +1,9 @@
+row_key,year,publications,availability,label,rights
+n0,2000,0,observed,Boundary 0,public
+n1,2001,4294967295,observed,Boundary 1,public
+n2,2002,4294967296,observed,Boundary 2,public
+n3,2003,9007199254740991,observed,Boundary 3,public
+n4,2004,9007199254740992,observed,Boundary 4,public
+n5,2005,9007199254740993,observed,Boundary 5,public
+n6,2006,18446744073709551615,observed,Boundary 6,public
+n7,2007,NULL,missing,Boundary 7,public

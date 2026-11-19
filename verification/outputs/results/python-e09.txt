@@ -1,0 +1,34 @@
+test_empty_and_all_null_authorities (test_output_conservation.AuthorityTests.test_empty_and_all_null_authorities) ... ok
+test_independent_known_answers_and_distinct_missingness (test_output_conservation.AuthorityTests.test_independent_known_answers_and_distinct_missingness) ... ok
+test_integer_authority_exceeds_u64_total_without_float_coercion (test_output_conservation.AuthorityTests.test_integer_authority_exceeds_u64_total_without_float_coercion) ... ok
+test_missing_or_wrong_reader_version_fails_closed (test_output_conservation.AuthorityTests.test_missing_or_wrong_reader_version_fails_closed) ... ok
+test_reference_fixture_and_auditor_pins (test_output_conservation.AuthorityTests.test_reference_fixture_and_auditor_pins) ... ok
+test_source_count_type_and_null_status_matrix (test_output_conservation.AuthorityTests.test_source_count_type_and_null_status_matrix) ... ok
+test_source_duplicate_keys_and_rows_fail_closed (test_output_conservation.AuthorityTests.test_source_duplicate_keys_and_rows_fail_closed) ... ok
+test_unapproved_or_unknown_rights_fail_closed (test_output_conservation.AuthorityTests.test_unapproved_or_unknown_rights_fail_closed) ... ok
+test_unknown_withheld_count_is_not_reported_as_zero (test_output_conservation.AuthorityTests.test_unknown_withheld_count_is_not_reported_as_zero) ... ok
+test_all_formats_and_integer_boundary_package (test_output_conservation.FullBundleTests.test_all_formats_and_integer_boundary_package) ... ok
+test_arrow_hidden_batch_metadata_is_rejected (test_output_conservation.FullBundleTests.test_arrow_hidden_batch_metadata_is_rejected) ... ok
+test_arrow_types_nullability_units_rows_and_rights_mutations (test_output_conservation.FullBundleTests.test_arrow_types_nullability_units_rows_and_rights_mutations) ... ok
+test_bundle_manifest_and_path_mutations (test_output_conservation.FullBundleTests.test_bundle_manifest_and_path_mutations) ... ok
+test_cli_pass_and_failure_have_truthful_exit_status_and_no_payload (test_output_conservation.FullBundleTests.test_cli_pass_and_failure_have_truthful_exit_status_and_no_payload) ... ok
+test_multiple_parquet_row_groups_are_fully_read (test_output_conservation.FullBundleTests.test_multiple_parquet_row_groups_are_fully_read) ... ok
+test_rehashed_corruption_is_not_semantic_proof (test_output_conservation.FullBundleTests.test_rehashed_corruption_is_not_semantic_proof) ... ok
+test_xlsx_formula_hidden_sheet_link_comment_and_extra_content (test_output_conservation.FullBundleTests.test_xlsx_formula_hidden_sheet_link_comment_and_extra_content) ... ok
+test_xlsx_large_integer_must_not_be_binary64 (test_output_conservation.FullBundleTests.test_xlsx_large_integer_must_not_be_binary64) ... ok
+test_hand_specified_geometry_anchors_and_all_marks (test_output_conservation.SemanticTests.test_hand_specified_geometry_anchors_and_all_marks) ... ok
+test_html_and_typst_never_execute_extra_content (test_output_conservation.SemanticTests.test_html_and_typst_never_execute_extra_content) ... ok
+test_json_tamper_matrix (test_output_conservation.SemanticTests.test_json_tamper_matrix) ... ok
+test_large_integer_imaging_cannot_succeed_by_rounding (test_output_conservation.SemanticTests.test_large_integer_imaging_cannot_succeed_by_rounding) ... ok
+test_safe_formula_literal_and_unescaped_csv_formula (test_output_conservation.SemanticTests.test_safe_formula_literal_and_unescaped_csv_formula) ... ok
+test_scene_and_vega_reject_hidden_layers_and_inexact_values (test_output_conservation.SemanticTests.test_scene_and_vega_reject_hidden_layers_and_inexact_values) ... ok
+test_scene_crop_duplicate_or_null_to_zero (test_output_conservation.SemanticTests.test_scene_crop_duplicate_or_null_to_zero) ... ok
+test_svg_external_entity_and_geometry_hiding_fail (test_output_conservation.SemanticTests.test_svg_external_entity_and_geometry_hiding_fail) ... ok
+test_svg_geometry_and_disclosure_mutations (test_output_conservation.SemanticTests.test_svg_geometry_and_disclosure_mutations) ... ok
+test_text_formats_agree_with_source (test_output_conservation.SemanticTests.test_text_formats_agree_with_source) ... ok
+test_unknown_format_and_malformed_json_fail_without_payload (test_output_conservation.SemanticTests.test_unknown_format_and_malformed_json_fail_without_payload) ... ok
+
+----------------------------------------------------------------------
+Ran 29 tests in 0.605s
+
+OK
