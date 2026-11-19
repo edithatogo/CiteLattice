@@ -12,7 +12,7 @@
 | 07 — Beyond-frontier imaging | Evidence-linked annual scenes passed CI; independent evaluation pending | Mark-to-row lineage, multiverse comparisons, LOD, uncertainty and accessibility | Geometry, disclosure and conservation tests |
 | 08 — Reporting and distribution | Transactional writer passed CI; durable publication and external PDF pending | Reproducible XLSX/PDF/HTML/RO-Crate packages | Format validation and snapshot checks |
 | 09 — Dependency evaluation | Scaffolded | Polars/graph/datafusion/render/backend substitutions only on evidence | Isolated compile, security, benchmark and parity |
-| 10 — Lean agent harness/security | Planned | CodeQL, Gitleaks, deny/audit/vet, fuzz/property/mutation with adaptive CI | Exact revision observed hosted CI |
+| 10 — [Lean agent harness/security](tracks/10-parser-fuzzing/plan.md) | Parser fuzzing increment in progress; other security work planned | CodeQL, Gitleaks, deny/audit/vet, fuzz/property/mutation with adaptive CI | Exact revision observed hosted CI |
 | 11 — Innovate/Voiage research | Specified | Hold-out prediction, decision-value estimation | Registered/frozen protocol and independent analysis |
 | 12 — [Scientific evaluation](tracks/12-scientific-evaluation/spec.md) | Core method slices passed native CI; independent scientific evaluation pending | Citation kernels plus E01–E12/R01–R04 verification/research programme | Python reference/schema checks; native and external evidence pending |
 

@@ -1,0 +1,37 @@
+{
+  "base_commit": "cfd72e73872b33ceddfc923381c51278f94ae428",
+  "scope": "working patch validated before commit; hosted checks must establish final-revision status",
+  "checks": [
+    {
+      "command": "cargo +1.99.1 test -p citelattice-ingest --test fuzz_regressions",
+      "exit_code": 0,
+      "passed": 2
+    },
+    {
+      "command": "cargo +1.99.1 fmt --all --check",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo +1.99.1 clippy -p citelattice-ingest --all-targets -- -D warnings",
+      "exit_code": 0
+    }
+  ],
+  "campaign": {
+    "target": "source_events",
+    "nightly": "nightly-2026-11-19",
+    "cargo_fuzz": "0.13.2",
+    "requested_seconds": 30,
+    "executed_units": 14902,
+    "elapsed_seconds": 31,
+    "exit_code": 0,
+    "sanitizer": "address",
+    "local_environment": "ASAN_OPTIONS=detect_leaks=0; LeakSanitizer requires ptrace unavailable in this executor",
+    "initial_default_run": "Exit-time LeakSanitizer environment failure, not a passing result; CI retains defaults",
+    "fuzz_lock_sha256": "78354d50346627877fe0cc2b31c361704aacb86130bc28a6f51f21fec839f62a"
+  },
+  "remaining_gates": [
+    "Final-revision hosted native/fuzz checks",
+    "Default LeakSanitizer execution on a capable host",
+    "Weekly schedule becomes active only after reviewed merge"
+  ]
+}
