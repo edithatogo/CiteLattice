@@ -1,0 +1,7 @@
+{
+  "command": "python -B -m unittest discover -s tests -p test_method_comparators.py -v",
+  "exit_code": 1,
+  "baseline_commit": "2c9bf895d80224e5b9b8c370e724cd91d145c54d",
+  "test_file_sha256": "6b9c9cb9790c09a738dcba870bdc03f70b2a7b954f27aefc5577bd2811f24e80",
+  "boundary": "Expected missing-harness import failure before implementation; no numerical execution."
+}
