@@ -1,0 +1,46 @@
+{
+  "profile": "org.citelattice.e09.synthetic-source/1.0.0",
+  "source_sha256": "04458fe99ab79391b08dd487ccdefc256c190e48f79bbb2c19561dbe0346bc89",
+  "artifacts": [
+    {
+      "path": "disclosure.json",
+      "format": "disclosure",
+      "sha256": "8aa83b8051071f98a3dd3e16deaf3021bebe5cbb1b9a17935b3708224f62d456"
+    },
+    {
+      "path": "table.arrow",
+      "format": "arrow_ipc",
+      "sha256": "dd813001ce69d33dbbf5ea64a963c864ea8f5c312e169be59db2631bb5aad421"
+    },
+    {
+      "path": "table.csv",
+      "format": "csv",
+      "sha256": "a50577fa700e2e492e86251161e02d4eb41e14a0cba253b7812bebb0e47985cc"
+    },
+    {
+      "path": "table.html",
+      "format": "html",
+      "sha256": "9b13ffd73421b0cb1cf5f72eab6b859943178e2dde51e1d5ae457fc736378810"
+    },
+    {
+      "path": "table.json",
+      "format": "json",
+      "sha256": "ec8d9e86686152f4f829c8c6ae1750c302e88897af98dfcd72e13c1ef4fa0faa"
+    },
+    {
+      "path": "table.parquet",
+      "format": "parquet",
+      "sha256": "5d0ddef9c773002ff3fea60319213fd89cb972cb9adc467421aac43eece88dee"
+    },
+    {
+      "path": "table.typ",
+      "format": "typst_source",
+      "sha256": "5298e8d4550ecbd7edd5332074c83a7fceff2cfc1471c1439c58723c3cdca290"
+    },
+    {
+      "path": "table.xlsx",
+      "format": "xlsx",
+      "sha256": "f20185572969718adeeb79ec5cae8c4b86798dccdae1ea4680dd01bb2a444b4a"
+    }
+  ]
+}

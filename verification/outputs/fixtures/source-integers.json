@@ -1,0 +1,89 @@
+{
+  "profile": "org.citelattice.e09.synthetic-source/1.0.0",
+  "fixture_version": "1.0.0",
+  "origin": "Repository-authored synthetic known-answer table; no provider data or production-generated values.",
+  "license": "CC0-1.0",
+  "policy": {
+    "id": "e09:synthetic-rights",
+    "version": "1.0.0",
+    "export_allowed": true,
+    "disclose_withheld_count": true
+  },
+  "id": "integers",
+  "rows": [
+    {
+      "row_key": "n0",
+      "year": 2000,
+      "publications": 0,
+      "availability": "observed",
+      "label": "Boundary 0",
+      "rights": "public"
+    },
+    {
+      "row_key": "n1",
+      "year": 2001,
+      "publications": 4294967295,
+      "availability": "observed",
+      "label": "Boundary 1",
+      "rights": "public"
+    },
+    {
+      "row_key": "n2",
+      "year": 2002,
+      "publications": 4294967296,
+      "availability": "observed",
+      "label": "Boundary 2",
+      "rights": "public"
+    },
+    {
+      "row_key": "n3",
+      "year": 2003,
+      "publications": 9007199254740991,
+      "availability": "observed",
+      "label": "Boundary 3",
+      "rights": "public"
+    },
+    {
+      "row_key": "n4",
+      "year": 2004,
+      "publications": 9007199254740992,
+      "availability": "observed",
+      "label": "Boundary 4",
+      "rights": "public"
+    },
+    {
+      "row_key": "n5",
+      "year": 2005,
+      "publications": 9007199254740993,
+      "availability": "observed",
+      "label": "Boundary 5",
+      "rights": "public"
+    },
+    {
+      "row_key": "n6",
+      "year": 2006,
+      "publications": 18446744073709551615,
+      "availability": "observed",
+      "label": "Boundary 6",
+      "rights": "public"
+    },
+    {
+      "row_key": "n7",
+      "year": 2007,
+      "publications": null,
+      "availability": "missing",
+      "label": "Boundary 7",
+      "rights": "public"
+    }
+  ],
+  "expected": {
+    "source_rows": 8,
+    "exported_rows": 8,
+    "withheld_rows": 0,
+    "missing_counts": 1,
+    "withheld_counts": 0,
+    "undated_rows": 0,
+    "known_publications": "18473765680063709182"
+  },
+  "imaging": false
+}
