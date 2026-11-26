@@ -1,5 +1,24 @@
 # CiteLattice Conductor
 
+## Definition
+
+- [Product Definition](./product.md)
+- [Product Guidelines](./product-guidelines.md)
+- [Tech Stack](./tech-stack.md)
+
+## Workflow
+
+- [Workflow](./workflow.md)
+- [Code Style Guides](./code_styleguides/)
+- [Repository-local setup](./setup.md)
+
+## Tracks
+
+- [Tracks Registry](./tracks.md)
+- [Tracks Directory](./tracks/)
+- [Track 00 migration](./tracks/00-bibx-migration/index.md)
+
+
 **Canonical design and planning state; runtime implementation is separate.**
 
 Read [requirements](requirements.md), [design](design.md), [tracks](tracks.md), then the active track, method registry, source contract and affected Rust modules. Do not infer runtime or scientific validation from a schema.
