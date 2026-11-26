@@ -21,7 +21,7 @@ render = ["dep:resvg"]
 polars = { version = "0.55.2", optional = true, default-features = false, features = ["lazy", "parquet"] }
 petgraph = { version = "0.8", optional = true }
 arrow = { version = "56", optional = true, default-features = false }
-parquet = { version = "56", optional = true, default-features = false }
+parquet = { version = "60", optional = true, default-features = false }
 datafusion = { version = "51", optional = true, default-features = false }
 rust_xlsxwriter = { version = "0.93", optional = true }
 plotters = { version = "0.3", optional = true, default-features = false, features = ["svg_backend", "bitmap_backend"] }
