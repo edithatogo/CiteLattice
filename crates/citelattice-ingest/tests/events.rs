@@ -284,7 +284,11 @@ fn verified_replay_rejects_changed_prefix_shortened_stream_and_torn_tail() {
         Err(EventError::ReplayMismatch)
     ));
     assert!(matches!(
-        verify_event_replay(Cursor::new(Vec::<u8>::new()), EventLimits::default(), Some(&receipt)),
+        verify_event_replay(
+            Cursor::new(Vec::<u8>::new()),
+            EventLimits::default(),
+            Some(&receipt)
+        ),
         Err(EventError::ReplayMismatch)
     ));
     let mut torn = prefix.clone();
