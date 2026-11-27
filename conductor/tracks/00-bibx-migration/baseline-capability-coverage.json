@@ -1,0 +1,2305 @@
+{
+  "version": "1.0.0-design.2",
+  "reviewed_at": "2026-11-10",
+  "claim": "Outcome-family coverage inventory, not exhaustive API equivalence, validated methods or implemented outcomes. Utility/UI functions are delegated or excluded below.",
+  "contract_families": [
+    "analysis",
+    "ecosystem",
+    "imaging",
+    "reporting",
+    "study"
+  ],
+  "sources": {
+    "bibliometrix": {
+      "url": "https://cran.r-project.org/web/packages/bibliometrix/refman/bibliometrix.html",
+      "observed_version": "5.4.1",
+      "kind": "maintainer_reference_manual"
+    },
+    "pybibx": {
+      "url": "https://pypi.org/project/pybibx/",
+      "observed_version": "5.9.5 shown in retrieved release metadata; live README may be newer",
+      "kind": "maintainer_feature_documentation"
+    },
+    "dimensions": {
+      "url": "https://docs.dimensions.ai/dsl/data-sources.html",
+      "observed_version": "DSL 2.15.0 retrieved page",
+      "kind": "provider_schema"
+    },
+    "dimensions_fields": {
+      "url": "https://help.dimensions.ai/en/articles/9783745",
+      "observed_version": "retrieved 2026-11-10",
+      "kind": "provider_export_contract"
+    },
+    "fcr": {
+      "url": "https://help.dimensions.ai/en/articles/9780801",
+      "observed_version": "edited 2026-01-13",
+      "kind": "provider_metric_definition"
+    },
+    "rcr": {
+      "url": "https://help.dimensions.ai/en/articles/9780865",
+      "observed_version": "edited 2026-09-22",
+      "kind": "provider_metric_definition"
+    },
+    "project": {
+      "url": "local:conductor/design.md",
+      "observed_version": "design.2",
+      "kind": "new_project_requirement"
+    },
+    "innovate": {
+      "url": "https://github.com/edithatogo/innovate/blob/main/README.md",
+      "observed_blob_sha": "d7ab6231d2ca3d3a3d6b13852e8b7b6146bf2fc8",
+      "kind": "inspected_owned_repository"
+    },
+    "voiage": {
+      "url": "https://github.com/edithatogo/voiage/blob/main/README.md",
+      "observed_blob_sha": "2d283dacf57158bf1bcc20dc19db8ba502875265",
+      "kind": "inspected_owned_repository"
+    }
+  },
+  "outcomes": [
+    {
+      "id": "descriptive.corpus_profile",
+      "title": "Corpus profile",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.annual_production",
+      "title": "Annual production",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.growth_rates",
+      "title": "Production growth",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.entity_profiles",
+      "title": "Entity profiles",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.document_types",
+      "title": "Document-type counts",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.language_distribution",
+      "title": "Language distribution",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.source_productivity",
+      "title": "Source productivity",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.author_productivity",
+      "title": "Author productivity",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.institution_productivity",
+      "title": "Institution productivity",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.country_productivity",
+      "title": "Country productivity",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.fractional_productivity",
+      "title": "Fractional productivity",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.single_multi_authorship",
+      "title": "Single/multi-authorship",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.collaboration_index",
+      "title": "Collaboration index",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.international_collaboration",
+      "title": "International collaboration",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.citation_summary",
+      "title": "Citation summaries",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.bradford",
+      "title": "Bradford zones",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.lotka",
+      "title": "Lotka distribution",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.zipf",
+      "title": "Zipf distribution",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.author_dominance",
+      "title": "Authorship dominance",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "descriptive.source_growth",
+      "title": "Source growth",
+      "family": "descriptive",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "polars",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Hand-counted fixture; explicit population/time/denominator; fractional weights conserve declared totals; missingness does not become zero."
+    },
+    {
+      "id": "quality.missingness",
+      "title": "Field completeness",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.source_overlap",
+      "title": "Source overlap",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.dedup_lineage",
+      "title": "Deduplication lineage",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "delegated",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.entity_map",
+      "title": "Entity normalisation",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.identifier_conflicts",
+      "title": "Identifier conflicts",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.reference_coverage",
+      "title": "Reference coverage",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.citation_coverage",
+      "title": "Citation coverage",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.date_precision",
+      "title": "Date precision",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.retraction_signals",
+      "title": "Integrity signals",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "delegated",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "quality.source_contribution",
+      "title": "Source contribution",
+      "family": "quality",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "searchright",
+      "sources": [
+        "pybibx",
+        "bibliometrix"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Source-level lineage retained; false merges/unknown coverage made visible; compare against a labelled multi-source fixture."
+    },
+    {
+      "id": "citation.h_index",
+      "title": "h-index",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "existing_typed_contract_requires_validation",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.g_index",
+      "title": "g-index",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.e_index",
+      "title": "e-index",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.m_index",
+      "title": "m-index",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.j_index",
+      "title": "j-index",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.i10_index",
+      "title": "i10-index",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.local_citations",
+      "title": "Local citations",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.global_citations",
+      "title": "Provider-scoped global citations",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.normalised_citations",
+      "title": "Normalised citation scores",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.top_percentile_share",
+      "title": "Top-percentile share",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.self_citation_sensitivity",
+      "title": "Self-citation sensitivity",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.citation_trajectories",
+      "title": "Citation trajectories",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.citation_matrix",
+      "title": "Citation matrix",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.reference_spectroscopy",
+      "title": "Reference-year spectroscopy",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.citation_age",
+      "title": "Citation age",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "citation.recent_citations",
+      "title": "Recent citations",
+      "family": "citation",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Freeze named formula, window, self-citation and tie policies; independent numerical oracle; missing neighbourhood yields unavailable; batch/incremental equivalence."
+    },
+    {
+      "id": "network.direct_citation",
+      "title": "Direct-citation network",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.co_citation",
+      "title": "Co-citation network",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.bibliographic_coupling",
+      "title": "Bibliographic coupling",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.coauthorship",
+      "title": "Co-authorship network",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.co_word",
+      "title": "Co-word network",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.institution_collaboration",
+      "title": "Institution collaboration",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.country_collaboration",
+      "title": "Country collaboration",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.keyword_association",
+      "title": "Keyword association",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.network_statistics",
+      "title": "Network statistics",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.centrality",
+      "title": "Centrality measures",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.hits",
+      "title": "Hubs/authorities",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.pagerank",
+      "title": "PageRank",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.community_detection",
+      "title": "Community detection",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.top_cocited_sets",
+      "title": "Frequent co-cited sets",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.main_path_spc",
+      "title": "Main path SPC",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.main_path_splc",
+      "title": "Main path SPLC",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.main_path_spnp",
+      "title": "Main path SPNP",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.historiograph",
+      "title": "Historiograph",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.similarity_normalisation",
+      "title": "Similarity normalisation",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "network.ego_network",
+      "title": "Ego network",
+      "family": "network",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rustworkx-core + roaring",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Typed endpoints/direction; full versus fractional weights; known-graph oracle; duplicate/order invariance; approximation and deterministic seed declared."
+    },
+    {
+      "id": "conceptual.term_frequencies",
+      "title": "Term frequencies",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.ngrams",
+      "title": "N-grams",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.tfidf",
+      "title": "TF-IDF",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.term_growth",
+      "title": "Term growth",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.pca",
+      "title": "PCA",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.correspondence_analysis",
+      "title": "Correspondence analysis",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.multiple_correspondence_analysis",
+      "title": "Multiple correspondence analysis",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.mds",
+      "title": "Multidimensional scaling",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.tsne",
+      "title": "t-SNE",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.umap",
+      "title": "UMAP",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "optional",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.embeddings",
+      "title": "Text embeddings",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.topic_modelling",
+      "title": "Topic models",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.topic_assignment",
+      "title": "Topic assignment",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.thematic_map",
+      "title": "Thematic map",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.thematic_evolution",
+      "title": "Thematic evolution",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.topic_stability",
+      "title": "Topic stability",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.grounded_summary",
+      "title": "Grounded summaries",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "optional",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "conceptual.grounded_qa",
+      "title": "Grounded corpus questions",
+      "family": "conceptual",
+      "contract_family": "analysis",
+      "disposition": "optional",
+      "priority": "SHOULD",
+      "dependency_owner": "linfa + fastembed/candle",
+      "sources": [
+        "bibliometrix",
+        "pybibx"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Pin vocabulary/model/preprocessing; held-out stability checks; algorithm/parameter-specific recipe; no semantic-equivalence claim from matching labels."
+    },
+    {
+      "id": "emergence.cd_t",
+      "title": "Time-bounded disruption",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "existing_typed_contract_requires_validation",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.sleeping_beauty",
+      "title": "Sleeping-beauty coefficient",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "existing_typed_contract_requires_validation",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.awakening",
+      "title": "Awakening markers",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.prince",
+      "title": "Awakening-associated publications",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.bursts",
+      "title": "Citation/term bursts",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.novelty",
+      "title": "Combination novelty",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.specialisation",
+      "title": "Specialisation",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.diversity",
+      "title": "Portfolio diversity",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.interdisciplinarity",
+      "title": "Interdisciplinarity",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.collaboration_impact",
+      "title": "Collaboration-associated citations",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.entity_portfolio",
+      "title": "Productivity/citation portfolio",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "emergence.life_cycle",
+      "title": "Topic life cycle",
+      "family": "emergence",
+      "contract_family": "analysis",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "scientific methods + innovate",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Published definition and horizon pinned; censoring and database sensitivity shown; distinguish association from causal or predictive evidence."
+    },
+    {
+      "id": "cross_domain.funding_outputs",
+      "title": "Grant-output links",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.funding_portfolio",
+      "title": "Funding portfolios",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.funding_amounts",
+      "title": "Currency-aware funding",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.funding_lag",
+      "title": "Funding-output intervals",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.patent_citations",
+      "title": "Patent citations",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.patent_families",
+      "title": "Patent-family aggregation",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.patent_geography",
+      "title": "Patent jurisdictions",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.trial_links",
+      "title": "Trial-output links",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.trial_reporting_lag",
+      "title": "Trial-reporting intervals",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.policy_citations",
+      "title": "Policy citations",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.policy_geography",
+      "title": "Policy jurisdictions",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.dataset_links",
+      "title": "Dataset reuse links",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.software_links",
+      "title": "Software reuse links",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "optional",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.research_taxonomy",
+      "title": "Versioned research categories",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.sdg_profiles",
+      "title": "SDG-category profiles",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.open_access",
+      "title": "Open-access status",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.attention_signals",
+      "title": "Provider attention signals",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "cross_domain.translation_paths",
+      "title": "Cross-domain evidence paths",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "planned",
+      "priority": "SHOULD",
+      "dependency_owner": "typed extensions + provider receipts",
+      "sources": [
+        "dimensions",
+        "dimensions_fields"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Rights-cleared provider fixture; native IDs/taxonomy/observed dates preserved; relationship evidence retained; links do not establish causal impact."
+    },
+    {
+      "id": "imaging.bar_line_heatmap",
+      "title": "Bar/line/heatmap",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.treemap",
+      "title": "Treemap",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.wordcloud",
+      "title": "Word cloud",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "optional",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.three_field",
+      "title": "Three-field/alluvial",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.geography",
+      "title": "Geographic collaboration",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.projection",
+      "title": "Document projection",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.temporal_graph",
+      "title": "Temporal graph explorer",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.multilayer_graph",
+      "title": "Multilayer graph",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.semantic_zoom",
+      "title": "Semantic zoom",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.uncertainty_scene",
+      "title": "Uncertainty scene",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.stable_temporal_layout",
+      "title": "Stable temporal layout",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.sensitivity_scene",
+      "title": "Sensitivity small multiples",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.evidence_trace",
+      "title": "Mark-to-evidence tracing",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.accessible_fallback",
+      "title": "Accessible alternative view",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "imaging.render_replay",
+      "title": "Reproducible rendering",
+      "family": "imaging",
+      "contract_family": "imaging",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "plotters + vega/resvg",
+      "sources": [
+        "pybibx",
+        "bibliometrix",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Figure values reconcile with typed tables; traceable marks and disclosures; explicit approximation/layout semantics; deterministic CPU fallback and accessible table."
+    },
+    {
+      "id": "reporting.typed_tables",
+      "title": "Typed result tables",
+      "family": "reporting",
+      "contract_family": "reporting",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rust_xlsxwriter + typst",
+      "sources": [
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Content-addressed result bindings; no independent recalculation; safe cell/markup handling; no silent overflow or dropped uncertainty/provenance."
+    },
+    {
+      "id": "reporting.csv_sidecar",
+      "title": "CSV/schema export",
+      "family": "reporting",
+      "contract_family": "reporting",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rust_xlsxwriter + typst",
+      "sources": [
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Content-addressed result bindings; no independent recalculation; safe cell/markup handling; no silent overflow or dropped uncertainty/provenance."
+    },
+    {
+      "id": "reporting.workbook",
+      "title": "Workbook",
+      "family": "reporting",
+      "contract_family": "reporting",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rust_xlsxwriter + typst",
+      "sources": [
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Content-addressed result bindings; no independent recalculation; safe cell/markup handling; no silent overflow or dropped uncertainty/provenance."
+    },
+    {
+      "id": "reporting.html_report",
+      "title": "HTML report",
+      "family": "reporting",
+      "contract_family": "reporting",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rust_xlsxwriter + typst",
+      "sources": [
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Content-addressed result bindings; no independent recalculation; safe cell/markup handling; no silent overflow or dropped uncertainty/provenance."
+    },
+    {
+      "id": "reporting.pdf_report",
+      "title": "PDF report",
+      "family": "reporting",
+      "contract_family": "reporting",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rust_xlsxwriter + typst",
+      "sources": [
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Content-addressed result bindings; no independent recalculation; safe cell/markup handling; no silent overflow or dropped uncertainty/provenance."
+    },
+    {
+      "id": "reporting.docx_report",
+      "title": "DOCX adapter",
+      "family": "reporting",
+      "contract_family": "reporting",
+      "disposition": "optional",
+      "priority": "MUST",
+      "dependency_owner": "rust_xlsxwriter + typst",
+      "sources": [
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Content-addressed result bindings; no independent recalculation; safe cell/markup handling; no silent overflow or dropped uncertainty/provenance."
+    },
+    {
+      "id": "reporting.research_bundle",
+      "title": "RO-Crate bundle",
+      "family": "reporting",
+      "contract_family": "reporting",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rust_xlsxwriter + typst",
+      "sources": [
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Content-addressed result bindings; no independent recalculation; safe cell/markup handling; no silent overflow or dropped uncertainty/provenance."
+    },
+    {
+      "id": "reporting.graph_exchange",
+      "title": "Graph exchange",
+      "family": "reporting",
+      "contract_family": "reporting",
+      "disposition": "planned",
+      "priority": "MUST",
+      "dependency_owner": "rust_xlsxwriter + typst",
+      "sources": [
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Content-addressed result bindings; no independent recalculation; safe cell/markup handling; no silent overflow or dropped uncertainty/provenance."
+    },
+    {
+      "id": "forecast.diffusion_forecast",
+      "title": "Diffusion forecasts",
+      "family": "forecast",
+      "contract_family": "study",
+      "disposition": "delegated",
+      "priority": "SHOULD",
+      "dependency_owner": "innovate",
+      "sources": [
+        "innovate",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Exact owned-library capability fixture; rolling-origin time split; observations available at forecast date only; simple baselines and held-out error."
+    },
+    {
+      "id": "forecast.competition_forecast",
+      "title": "Competition forecasts",
+      "family": "forecast",
+      "contract_family": "study",
+      "disposition": "delegated",
+      "priority": "SHOULD",
+      "dependency_owner": "innovate",
+      "sources": [
+        "innovate",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Exact owned-library capability fixture; rolling-origin time split; observations available at forecast date only; simple baselines and held-out error."
+    },
+    {
+      "id": "forecast.hype_vs_adoption",
+      "title": "Activity/adoption separation",
+      "family": "forecast",
+      "contract_family": "study",
+      "disposition": "delegated",
+      "priority": "SHOULD",
+      "dependency_owner": "innovate",
+      "sources": [
+        "innovate",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Exact owned-library capability fixture; rolling-origin time split; observations available at forecast date only; simple baselines and held-out error."
+    },
+    {
+      "id": "decision.evpi",
+      "title": "Information value",
+      "family": "decision",
+      "contract_family": "study",
+      "disposition": "delegated",
+      "priority": "SHOULD",
+      "dependency_owner": "voiage",
+      "sources": [
+        "voiage",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Explicit decisions/utilities/costs/population/horizon; coherent probabilistic model; method capability checked; citations are not utilities."
+    },
+    {
+      "id": "decision.evppi",
+      "title": "Parameter information value",
+      "family": "decision",
+      "contract_family": "study",
+      "disposition": "delegated",
+      "priority": "SHOULD",
+      "dependency_owner": "voiage",
+      "sources": [
+        "voiage",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Explicit decisions/utilities/costs/population/horizon; coherent probabilistic model; method capability checked; citations are not utilities."
+    },
+    {
+      "id": "decision.evsi_enbs",
+      "title": "Study information value",
+      "family": "decision",
+      "contract_family": "study",
+      "disposition": "delegated",
+      "priority": "SHOULD",
+      "dependency_owner": "voiage",
+      "sources": [
+        "voiage",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Explicit decisions/utilities/costs/population/horizon; coherent probabilistic model; method capability checked; citations are not utilities."
+    },
+    {
+      "id": "decision.research_portfolio",
+      "title": "Research-allocation portfolio",
+      "family": "decision",
+      "contract_family": "study",
+      "disposition": "delegated",
+      "priority": "SHOULD",
+      "dependency_owner": "voiage",
+      "sources": [
+        "voiage",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Explicit decisions/utilities/costs/population/horizon; coherent probabilistic model; method capability checked; citations are not utilities."
+    },
+    {
+      "id": "decision.perspective_heterogeneity",
+      "title": "Perspective/heterogeneity sensitivity",
+      "family": "decision",
+      "contract_family": "study",
+      "disposition": "delegated",
+      "priority": "SHOULD",
+      "dependency_owner": "voiage",
+      "sources": [
+        "voiage",
+        "project"
+      ],
+      "definition_status": "family_contract_only",
+      "acceptance": "Explicit decisions/utilities/costs/population/horizon; coherent probabilistic model; method capability checked; citations are not utilities."
+    },
+    {
+      "id": "cross_domain.fcr_import",
+      "title": "Provider FCR import",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "optional",
+      "priority": "SHOULD",
+      "dependency_owner": "authorised provider import",
+      "sources": [
+        "fcr"
+      ],
+      "definition_status": "provider_metric_not_reimplemented",
+      "acceptance": "Keep provider, timestamp, definition revision, applicable population, unavailable reason and licence. Never relabel a local approximation as official FCR/RCR."
+    },
+    {
+      "id": "cross_domain.rcr_import",
+      "title": "NIH/provider RCR import",
+      "family": "cross_domain",
+      "contract_family": "ecosystem",
+      "disposition": "optional",
+      "priority": "SHOULD",
+      "dependency_owner": "authorised provider import",
+      "sources": [
+        "rcr"
+      ],
+      "definition_status": "provider_metric_not_reimplemented",
+      "acceptance": "Keep provider, timestamp, definition revision, applicable population, unavailable reason and licence. Never relabel a local approximation as official FCR/RCR."
+    }
+  ],
+  "exclusions": [
+    {
+      "id": "cloud_llm_default",
+      "reason": "Local-only core; optional summarisation may use grounded local evidence, never implicit cloud upload."
+    },
+    {
+      "id": "ui_server_clone",
+      "reason": "Do not clone Biblioshiny/PyBibX web application or helper APIs; a separate consumer can render the view contracts."
+    },
+    {
+      "id": "provider_search_clone",
+      "reason": "Searchright/Sourceright own acquisition, licences and citation verification."
+    },
+    {
+      "id": "proprietary_metric_clone",
+      "reason": "Import named provider metrics under rights; no Altmetric/JIF/SNIP/SJR equivalence claim or unauthorised reimplementation."
+    },
+    {
+      "id": "complete_feature_parity_claim",
+      "reason": "Requires a frozen source-function inventory and differential conformance evidence, not this outcome-family matrix."
+    }
+  ]
+}

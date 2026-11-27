@@ -1,8 +1,19 @@
 # Reconciled executable track registry
 
+## Native Conductor registry
+
+Only materialized executable tracks are listed here; the full 00–12 roadmap below is retained. Existing PR ownership is unchanged.
+
+- [~] **Track: 00 — bibx design.2 migration** *Link: [Track 00](tracks/00-bibx-migration/index.md)*
+- [~] **Track: 01 — Scholarly events** *Link: [Track 01](tracks/01-scholarly-events/index.md)*
+- [~] **Track: 07 — Scientific imaging** *Link: [Track 07](tracks/07-scientific-imaging/index.md)*
+- [~] **Track: 12 — Scientific evaluation** *Link: [Track 12](tracks/12-scientific-evaluation/index.md)*
+
+## Full roadmap
+
 | Track | Status | Outcome | Proof |
 | --- | --- | --- | --- |
-| 00 — bibx design.2 migration | Incomplete | Import and reconcile useful previous source/contracts/history; use CiteLattice crate and repo names | Change manifest, complete compile/test and API parity |
+| 00 — [bibx design.2 migration](tracks/00-bibx-migration/index.md) | In progress; original archive and catalogue recovered, source manifest and exact historical schemas retained; native parity held | Import and reconcile useful previous source/contracts/history; use CiteLattice crate and repo names | Change manifest, complete compile/test and API parity |
 | 01 — Searchright + formats | Bounded event consumer CI passed; producer and durable replay pending | Canonical CSL, proposed stream, Arrow/Parquet, other reference formats | Producer/consumer golden fixtures, compiled replay tests and durable checkpoint |
 | 02 — Methods registry | Planned | bibliometrix/PyBibX/DImensions/lower-friction outcome definition and oracles | Publication references, independent numerical outputs |
 | 03 — Entity and graph analytics | Initial Petgraph baseline on main; broader scope pending | Stable IDs, coauthors/coupling/co-citation/main paths | Source vs result comparison, incremental/full replay |

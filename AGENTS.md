@@ -10,3 +10,5 @@ Read `conductor/index.md`, `conductor/requirements.md`, the active track plan, `
 - Prefer well-maintained existing dependencies, with rationale and benchmark; keep heavyweight options feature-gated.
 - Every ordinary change uses one scoped task, test, CI, and PR. Existing authority covers routine edits/merge after checks. Seek fresh consent only for destructive changes, restricted data sharing, new permissions, registry publication and scientific method changes.
 - Conductor tracks are plans, not evidence of implementation. No automatic hundreds-of-issues sync, unnecessary panels or duplicated status receipts. Keep CI as evidence.
+
+- Repository-local Conductor is pinned under `vendor/gemini-conductor`; follow `conductor/setup.md` and `conductor/workflow.md`. Read the pinned skills when using Conductor commands. Never infer setup completion from index presence alone.
