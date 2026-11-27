@@ -3,6 +3,7 @@ use std::io::Cursor;
 
 use citelattice_ingest::events::{
     ApplyStatus, EventError, EventLedger, EventLimits, ObjectState, read_event_stream,
+    verify_event_replay,
 };
 use serde_json::{Value, json};
 use sha2::{Digest, Sha256};
@@ -240,5 +241,62 @@ fn illegal_change_fields_and_unknown_kind_fail_closed() {
         EventLedger::new(EventLimits::default())
             .apply_json(&serde_json::to_vec(&unexpected).unwrap()),
         Err(EventError::InvalidWire)
+    ));
+}
+
+fn framed(value: &Value) -> Vec<u8> {
+    let mut line = serde_json::to_vec(value).unwrap();
+    line.push(b'\n');
+    line
+}
+
+#[test]
+fn verified_replay_checks_exact_prefix_and_preserves_deletion_and_duplicates() {
+    let first = fixture();
+    let prefix = framed(&first);
+    let (_, receipt) =
+        verify_event_replay(Cursor::new(&prefix), EventLimits::default(), None).unwrap();
+    let receipt_json = serde_json::to_string(&receipt).unwrap();
+    assert!(!receipt_json.contains("fixture:paper-1"));
+    assert!(!receipt_json.contains("synthetic-stream"));
+    let receipt = serde_json::from_str(&receipt_json).unwrap();
+    let mut full = prefix.clone();
+    full.extend(&prefix);
+    full.extend(framed(&next_event(&first, "delete")));
+    let (restored, next) =
+        verify_event_replay(Cursor::new(&full), EventLimits::default(), Some(&receipt)).unwrap();
+    let fresh = read_event_stream(Cursor::new(&full), EventLimits::default()).unwrap();
+    assert_eq!(restored.snapshot(), fresh.snapshot());
+    assert_eq!(restored.snapshot().objects[0].state, ObjectState::Deleted);
+    assert_eq!(next.frames, 3);
+    assert_eq!(next.sha256, hex::encode(Sha256::digest(&full)));
+}
+
+#[test]
+fn verified_replay_rejects_changed_prefix_shortened_stream_and_torn_tail() {
+    let prefix = framed(&fixture());
+    let (_, receipt) =
+        verify_event_replay(Cursor::new(&prefix), EventLimits::default(), None).unwrap();
+    let mut changed = vec![b' '];
+    changed.extend(&prefix);
+    assert!(matches!(
+        verify_event_replay(Cursor::new(changed), EventLimits::default(), Some(&receipt)),
+        Err(EventError::ReplayMismatch)
+    ));
+    assert!(matches!(
+        verify_event_replay(Cursor::new(Vec::<u8>::new()), EventLimits::default(), Some(&receipt)),
+        Err(EventError::ReplayMismatch)
+    ));
+    let mut torn = prefix.clone();
+    torn.extend(serde_json::to_vec(&next_event(&fixture(), "delete")).unwrap());
+    assert!(matches!(
+        verify_event_replay(Cursor::new(torn), EventLimits::default(), Some(&receipt)),
+        Err(EventError::IncompleteFrame)
+    ));
+    let mut invalid = receipt;
+    invalid.version = 2;
+    assert!(matches!(
+        verify_event_replay(Cursor::new(prefix), EventLimits::default(), Some(&invalid)),
+        Err(EventError::Version)
     ));
 }

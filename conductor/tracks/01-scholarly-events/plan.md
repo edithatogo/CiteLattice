@@ -31,3 +31,17 @@ The workspace already declares `serde` derive and `serde_json` with `raw_value`;
 - [ ] Compare source-event JSONL ingest and output records against **real Searchright producer bytes**, not just self-produced Serde round trips. Retain independent canonical-byte/hash tests, schema fuzzing, malformed/oversize input and Arrow/Parquet conservation.
 - [ ] Evaluate any repeated manual JSON formatting *only where present*, with benchmarks and deleted-code/contract parity; no blanket dependency replacement or false claim of optimisation.
 - [ ] Keep Track 01 unfinished producer-consumer, spool/checkpoint, and CI gates open. Record exact source/consumer pins and original rights/deletion evidence; no new track or runtime claim from this plan note.
+
+## Bounded prefix replay receipt — 28 November 2026
+
+- [~] Add a versioned, serializable receipt of exact accepted physical NDJSON frames
+  (SHA-256 and count only), verify a previously trusted prefix during full replay,
+  and reject changed/truncated prefixes, unterminated frames, malformed receipts
+  and limit violations before returning state.
+- [ ] Observe RED and GREEN native test results and exact-head independent review.
+
+No new log, database, authentication or storage engine. The caller retains the
+source and receipt under its approved rights policy. Full replay intentionally
+reconstructs the in-memory ledger, including duplicate and deletion semantics.
+The receipt is not an authenticated signature, crash-safe spool, atomic sink
+transaction, producer compatibility claim or substitute for source retention.
