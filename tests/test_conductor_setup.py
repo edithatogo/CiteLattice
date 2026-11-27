@@ -28,9 +28,7 @@ class ConductorSetupTests(unittest.TestCase):
         self.assertIn("path = vendor/gemini-conductor", modules)
         self.assertIn("https://github.com/gemini-cli-extensions/conductor.git",
                       modules)
-        # A normal CI checkout may not initialize optional submodules.
-        if (ROOT / "vendor/gemini-conductor/plugin.json").exists():
-            self.assertTrue((link / "plugin.json").is_file())
+        # Actual initialized checkout and pin are checked by the migration suite.
 
     def test_registered_tracks_have_executable_plans(self):
         registry = (CONDUCTOR / "tracks.md").read_text(encoding="utf-8")
@@ -39,6 +37,8 @@ class ConductorSetupTests(unittest.TestCase):
             registry, flags=re.MULTILINE)
         self.assertEqual(len(links), len(set(links)))
         self.assertIn("tracks/00-bibx-migration/index.md", links)
+        for track in ("00", "01", "07", "12"):
+            self.assertRegex(registry, rf"(?m)^- \[[~x]\] \*\*Track: {track} —")
         self.assertGreaterEqual(len(links), 4)
         for relative in links:
             with self.subTest(track=relative):

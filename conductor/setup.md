@@ -13,14 +13,16 @@ git submodule update --init vendor/gemini-conductor
 git submodule status vendor/gemini-conductor
 test -f .agents/plugins/conductor/plugin.json
 python3 vendor/gemini-conductor/skills/conductor-setup/scripts/resume.py
-python3 -m unittest discover -s tests -p 'test_conductor_setup.py' -v
+python3 -m unittest discover -s tests -v
 ```
 
 The upstream resumption script at this pin sets setup_complete from index.md
 alone. Require every checklist member to be true as well, and use the linked
 artifact/registry checks in the repository tests. Schema CI initializes the
 pinned submodule and runs the original resume script, verifies its complete
-checklist and pin, and compares the two upstream style guides byte-for-byte. In a compatible agent host
+checklist and pin, and compares the two upstream style guides byte-for-byte.
+The migration test also runs the upstream resume script; the full suite is
+necessary. In a compatible agent host
 reload the workspace plugin and invoke `/conductor:conductor-status` or
 `/conductor:conductor-setup` for the native handshake.
 

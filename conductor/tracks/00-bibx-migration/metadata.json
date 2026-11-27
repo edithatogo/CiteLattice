@@ -13,5 +13,12 @@
   "historical_contract_pairs": 7,
   "source_paths": 147,
   "historical_python_tests_passed": 22,
-  "history": "no_recoverable_root_commit_history"
+  "history": "no_recoverable_root_commit_history",
+  "setup_evidence": {
+    "head": "35ef3876434adf9954e5b1f367d76ff227a29156",
+    "run": 45915076179,
+    "job": 140232230823,
+    "result": "success",
+    "claim": "pinned repository setup checklist; not agent-host activation"
+  }
 }

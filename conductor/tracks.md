@@ -5,9 +5,9 @@
 Only materialized executable tracks are listed here; the full 00–12 roadmap below is retained. Existing PR ownership is unchanged.
 
 - [~] **Track: 00 — bibx design.2 migration** *Link: [Track 00](tracks/00-bibx-migration/index.md)*
-- [ ] **Track: 01 — Scholarly events** *Link: [Track 01](tracks/01-scholarly-events/index.md)*
-- [ ] **Track: 07 — Scientific imaging** *Link: [Track 07](tracks/07-scientific-imaging/index.md)*
-- [ ] **Track: 12 — Scientific evaluation** *Link: [Track 12](tracks/12-scientific-evaluation/index.md)*
+- [~] **Track: 01 — Scholarly events** *Link: [Track 01](tracks/01-scholarly-events/index.md)*
+- [~] **Track: 07 — Scientific imaging** *Link: [Track 07](tracks/07-scientific-imaging/index.md)*
+- [~] **Track: 12 — Scientific evaluation** *Link: [Track 12](tracks/12-scientific-evaluation/index.md)*
 
 ## Full roadmap
 
