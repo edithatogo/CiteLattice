@@ -1,0 +1,804 @@
+{
+  "archive": {
+    "filename": "bibx-contracts-design2.zip",
+    "bytes": 293129,
+    "sha256": "a13fc5ca464a0e2642170efdf28d2d30bd8420d804a8da2dbcff0e920b8fbcd1",
+    "crc_verified": true,
+    "project_files": 147,
+    "vendor_files": 28
+  },
+  "earlier_archive": {
+    "filename": "bibx-scaffold.zip",
+    "bytes": 439029,
+    "sha256": "3ac8d3f35353bb298e29e0113d8db5e33c86f4dd6bf140a18fb682e35c1b6cee",
+    "crc_verified": true,
+    "root_git_loose_blobs": 66,
+    "root_git_commits": 0,
+    "branch_tip_recovered": false
+  },
+  "receiving_revision": "abb06bfc3a854574b4830648c9e447feb6f49a0b",
+  "baseline_catalogue_git_blob_sha1": "70630c859c39137a3eff5ff7c93a13712a3b04b1",
+  "historical_contract_bundle_sha256": "091e335cec896f6ea614ca10da7c201123306265009fea827fcd262564185638",
+  "upstream_pin": "6e8f9a860bcdd6a2c423473c12e745200688c633",
+  "vendor_paths": [
+    ".claude-plugin/marketplace.json",
+    ".gitignore",
+    "CONTRIBUTING.md",
+    "LICENSE",
+    "README.md",
+    "VERSION",
+    "plugin.json",
+    "rules/conductor_antigravity.md",
+    "skills/conductor-implement/SKILL.md",
+    "skills/conductor-new-track/SKILL.md",
+    "skills/conductor-new-track/assets/catalog.md",
+    "skills/conductor-revert/SKILL.md",
+    "skills/conductor-review/SKILL.md",
+    "skills/conductor-setup/SKILL.md",
+    "skills/conductor-setup/assets/catalog.md",
+    "skills/conductor-setup/assets/code_styleguides/cpp.md",
+    "skills/conductor-setup/assets/code_styleguides/csharp.md",
+    "skills/conductor-setup/assets/code_styleguides/dart.md",
+    "skills/conductor-setup/assets/code_styleguides/general.md",
+    "skills/conductor-setup/assets/code_styleguides/go.md",
+    "skills/conductor-setup/assets/code_styleguides/html-css.md",
+    "skills/conductor-setup/assets/code_styleguides/javascript.md",
+    "skills/conductor-setup/assets/code_styleguides/python.md",
+    "skills/conductor-setup/assets/code_styleguides/ruby.md",
+    "skills/conductor-setup/assets/code_styleguides/typescript.md",
+    "skills/conductor-setup/assets/workflow.md",
+    "skills/conductor-setup/scripts/resume.py",
+    "skills/conductor-status/SKILL.md"
+  ],
+  "source_files": [
+    {
+      "source": ".gitignore",
+      "target": "repository root",
+      "disposition": "current successor; do not overwrite governance"
+    },
+    {
+      "source": ".gitmodules",
+      "target": "repository root",
+      "disposition": "current successor; do not overwrite governance"
+    },
+    {
+      "source": "AGENTS.md",
+      "target": "repository root",
+      "disposition": "current successor; do not overwrite governance"
+    },
+    {
+      "source": "backend-probes/Cargo.toml",
+      "target": "backend-probes; Track 09",
+      "disposition": "optional successor; native equivalence not admitted"
+    },
+    {
+      "source": "backend-probes/README.md",
+      "target": "backend-probes; Track 09",
+      "disposition": "optional successor; native equivalence not admitted"
+    },
+    {
+      "source": "backend-probes/src/lib.rs",
+      "target": "backend-probes; Track 09",
+      "disposition": "optional successor; native equivalence not admitted"
+    },
+    {
+      "source": "Cargo.lock",
+      "target": "Cargo.toml and current workspace; Track 09",
+      "disposition": "superseded dependency/toolchain inputs; do not restore stale lockfile"
+    },
+    {
+      "source": "Cargo.toml",
+      "target": "Cargo.toml and current workspace; Track 09",
+      "disposition": "superseded dependency/toolchain inputs; do not restore stale lockfile"
+    },
+    {
+      "source": "conductor/code_styleguides/rust.md",
+      "target": "conductor/code_styleguides/rust.md",
+      "disposition": "historical guide adapted to current workspace"
+    },
+    {
+      "source": "conductor/decisions.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/design.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/expansion-plan.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/index.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/product-guidelines.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/product.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/requirements.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/tech-stack.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/tracks.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "conductor/tracks/00-contract-blueprint_20261110/index.md",
+      "target": "Track 00",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/00-contract-blueprint_20261110/metadata.json",
+      "target": "Track 00",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/00-contract-blueprint_20261110/plan.md",
+      "target": "Track 00",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/00-contract-blueprint_20261110/spec.md",
+      "target": "Track 00",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/01-ingestion-bridge_20261110/index.md",
+      "target": "Track 01",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/01-ingestion-bridge_20261110/metadata.json",
+      "target": "Track 01",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/01-ingestion-bridge_20261110/plan.md",
+      "target": "Track 01",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/01-ingestion-bridge_20261110/spec.md",
+      "target": "Track 01",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/02-polars-entities_20261110/index.md",
+      "target": "Track 03/09",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/02-polars-entities_20261110/metadata.json",
+      "target": "Track 03/09",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/02-polars-entities_20261110/plan.md",
+      "target": "Track 03/09",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/02-polars-entities_20261110/spec.md",
+      "target": "Track 03/09",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/03-topology-metrics_20261110/index.md",
+      "target": "Track 03/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/03-topology-metrics_20261110/metadata.json",
+      "target": "Track 03/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/03-topology-metrics_20261110/plan.md",
+      "target": "Track 03/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/03-topology-metrics_20261110/spec.md",
+      "target": "Track 03/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/04-local-inference_20261110/index.md",
+      "target": "Track 04",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/04-local-inference_20261110/metadata.json",
+      "target": "Track 04",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/04-local-inference_20261110/plan.md",
+      "target": "Track 04",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/04-local-inference_20261110/spec.md",
+      "target": "Track 04",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/05-runtime-recovery_20261110/index.md",
+      "target": "Track 01/06",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/05-runtime-recovery_20261110/metadata.json",
+      "target": "Track 01/06",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/05-runtime-recovery_20261110/plan.md",
+      "target": "Track 01/06",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/05-runtime-recovery_20261110/spec.md",
+      "target": "Track 01/06",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/06-validation-performance_20261110/index.md",
+      "target": "Track 10/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/06-validation-performance_20261110/metadata.json",
+      "target": "Track 10/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/06-validation-performance_20261110/plan.md",
+      "target": "Track 10/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/06-validation-performance_20261110/spec.md",
+      "target": "Track 10/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/07-method-coverage_20261110/index.md",
+      "target": "Track 02/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/07-method-coverage_20261110/metadata.json",
+      "target": "Track 02/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/07-method-coverage_20261110/plan.md",
+      "target": "Track 02/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/07-method-coverage_20261110/spec.md",
+      "target": "Track 02/12",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/08-research-ecosystem_20261110/index.md",
+      "target": "Track 05",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/08-research-ecosystem_20261110/metadata.json",
+      "target": "Track 05",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/08-research-ecosystem_20261110/plan.md",
+      "target": "Track 05",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/08-research-ecosystem_20261110/spec.md",
+      "target": "Track 05",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/09-versioned-artifacts_20261110/index.md",
+      "target": "Track 06",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/09-versioned-artifacts_20261110/metadata.json",
+      "target": "Track 06",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/09-versioned-artifacts_20261110/plan.md",
+      "target": "Track 06",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/09-versioned-artifacts_20261110/spec.md",
+      "target": "Track 06",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/10-evidence-imaging_20261110/index.md",
+      "target": "Track 07",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/10-evidence-imaging_20261110/metadata.json",
+      "target": "Track 07",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/10-evidence-imaging_20261110/plan.md",
+      "target": "Track 07",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/10-evidence-imaging_20261110/spec.md",
+      "target": "Track 07",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/11-artifact-reporting_20261110/index.md",
+      "target": "Track 08",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/11-artifact-reporting_20261110/metadata.json",
+      "target": "Track 08",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/11-artifact-reporting_20261110/plan.md",
+      "target": "Track 08",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/11-artifact-reporting_20261110/spec.md",
+      "target": "Track 08",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/12-dependency-harness_20261110/index.md",
+      "target": "Track 09/10",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/12-dependency-harness_20261110/metadata.json",
+      "target": "Track 09/10",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/12-dependency-harness_20261110/plan.md",
+      "target": "Track 09/10",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/12-dependency-harness_20261110/spec.md",
+      "target": "Track 09/10",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/13-innovation-voi-study_20261110/index.md",
+      "target": "Track 11",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/13-innovation-voi-study_20261110/metadata.json",
+      "target": "Track 11",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/13-innovation-voi-study_20261110/plan.md",
+      "target": "Track 11",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/tracks/13-innovation-voi-study_20261110/spec.md",
+      "target": "Track 11",
+      "disposition": "historical plan reconciled to current scope; no promotion"
+    },
+    {
+      "source": "conductor/workflow.md",
+      "target": "conductor; current roadmap and setup",
+      "disposition": "current successor; historical planning cannot establish completion"
+    },
+    {
+      "source": "contracts/capability-coverage.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-capability-coverage.json",
+      "disposition": "exact historical inventory"
+    },
+    {
+      "source": "contracts/proposals/analysis-run.v1.schema.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "735acbcf92d04eb1ea5b6ea62418b4eece264e31"
+    },
+    {
+      "source": "contracts/proposals/document-bundle.v1.schema.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "2dec4c66956933446ed32cec4314847722f2dc8d"
+    },
+    {
+      "source": "contracts/proposals/evidence-scene.v1.schema.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "fc94e8881019b4357ea889d58b1f424281404aff"
+    },
+    {
+      "source": "contracts/proposals/fixtures/analysis-run-example.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "440142fa9d3f3075d28c0aef40f0c853d9d2ddb8"
+    },
+    {
+      "source": "contracts/proposals/fixtures/document-bundle-example.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "96f6ba57b0789efff65f79e0f589221057eac4a7"
+    },
+    {
+      "source": "contracts/proposals/fixtures/evidence-scene-example.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "fd40078f7f9ce58d1f86493c0895ee42d630921c"
+    },
+    {
+      "source": "contracts/proposals/fixtures/method-example.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "1113df2c6762ad983b1dfbf2b1fb5dceef91abc8"
+    },
+    {
+      "source": "contracts/proposals/fixtures/render-receipt-example.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "fe060f0640d0a352b100b3169f3c1e8f49ac3290"
+    },
+    {
+      "source": "contracts/proposals/fixtures/scholarly-stream-upsert.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract; receiving stream matches",
+      "git_blob_sha1": "45c97a7925ec9c6a6b49f2a40aef902ded32fde7"
+    },
+    {
+      "source": "contracts/proposals/fixtures/table-example.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "e802d96177cad6cf80eeb77c6601646bb72f182e"
+    },
+    {
+      "source": "contracts/proposals/method.v1.schema.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "bb9ba5db2adb2e2942692d49534d97ea1086f212"
+    },
+    {
+      "source": "contracts/proposals/render-receipt.v1.schema.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "c11ee9e1ba01c3c2cd3361db9bddf324f35590c0"
+    },
+    {
+      "source": "contracts/proposals/scholarly-stream.v1.schema.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract; receiving stream matches",
+      "git_blob_sha1": "79e46c7658d42533fcbcb04bbfb2b2091a0210a9"
+    },
+    {
+      "source": "contracts/proposals/table.v1.schema.json",
+      "target": "conductor/tracks/00-bibx-migration/baseline-contracts.json.gz",
+      "disposition": "exact historical contract reference; receiving wire/API parity pending",
+      "git_blob_sha1": "43833db5a8680e3a064cdbe4bdbfd2508669502b"
+    },
+    {
+      "source": "crates/bibx-adapters/Cargo.toml",
+      "target": "backend-probes; Tracks 03/04/09",
+      "disposition": "defer optional old adapter interfaces; no unqualified backend promotion"
+    },
+    {
+      "source": "crates/bibx-adapters/src/inference.rs",
+      "target": "backend-probes; Tracks 03/04/09",
+      "disposition": "defer optional old adapter interfaces; no unqualified backend promotion"
+    },
+    {
+      "source": "crates/bibx-adapters/src/lib.rs",
+      "target": "backend-probes; Tracks 03/04/09",
+      "disposition": "defer optional old adapter interfaces; no unqualified backend promotion"
+    },
+    {
+      "source": "crates/bibx-adapters/src/network.rs",
+      "target": "backend-probes; Tracks 03/04/09",
+      "disposition": "defer optional old adapter interfaces; no unqualified backend promotion"
+    },
+    {
+      "source": "crates/bibx-adapters/src/polars.rs",
+      "target": "backend-probes; Tracks 03/04/09",
+      "disposition": "defer optional old adapter interfaces; no unqualified backend promotion"
+    },
+    {
+      "source": "crates/bibx-conductor/Cargo.toml",
+      "target": "Track 01/06; repository-local Conductor",
+      "disposition": "old runtime sketch is not the agent plugin; runtime recovery pending"
+    },
+    {
+      "source": "crates/bibx-conductor/src/lib.rs",
+      "target": "Track 01/06; repository-local Conductor",
+      "disposition": "old runtime sketch is not the agent plugin; runtime recovery pending"
+    },
+    {
+      "source": "crates/bibx-core/Cargo.toml",
+      "target": "crates/citelattice-core",
+      "disposition": "workspace boundary successor; exact API parity pending"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/academic.rs",
+      "target": "crates/citelattice-ingest; Track 01",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/analysis.rs",
+      "target": "crates/citelattice-analysis; Tracks 02/12",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/common.rs",
+      "target": "crates/citelattice-core/src/contracts; Track 06",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/ecosystem.rs",
+      "target": "Track 05",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/exchange.rs",
+      "target": "crates/citelattice-ingest; Track 01",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/graph.rs",
+      "target": "crates/citelattice-network; Track 03",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/imaging.rs",
+      "target": "crates/citelattice-visualize; Track 07",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/inference.rs",
+      "target": "Track 04",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/ingestion.rs",
+      "target": "crates/citelattice-ingest; Track 01",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/metrics.rs",
+      "target": "crates/citelattice-analysis; Tracks 02/12",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/mod.rs",
+      "target": "crates/citelattice-core",
+      "disposition": "workspace boundary successor; exact API parity pending"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/pipeline.rs",
+      "target": "Track 01/06",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/reporting.rs",
+      "target": "crates/citelattice-export; Track 08",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/study.rs",
+      "target": "Track 11",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/contracts/versioning.rs",
+      "target": "crates/citelattice-core/src/contracts; Track 06",
+      "disposition": "partial/specified successor; original declarations need explicit API parity or intentional difference review"
+    },
+    {
+      "source": "crates/bibx-core/src/lib.rs",
+      "target": "crates/citelattice-core",
+      "disposition": "workspace boundary successor; exact API parity pending"
+    },
+    {
+      "source": "crates/bibx-tracks/Cargo.toml",
+      "target": "current workspace; Tracks 01/06",
+      "disposition": "old track dispatch scaffold; no runtime equivalence"
+    },
+    {
+      "source": "crates/bibx-tracks/src/lib.rs",
+      "target": "current workspace; Tracks 01/06",
+      "disposition": "old track dispatch scaffold; no runtime equivalence"
+    },
+    {
+      "source": "dependencies/decisions.json",
+      "target": "conductor/dependencies.md; Track 09",
+      "disposition": "current decision registry supersedes historical declarations"
+    },
+    {
+      "source": "DESIGN_REVISION.json",
+      "target": "conductor/tracks/00-bibx-migration/source-manifest.json",
+      "disposition": "provenance captured"
+    },
+    {
+      "source": "docs/architecture.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/design-expansion.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/feature-coverage.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/harness-security.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/imaging-contracts.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/output-contracts.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/research-innovation-voi.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/sources-design2.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/upstream-sources.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/verification-design2.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/verification.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "docs/versioning.md",
+      "target": "conductor/design.md, docs, verification and relevant tracks",
+      "disposition": "historical documentation and evidence; no current verification claim"
+    },
+    {
+      "source": "integration/searchright-candidate.json",
+      "target": "Track 01; Searchright",
+      "disposition": "historical handoff; producer integration pending"
+    },
+    {
+      "source": "integration/searchright-companion/conductor/index.md",
+      "target": "Track 01; Searchright",
+      "disposition": "companion repository artifacts; do not overwrite other repository"
+    },
+    {
+      "source": "integration/searchright-companion/conductor/workstreams/scientometrics-handoff.md",
+      "target": "Track 01; Searchright",
+      "disposition": "companion repository artifacts; do not overwrite other repository"
+    },
+    {
+      "source": "integration/searchright-companion/contracts/proposals/fixtures/scholarly-stream-upsert.json",
+      "target": "Track 01; Searchright",
+      "disposition": "companion repository artifacts; do not overwrite other repository"
+    },
+    {
+      "source": "integration/searchright-companion/contracts/proposals/scholarly-stream.v1.schema.json",
+      "target": "Track 01; Searchright",
+      "disposition": "companion repository artifacts; do not overwrite other repository"
+    },
+    {
+      "source": "integration/searchright-companion/integration/candidates/bibx-scholarly-stream.json",
+      "target": "Track 01; Searchright",
+      "disposition": "companion repository artifacts; do not overwrite other repository"
+    },
+    {
+      "source": "integration/searchright-companion/requirements/validation.txt",
+      "target": "Track 01; Searchright",
+      "disposition": "companion repository artifacts; do not overwrite other repository"
+    },
+    {
+      "source": "integration/searchright-companion/tests/test_scholarly_stream_proposal.py",
+      "target": "Track 01; Searchright",
+      "disposition": "companion repository artifacts; do not overwrite other repository"
+    },
+    {
+      "source": "README.md",
+      "target": "repository root",
+      "disposition": "current successor; do not overwrite governance"
+    },
+    {
+      "source": "requirements/validation.txt",
+      "target": "schema CI",
+      "disposition": "current pinned validators supersede old requirements"
+    },
+    {
+      "source": "rust-toolchain.toml",
+      "target": "Cargo.toml and current workspace; Track 09",
+      "disposition": "superseded dependency/toolchain inputs; do not restore stale lockfile"
+    },
+    {
+      "source": "src/lib.rs",
+      "target": "crates/citelattice-core",
+      "disposition": "old umbrella boundary superseded by workspace; public API parity pending"
+    },
+    {
+      "source": "tests/contracts/test_design_contracts.py",
+      "target": "tests; Track 00/12",
+      "disposition": "22 original checks executed; current native/API checks separate"
+    },
+    {
+      "source": "tests/test_scholarly_stream_proposal.py",
+      "target": "tests; Track 00/12",
+      "disposition": "22 original checks executed; current native/API checks separate"
+    },
+    {
+      "source": "verification/design2.json",
+      "target": "historical archive; Track 00 migration.md",
+      "disposition": "historical evidence only"
+    },
+    {
+      "source": "verification/validation-1.log",
+      "target": "historical archive; Track 00 migration.md",
+      "disposition": "historical evidence only"
+    },
+    {
+      "source": "verification/validation-2.log",
+      "target": "historical archive; Track 00 migration.md",
+      "disposition": "historical evidence only"
+    }
+  ]
+}

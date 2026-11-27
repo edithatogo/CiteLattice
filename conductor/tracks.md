@@ -13,7 +13,7 @@ Only materialized executable tracks are listed here; the full 00–12 roadmap be
 
 | Track | Status | Outcome | Proof |
 | --- | --- | --- | --- |
-| 00 — [bibx design.2 migration](tracks/00-bibx-migration/index.md) | In progress; baseline catalogue reconciled, full archive and native parity held | Import and reconcile useful previous source/contracts/history; use CiteLattice crate and repo names | Change manifest, complete compile/test and API parity |
+| 00 — [bibx design.2 migration](tracks/00-bibx-migration/index.md) | In progress; original archive and catalogue recovered, source manifest and exact historical schemas retained; native parity held | Import and reconcile useful previous source/contracts/history; use CiteLattice crate and repo names | Change manifest, complete compile/test and API parity |
 | 01 — Searchright + formats | Bounded event consumer CI passed; producer and durable replay pending | Canonical CSL, proposed stream, Arrow/Parquet, other reference formats | Producer/consumer golden fixtures, compiled replay tests and durable checkpoint |
 | 02 — Methods registry | Planned | bibliometrix/PyBibX/DImensions/lower-friction outcome definition and oracles | Publication references, independent numerical outputs |
 | 03 — Entity and graph analytics | Initial Petgraph baseline on main; broader scope pending | Stable IDs, coauthors/coupling/co-citation/main paths | Source vs result comparison, incremental/full replay |

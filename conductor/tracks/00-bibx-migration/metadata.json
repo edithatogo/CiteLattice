@@ -5,9 +5,13 @@
   "status": "in_progress",
   "observed_base": "c1654c5c0453e03fde38aabdfbf8fedc2e4a5a84",
   "upstream_conductor": "6e8f9a860bcdd6a2c423473c12e745200688c633",
-  "baseline_catalogue": "recovered_structural_snapshot",
-  "archive": "not_recovered",
+  "baseline_catalogue": "exact_git_blob",
+  "archive": "recovered_crc_verified",
   "native_parity": "not_verified",
   "created_at": "2026-11-27",
-  "updated_at": "2026-11-27"
+  "updated_at": "2026-11-27",
+  "historical_contract_pairs": 7,
+  "source_paths": 147,
+  "historical_python_tests_passed": 22,
+  "history": "no_recoverable_root_commit_history"
 }
