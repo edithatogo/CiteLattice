@@ -63,6 +63,12 @@ pub enum EventError {
     /// Bounded state, physical frame or object count exceeded.
     #[error("event resource budget exhausted")]
     ResourceLimit,
+    /// The prior trusted receipt does not match the exact replay prefix.
+    #[error("event replay prefix mismatch")]
+    ReplayMismatch,
+    /// A strict replay frame does not end with a newline.
+    #[error("incomplete event frame")]
+    IncompleteFrame,
     /// Source bytes could not be read.
     #[error("event input failed")]
     Io,
@@ -567,17 +573,28 @@ impl EventLedger {
     }
 }
 
-/// Read and verify a bounded stream into an in-memory ledger.
+/// Exact physical NDJSON prefix receipt, version 1.
 ///
-/// This is not a durable event spool, a completed Searchright producer,
-/// or an atomic cross-process checkpoint. Blank frames are rejected.
-///
-/// # Errors
-/// Fails closed on oversized/invalid frames, resource limits or I/O.
-pub fn read_event_stream<R: BufRead>(
+/// Contains no event IDs, source keys, CSL fields or raw source bytes.
+/// Persist only under an appropriate rights policy: a digest is not anonymous
+/// data, a signature, proof of source authenticity or proof of sink durability.
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ReplayReceipt {
+    /// Receipt contract version (currently 1).
+    pub version: u8,
+    /// Number of complete physical frames, including exact duplicates.
+    pub frames: u64,
+    /// Lowercase SHA-256 of exact accepted bytes, including line endings.
+    pub sha256: String,
+}
+
+// Single bounded reader for both compatibility mode and strict replay.
+fn read_frames<R: BufRead>(
     mut input: R,
     limits: EventLimits,
-) -> Result<EventLedger, EventError> {
+    mut apply: impl FnMut(&[u8]) -> Result<(), EventError>,
+) -> Result<(), EventError> {
     if limits.max_events == 0 || limits.max_line_bytes == 0 || limits.max_objects == 0 {
         return Err(EventError::ResourceLimit);
     }
@@ -586,7 +603,6 @@ pub fn read_event_stream<R: BufRead>(
         .checked_add(1)
         .ok_or(EventError::ResourceLimit)?;
     let probe = u64::try_from(probe).map_err(|_| EventError::ResourceLimit)?;
-    let mut ledger = EventLedger::new(limits);
     let mut line = Vec::new();
     let mut physical = 0_usize;
     loop {
@@ -605,7 +621,83 @@ pub fn read_event_stream<R: BufRead>(
         if count > limits.max_line_bytes {
             return Err(EventError::FrameLimit);
         }
-        ledger.apply_json(&line)?;
+        apply(&line)?;
     }
+    Ok(())
+}
+
+/// Read and verify a bounded stream into an in-memory ledger.
+///
+/// This is not a durable event spool, a completed Searchright producer,
+/// or an atomic cross-process checkpoint. Blank frames are rejected.
+///
+/// # Errors
+/// Fails closed on oversized/invalid frames, resource limits or I/O.
+pub fn read_event_stream<R: BufRead>(
+    input: R,
+    limits: EventLimits,
+) -> Result<EventLedger, EventError> {
+    let mut ledger = EventLedger::new(limits);
+    read_frames(input, limits, |line| ledger.apply_json(line).map(|_| ()))?;
     Ok(ledger)
+}
+
+/// Fully replay a caller-retained source, optionally checking a trusted receipt.
+///
+/// Every frame must end in LF (CRLF is accepted and hashed as supplied).
+/// A prior receipt is checked at its exact physical frame boundary before any
+/// suffix is processed. Returns a new ledger and receipt only on complete
+/// success. No extra source copy is written, and the caller owns receipt
+/// persistence and source rights. A valid receipt is not independently
+/// authenticated; it must be obtained from a trusted prior run.
+/// ponytail: full linear replay avoids a second persisted state format;
+/// introduce incremental durable storage only after rights and crash tests.
+///
+/// # Errors
+/// Rejects unsupported/malformed receipts, changed or truncated prefixes,
+/// incomplete frames, invalid events and exceeded resource limits.
+pub fn verify_event_replay<R: BufRead>(
+    input: R,
+    limits: EventLimits,
+    expected: Option<&ReplayReceipt>,
+) -> Result<(EventLedger, ReplayReceipt), EventError> {
+    if let Some(receipt) = expected {
+        if receipt.version != 1 {
+            return Err(EventError::Version);
+        }
+        if !digest_string(&receipt.sha256)
+            || usize::try_from(receipt.frames).map_or(true, |n| n > limits.max_events)
+            || (receipt.frames == 0 && receipt.sha256 != hex_digest(b""))
+        {
+            return Err(EventError::ReplayMismatch);
+        }
+    }
+    let mut ledger = EventLedger::new(limits);
+    let mut hasher = Sha256::new();
+    let mut frames = 0_u64;
+    read_frames(input, limits, |line| {
+        if !line.ends_with(b"\n") {
+            return Err(EventError::IncompleteFrame);
+        }
+        ledger.apply_json(line)?;
+        frames = frames.checked_add(1).ok_or(EventError::ResourceLimit)?;
+        hasher.update(line);
+        if expected.is_some_and(|receipt| {
+            receipt.frames == frames && receipt.sha256 != hex::encode(hasher.clone().finalize())
+        }) {
+            return Err(EventError::ReplayMismatch);
+        }
+        Ok(())
+    })?;
+    if expected.is_some_and(|receipt| receipt.frames > frames) {
+        return Err(EventError::ReplayMismatch);
+    }
+    Ok((
+        ledger,
+        ReplayReceipt {
+            version: 1,
+            frames,
+            sha256: hex::encode(hasher.finalize()),
+        },
+    ))
 }

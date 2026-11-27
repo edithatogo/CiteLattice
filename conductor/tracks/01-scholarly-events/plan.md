@@ -34,11 +34,16 @@ The workspace already declares `serde` derive and `serde_json` with `raw_value`;
 
 ## Bounded prefix replay receipt — 28 November 2026
 
-- [~] Add a versioned, serializable receipt of exact accepted physical NDJSON frames
+- [~] Implemented candidate: versioned, serializable receipt of exact accepted physical NDJSON frames
   (SHA-256 and count only), verify a previously trusted prefix during full replay,
   and reject changed/truncated prefixes, unterminated frames, malformed receipts
   and limit violations before returning state.
 - [ ] Observe RED and GREEN native test results and exact-head independent review.
+
+The two strict replay integration regressions exercise exact-byte prefix validation,
+duplicate/deletion state equivalence, truncation and incomplete frames. The red
+branch is separate from the implementation commit; hosted native qualification
+must be observed before marking the task complete.
 
 No new log, database, authentication or storage engine. The caller retains the
 source and receipt under its approved rights policy. Full replay intentionally
